@@ -1,0 +1,22 @@
+name: Flutter_Analyzer
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  flutter_analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: subosito/flutter-action@v2.5.0
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - name: Run Flutter format
+        run: flutter format --set-exit-if-changed .
+      - name: flutter analyze
+        run: flutter analyze
