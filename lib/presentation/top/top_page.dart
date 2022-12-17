@@ -16,13 +16,14 @@ class TopPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void toJsonList(String data) {
-      final dataList = data.split('}, {');
-      print(dataList.length);
-      print(dataList);
-      Map<String, dynamic> map = jsonDecode("{${dataList[15]}}");
-      print(map);
-      final pokemon15 = Pokemon.fromJson(map);
-      print(pokemon15);
+      Map<String, dynamic> map = jsonDecode(data);
+      map.forEach((key, value) {
+        Pokemon.fromJson(value);
+      });
+      final pokemon =
+          map.map((key, value) => MapEntry(key, Pokemon.fromJson(value)));
+      print(pokemon);
+      print(pokemon["レックウザ"]);
     }
 
     return Scaffold(
@@ -33,7 +34,8 @@ class TopPage extends ConsumerWidget {
           child: InkWell(
               onTap: () async {
                 logger.d("test");
-                final loadData = await rootBundle.loadString('json/data.json');
+                final loadData =
+                    await rootBundle.loadString('json/pokemon.json');
                 toJsonList(loadData);
                 ref.watch(scaffoldMessengerHelperProvider).showSnackBar("test");
                 context.push(kPagePathNext);
