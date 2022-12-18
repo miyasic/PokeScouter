@@ -22,6 +22,18 @@ class PokemonSuggestStateNotifier extends StateNotifier<PokemonSuggest> {
     state = state.copyWith(suggestPokemonNameList: suggestPokemonName);
   }
 
+  List<String> getSuggestPokemonName(String input) {
+    final katakanaInput = _hiraganaToKatakana(input);
+    final suggestPokemonName = state.pokemonNameList
+        .where((element) => element.startsWith(katakanaInput))
+        .toList();
+    return suggestPokemonName;
+  }
+
+  getPokemon(String name) {
+    return state.pokemonMap[name];
+  }
+
   int getSuggestPokemonCount() {
     return state.suggestPokemonNameList.length;
   }
