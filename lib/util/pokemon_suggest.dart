@@ -15,8 +15,9 @@ class PokemonSuggestStateNotifier extends StateNotifier<PokemonSuggest> {
   PokemonSuggestStateNotifier(super.state);
 
   void setSuggestPokemonName(String input) {
+    final katakanaInput = _hiraganaToKatakana(input);
     final suggestPokemonName = state.pokemonNameList
-        .where((element) => element.startsWith(input))
+        .where((element) => element.startsWith(katakanaInput))
         .toList();
     state = state.copyWith(suggestPokemonNameList: suggestPokemonName);
   }
