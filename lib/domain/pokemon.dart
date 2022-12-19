@@ -16,6 +16,11 @@ class Pokemon with _$Pokemon {
     required String d,
     required String s,
     required String sum,
+    String? type1,
+    String? type2,
+    String? ability1,
+    String? ability2,
+    String? hiddenAbility,
   }) = _Pokemon;
 
   factory Pokemon.fromJson(Map<String, Object?> json) =>

@@ -35,6 +35,25 @@ class PokemonWidget extends StatelessWidget {
             Text("すばやさ:${pokemon.s}"),
           ],
         ),
+        Row(
+          children: [
+            Text("タイプ:"),
+            SizedBox(
+              width: 10,
+            ),
+            Text("${pokemon.type1} ${pokemon.type2}"),
+          ],
+        ),
+        Row(
+          children: [
+            Text("とくせい:"),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+                "${pokemon.ability1} ${pokemon.ability2} ${pokemon.hiddenAbility}"),
+          ],
+        ),
       ],
     );
   }

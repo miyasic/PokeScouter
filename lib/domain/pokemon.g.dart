@@ -16,6 +16,11 @@ _$_Pokemon _$$_PokemonFromJson(Map<String, dynamic> json) => _$_Pokemon(
       d: json['d'] as String,
       s: json['s'] as String,
       sum: json['sum'] as String,
+      type1: json['type1'] as String?,
+      type2: json['type2'] as String?,
+      ability1: json['ability1'] as String?,
+      ability2: json['ability2'] as String?,
+      hiddenAbility: json['hiddenAbility'] as String?,
     );
 
 Map<String, dynamic> _$$_PokemonToJson(_$_Pokemon instance) =>
@@ -29,4 +34,9 @@ Map<String, dynamic> _$$_PokemonToJson(_$_Pokemon instance) =>
       'd': instance.d,
       's': instance.s,
       'sum': instance.sum,
+      'type1': instance.type1,
+      'type2': instance.type2,
+      'ability1': instance.ability1,
+      'ability2': instance.ability2,
+      'hiddenAbility': instance.hiddenAbility,
     };

@@ -29,6 +29,11 @@ mixin _$Pokemon {
   String get d => throw _privateConstructorUsedError;
   String get s => throw _privateConstructorUsedError;
   String get sum => throw _privateConstructorUsedError;
+  String? get type1 => throw _privateConstructorUsedError;
+  String? get type2 => throw _privateConstructorUsedError;
+  String? get ability1 => throw _privateConstructorUsedError;
+  String? get ability2 => throw _privateConstructorUsedError;
+  String? get hiddenAbility => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +54,12 @@ abstract class $PokemonCopyWith<$Res> {
       String c,
       String d,
       String s,
-      String sum});
+      String sum,
+      String? type1,
+      String? type2,
+      String? ability1,
+      String? ability2,
+      String? hiddenAbility});
 }
 
 /// @nodoc
@@ -74,6 +84,11 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
     Object? d = null,
     Object? s = null,
     Object? sum = null,
+    Object? type1 = freezed,
+    Object? type2 = freezed,
+    Object? ability1 = freezed,
+    Object? ability2 = freezed,
+    Object? hiddenAbility = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -112,6 +127,26 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
           ? _value.sum
           : sum // ignore: cast_nullable_to_non_nullable
               as String,
+      type1: freezed == type1
+          ? _value.type1
+          : type1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type2: freezed == type2
+          ? _value.type2
+          : type2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ability1: freezed == ability1
+          ? _value.ability1
+          : ability1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ability2: freezed == ability2
+          ? _value.ability2
+          : ability2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hiddenAbility: freezed == hiddenAbility
+          ? _value.hiddenAbility
+          : hiddenAbility // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -132,7 +167,12 @@ abstract class _$$_PokemonCopyWith<$Res> implements $PokemonCopyWith<$Res> {
       String c,
       String d,
       String s,
-      String sum});
+      String sum,
+      String? type1,
+      String? type2,
+      String? ability1,
+      String? ability2,
+      String? hiddenAbility});
 }
 
 /// @nodoc
@@ -154,6 +194,11 @@ class __$$_PokemonCopyWithImpl<$Res>
     Object? d = null,
     Object? s = null,
     Object? sum = null,
+    Object? type1 = freezed,
+    Object? type2 = freezed,
+    Object? ability1 = freezed,
+    Object? ability2 = freezed,
+    Object? hiddenAbility = freezed,
   }) {
     return _then(_$_Pokemon(
       name: null == name
@@ -192,6 +237,26 @@ class __$$_PokemonCopyWithImpl<$Res>
           ? _value.sum
           : sum // ignore: cast_nullable_to_non_nullable
               as String,
+      type1: freezed == type1
+          ? _value.type1
+          : type1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      type2: freezed == type2
+          ? _value.type2
+          : type2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ability1: freezed == ability1
+          ? _value.ability1
+          : ability1 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      ability2: freezed == ability2
+          ? _value.ability2
+          : ability2 // ignore: cast_nullable_to_non_nullable
+              as String?,
+      hiddenAbility: freezed == hiddenAbility
+          ? _value.hiddenAbility
+          : hiddenAbility // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -208,7 +273,12 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
       required this.c,
       required this.d,
       required this.s,
-      required this.sum});
+      required this.sum,
+      this.type1,
+      this.type2,
+      this.ability1,
+      this.ability2,
+      this.hiddenAbility});
 
   factory _$_Pokemon.fromJson(Map<String, dynamic> json) =>
       _$$_PokemonFromJson(json);
@@ -231,10 +301,20 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
   final String s;
   @override
   final String sum;
+  @override
+  final String? type1;
+  @override
+  final String? type2;
+  @override
+  final String? ability1;
+  @override
+  final String? ability2;
+  @override
+  final String? hiddenAbility;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Pokemon(name: $name, number: $number, h: $h, a: $a, b: $b, c: $c, d: $d, s: $s, sum: $sum)';
+    return 'Pokemon(name: $name, number: $number, h: $h, a: $a, b: $b, c: $c, d: $d, s: $s, sum: $sum, type1: $type1, type2: $type2, ability1: $ability1, ability2: $ability2, hiddenAbility: $hiddenAbility)';
   }
 
   @override
@@ -250,7 +330,12 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
       ..add(DiagnosticsProperty('c', c))
       ..add(DiagnosticsProperty('d', d))
       ..add(DiagnosticsProperty('s', s))
-      ..add(DiagnosticsProperty('sum', sum));
+      ..add(DiagnosticsProperty('sum', sum))
+      ..add(DiagnosticsProperty('type1', type1))
+      ..add(DiagnosticsProperty('type2', type2))
+      ..add(DiagnosticsProperty('ability1', ability1))
+      ..add(DiagnosticsProperty('ability2', ability2))
+      ..add(DiagnosticsProperty('hiddenAbility', hiddenAbility));
   }
 
   @override
@@ -266,13 +351,21 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
             (identical(other.c, c) || other.c == c) &&
             (identical(other.d, d) || other.d == d) &&
             (identical(other.s, s) || other.s == s) &&
-            (identical(other.sum, sum) || other.sum == sum));
+            (identical(other.sum, sum) || other.sum == sum) &&
+            (identical(other.type1, type1) || other.type1 == type1) &&
+            (identical(other.type2, type2) || other.type2 == type2) &&
+            (identical(other.ability1, ability1) ||
+                other.ability1 == ability1) &&
+            (identical(other.ability2, ability2) ||
+                other.ability2 == ability2) &&
+            (identical(other.hiddenAbility, hiddenAbility) ||
+                other.hiddenAbility == hiddenAbility));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, number, h, a, b, c, d, s, sum);
+  int get hashCode => Object.hash(runtimeType, name, number, h, a, b, c, d, s,
+      sum, type1, type2, ability1, ability2, hiddenAbility);
 
   @JsonKey(ignore: true)
   @override
@@ -298,7 +391,12 @@ abstract class _Pokemon implements Pokemon {
       required final String c,
       required final String d,
       required final String s,
-      required final String sum}) = _$_Pokemon;
+      required final String sum,
+      final String? type1,
+      final String? type2,
+      final String? ability1,
+      final String? ability2,
+      final String? hiddenAbility}) = _$_Pokemon;
 
   factory _Pokemon.fromJson(Map<String, dynamic> json) = _$_Pokemon.fromJson;
 
@@ -320,6 +418,16 @@ abstract class _Pokemon implements Pokemon {
   String get s;
   @override
   String get sum;
+  @override
+  String? get type1;
+  @override
+  String? get type2;
+  @override
+  String? get ability1;
+  @override
+  String? get ability2;
+  @override
+  String? get hiddenAbility;
   @override
   @JsonKey(ignore: true)
   _$$_PokemonCopyWith<_$_Pokemon> get copyWith =>
