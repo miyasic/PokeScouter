@@ -10,7 +10,7 @@ class PokemonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        Wrap(
           children: [
             Text(
               pokemon.name,
@@ -25,7 +25,7 @@ class PokemonWidget extends StatelessWidget {
             )
           ],
         ),
-        Row(
+        Wrap(
           children: [
             Text("HP:${pokemon.h}"),
             Text("こうげき:${pokemon.a}"),
@@ -35,7 +35,7 @@ class PokemonWidget extends StatelessWidget {
             Text("すばやさ:${pokemon.s}"),
           ],
         ),
-        Row(
+        Wrap(
           children: [
             Text("タイプ:"),
             SizedBox(
@@ -44,7 +44,7 @@ class PokemonWidget extends StatelessWidget {
             Text("${pokemon.type1} ${pokemon.type2}"),
           ],
         ),
-        Row(
+        Wrap(
           children: [
             Text("とくせい:"),
             SizedBox(
