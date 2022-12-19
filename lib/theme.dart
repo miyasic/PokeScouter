@@ -5,6 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final themeProvider = Provider.family<ThemeData, Brightness>((ref, brightness) {
   return ThemeData(
     brightness: brightness,
-    primarySwatch: Colors.blue,
+    primarySwatch: Colors.teal,
   );
 }, name: kProviderNameTheme);
