@@ -15,15 +15,16 @@ class TopPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(pokemonSuggestStateProvider);
     final pokemon = useState<Pokemon>(const Pokemon(
-        name: "",
-        number: "",
-        h: "",
-        a: "",
-        b: "",
-        c: "",
-        d: "",
-        s: "",
-        sum: ""));
+      name: "",
+      number: "",
+      h: "",
+      a: "",
+      b: "",
+      c: "",
+      d: "",
+      s: "",
+      sum: "",
+    ));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
