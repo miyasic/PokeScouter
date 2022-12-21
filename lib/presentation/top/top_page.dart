@@ -18,43 +18,58 @@ class TopPage extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text(kPageNameTop),
       ),
-      body: ListView.builder(
-        itemCount: pokemon.value.length + 1,
-        itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return Autocomplete(
-
-              optionsBuilder: (textEditingValue) {
-                if (textEditingValue.text == "") {
-                  return <String>[];
-                }
-                return ref
-                    .read(pokemonSuggestStateProvider.notifier)
-                    .getSuggestPokemonName(textEditingValue.text);
-              },
-              onSelected: (String pokemonName) {
-                pokemon.value = [...pokemon.value..add(ref
-                    .read(pokemonSuggestStateProvider.notifier)
-                    .getPokemon(pokemonName))];
-                textEditingController.clear();
-              },
-              fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
-                  FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
-                textEditingController = fieldTextEditingController;
-                return TextField(
-                  controller: textEditingController,
-                  focusNode: fieldFocusNode,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                );
-              },
-            );
-          }
-          return InkWell(
-              onDoubleTap: () {
-                pokemon.value = [...pokemon.value..removeAt(index - 1)];
-              },
-              child: PokemonWidget(pokemon.value[index - 1]));
-        },
+      body: Column(
+        children: [
+          Autocomplete(
+            optionsBuilder: (textEditingValue) {
+              if (textEditingValue.text == "") {
+                return <String>[];
+              }
+              return ref
+                  .read(pokemonSuggestStateProvider.notifier)
+                  .getSuggestPokemonName(textEditingValue.text);
+            },
+            onSelected: (String pokemonName) {
+              pokemon.value = [
+                ...pokemon.value
+                  ..add(ref
+                      .read(pokemonSuggestStateProvider.notifier)
+                      .getPokemon(pokemonName))
+              ];
+              textEditingController.clear();
+            },
+            fieldViewBuilder: (BuildContext context,
+                TextEditingController fieldTextEditingController,
+                FocusNode fieldFocusNode,
+                VoidCallback onFieldSubmitted) {
+              textEditingController = fieldTextEditingController;
+              return TextField(
+                controller: textEditingController,
+                focusNode: fieldFocusNode,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              );
+            },
+          ),
+          ReorderableListView.builder(
+            shrinkWrap: true,
+            itemCount: pokemon.value.length,
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(
+                  key: ValueKey(pokemon.value[index]),
+                  onDoubleTap: () {
+                    pokemon.value = [...pokemon.value..removeAt(index)];
+                  },
+                  child: PokemonWidget(pokemon.value[index]));
+            },
+            onReorder: (int oldIndex, int newIndex) {
+              if (oldIndex < newIndex) {
+                newIndex -= 1;
+              }
+              final Pokemon item = pokemon.value.removeAt(oldIndex);
+              pokemon.value = [...pokemon.value..insert(newIndex, item)];
+            },
+          ),
+        ],
       ),
     );
   }
