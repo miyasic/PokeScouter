@@ -19,11 +19,11 @@ class TopPage extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text(kPageNameTop),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Autocomplete(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Autocomplete(
               optionsBuilder: (textEditingValue) {
                 if (textEditingValue.text == "") {
                   return <String>[];
@@ -50,6 +50,7 @@ class TopPage extends HookConsumerWidget {
                   focusNode: fieldFocusNode,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
+                    border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       onPressed: textEditingController.clear,
                       icon: Icon(Icons.clear),
@@ -58,20 +59,25 @@ class TopPage extends HookConsumerWidget {
                 );
               },
             ),
-            ReorderableListView.builder(
-              shrinkWrap: true,
+          ),
+          Expanded(
+            child: ReorderableListView.builder(
               itemCount: pokemon.value.length,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                    key: ValueKey(pokemon.value[index]),
-                    onDoubleTap: () {
-                      pokemon.value = [...pokemon.value..removeAt(index)];
-                    },
-                    child: Badge(
-                      position: BadgePosition.topStart(),
-                        badgeColor: Theme.of(context).primaryColorDark,
-                        badgeContent:Text((index + 1).toString()),
-                        child: PokemonWidget(pokemon.value[index])));
+                return Padding(
+                  key: ValueKey(pokemon.value[index]),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: InkWell(
+
+                      onDoubleTap: () {
+                        pokemon.value = [...pokemon.value..removeAt(index)];
+                      },
+                      child: Badge(
+                        position: BadgePosition.topStart(),
+                          badgeColor: Theme.of(context).primaryColorDark,
+                          badgeContent:Text((index + 1).toString()),
+                          child: PokemonWidget(pokemon.value[index]))),
+                );
               },
               onReorder: (int oldIndex, int newIndex) {
                 if (oldIndex < newIndex) {
@@ -81,8 +87,8 @@ class TopPage extends HookConsumerWidget {
                 pokemon.value = [...pokemon.value..insert(newIndex, item)];
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
