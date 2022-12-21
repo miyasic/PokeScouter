@@ -37,7 +37,11 @@ class TopPage extends HookConsumerWidget {
               },
             );
           }
-          return PokemonWidget(pokemon.value[index - 1]);
+          return InkWell(
+              onDoubleTap: () {
+                pokemon.value = [...pokemon.value..removeAt(index - 1)];
+              },
+              child: PokemonWidget(pokemon.value[index - 1]));
         },
       ),
     );
