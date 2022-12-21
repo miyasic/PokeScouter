@@ -13,6 +13,7 @@ class TopPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemon = useState<List<Pokemon>>([]);
+    late TextEditingController textEditingController;
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
@@ -22,6 +23,7 @@ class TopPage extends HookConsumerWidget {
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
             return Autocomplete(
+
               optionsBuilder: (textEditingValue) {
                 if (textEditingValue.text == "") {
                   return <String>[];
@@ -34,6 +36,16 @@ class TopPage extends HookConsumerWidget {
                 pokemon.value = [...pokemon.value..add(ref
                     .read(pokemonSuggestStateProvider.notifier)
                     .getPokemon(pokemonName))];
+                textEditingController.clear();
+              },
+              fieldViewBuilder: (BuildContext context, TextEditingController fieldTextEditingController,
+                  FocusNode fieldFocusNode, VoidCallback onFieldSubmitted) {
+                textEditingController = fieldTextEditingController;
+                return TextField(
+                  controller: textEditingController,
+                  focusNode: fieldFocusNode,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                );
               },
             );
           }
