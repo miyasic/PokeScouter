@@ -39,7 +39,6 @@ class TopPage extends HookConsumerWidget {
                         .read(pokemonSuggestStateProvider.notifier)
                         .getPokemon(pokemonName))
                 ];
-                textEditingController.clear();
               },
               fieldViewBuilder: (BuildContext context,
                   TextEditingController fieldTextEditingController,
@@ -50,6 +49,12 @@ class TopPage extends HookConsumerWidget {
                   controller: textEditingController,
                   focusNode: fieldFocusNode,
                   style: const TextStyle(fontWeight: FontWeight.bold),
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: textEditingController.clear,
+                      icon: Icon(Icons.clear),
+                    ),
+                  ),
                 );
               },
             ),
