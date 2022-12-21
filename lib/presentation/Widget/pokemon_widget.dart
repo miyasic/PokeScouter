@@ -9,6 +9,12 @@ class PokemonWidget extends StatelessWidget {
   final Pokemon pokemon;
   @override
   Widget build(BuildContext context) {
+
+    String formatNumbers(String num) {
+      const spaceLater = "  ";
+      print(num.length);
+      return spaceLater * (3 - num.length) + num;
+    }
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
@@ -61,18 +67,18 @@ class PokemonWidget extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("H:${pokemon.h}"),
-                          Text("A:${pokemon.a}"),
-                          Text("B:${pokemon.b}"),
+                          Text("H:${formatNumbers(pokemon.h)}"),
+                          Text("A:${formatNumbers(pokemon.a)}"),
+                          Text("B:${formatNumbers(pokemon.b)}"),
                         ],
                       ),
                       SizedBox(width: 4,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("C:${pokemon.c}"),
-                          Text("D:${pokemon.d}"),
-                          Text("S:${pokemon.s}"),
+                          Text("C:${formatNumbers(pokemon.c)}",),
+                          Text("D:${formatNumbers(pokemon.d)}"),
+                          Text("S:${formatNumbers(pokemon.s)}"),
                         ],
                       ),
                     ],
