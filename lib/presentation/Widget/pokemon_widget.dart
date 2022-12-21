@@ -12,7 +12,6 @@ class PokemonWidget extends StatelessWidget {
 
     String formatNumbers(String num) {
       const spaceLater = "  ";
-      print(num.length);
       return spaceLater * (3 - num.length) + num;
     }
     return Card(
