@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/text_style.dart';
 
@@ -34,8 +33,8 @@ class PokemonWidget extends StatelessWidget {
                   ),
                   Wrap(
                     children: [
-                      Text("タイプ:"),
-                      SizedBox(
+                      const Text("タイプ:"),
+                      const SizedBox(
                         width: 4,
                       ),
                       Text("${pokemon.type1} ${pokemon.type2}"),
@@ -43,8 +42,8 @@ class PokemonWidget extends StatelessWidget {
                   ),
                   Wrap(
                     children: [
-                      Text("とくせい:"),
-                      SizedBox(
+                      const Text("とくせい:"),
+                      const SizedBox(
                         width: 4,
                       ),
                       Text(
@@ -54,11 +53,11 @@ class PokemonWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 4,
             ),
             Container(
-              padding: EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4.0),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(4),
@@ -77,7 +76,7 @@ class PokemonWidget extends StatelessWidget {
                           Text("B:${formatNumbers(pokemon.b)}"),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Column(
