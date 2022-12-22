@@ -68,14 +68,13 @@ class TopPage extends HookConsumerWidget {
                   key: ValueKey(pokemon.value[index]),
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: InkWell(
-
                       onDoubleTap: () {
                         pokemon.value = [...pokemon.value..removeAt(index)];
                       },
                       child: Badge(
-                        position: BadgePosition.topStart(),
+                          position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent:Text((index + 1).toString()),
+                          badgeContent: Text((index + 1).toString()),
                           child: PokemonWidget(pokemon.value[index]))),
                 );
               },

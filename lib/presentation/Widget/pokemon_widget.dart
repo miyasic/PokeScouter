@@ -9,11 +9,11 @@ class PokemonWidget extends StatelessWidget {
   final Pokemon pokemon;
   @override
   Widget build(BuildContext context) {
-
     String formatNumbers(String num) {
       const spaceLater = "  ";
       return spaceLater * (3 - num.length) + num;
     }
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(4.0),
@@ -54,10 +54,16 @@ class PokemonWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: 4,),
+            SizedBox(
+              width: 4,
+            ),
             Container(
               padding: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(shape: BoxShape.rectangle,borderRadius: BorderRadius.circular(4),  border: Border.all(),),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(4),
+                border: Border.all(),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -71,11 +77,15 @@ class PokemonWidget extends StatelessWidget {
                           Text("B:${formatNumbers(pokemon.b)}"),
                         ],
                       ),
-                      SizedBox(width: 4,),
+                      SizedBox(
+                        width: 4,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("C:${formatNumbers(pokemon.c)}",),
+                          Text(
+                            "C:${formatNumbers(pokemon.c)}",
+                          ),
                           Text("D:${formatNumbers(pokemon.d)}"),
                           Text("S:${formatNumbers(pokemon.s)}"),
                         ],
