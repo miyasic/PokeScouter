@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_template/router.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:flutter_template/theme.dart';
 import 'package:flutter_template/util/provider_logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-void main() {
+String loadData = "";
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  loadData = await rootBundle.loadString('json/pokemon.json');
   runApp(ProviderScope(observers: [ProviderLogger()], child: const MyApp()));
 }
 
