@@ -50,10 +50,10 @@ class TopPage extends HookConsumerWidget {
                   focusNode: fieldFocusNode,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
+                    border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
                       onPressed: textEditingController.clear,
-                      icon: Icon(Icons.clear),
+                      icon: const Icon(Icons.clear),
                     ),
                   ),
                 );

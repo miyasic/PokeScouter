@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_template/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -61,7 +60,7 @@ class PokemonSuggest {
     return PokemonSuggest(
         pokemonNameList: pokemonMap.keys.toList(),
         pokemonMap: pokemonMap,
-        suggestPokemonNameList: [],
+        suggestPokemonNameList: const [],
         userInput: "");
   }
 
