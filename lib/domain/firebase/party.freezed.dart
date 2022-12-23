@@ -25,6 +25,8 @@ mixin _$Party {
   List<String> get partyNameList => throw _privateConstructorUsedError;
   List<String> get divisorList => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  Timestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +43,8 @@ abstract class $PartyCopyWith<$Res> {
       String partyId,
       List<String> partyNameList,
       List<String> divisorList,
-      Map<String, String> eachMemo});
+      Map<String, String> eachMemo,
+      @TimestampConverter() Timestamp createdAt});
 }
 
 /// @nodoc
@@ -62,6 +65,7 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
     Object? partyNameList = null,
     Object? divisorList = null,
     Object? eachMemo = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -84,6 +88,10 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
           ? _value.eachMemo
           : eachMemo // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ) as $Val);
   }
 }
@@ -99,7 +107,8 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
       String partyId,
       List<String> partyNameList,
       List<String> divisorList,
-      Map<String, String> eachMemo});
+      Map<String, String> eachMemo,
+      @TimestampConverter() Timestamp createdAt});
 }
 
 /// @nodoc
@@ -116,6 +125,7 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
     Object? partyNameList = null,
     Object? divisorList = null,
     Object? eachMemo = null,
+    Object? createdAt = null,
   }) {
     return _then(_$_Party(
       userId: null == userId
@@ -138,6 +148,10 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
           ? _value._eachMemo
           : eachMemo // ignore: cast_nullable_to_non_nullable
               as Map<String, String>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as Timestamp,
     ));
   }
 }
@@ -150,7 +164,8 @@ class _$_Party implements _Party {
       required this.partyId,
       required final List<String> partyNameList,
       required final List<String> divisorList,
-      required final Map<String, String> eachMemo})
+      required final Map<String, String> eachMemo,
+      @TimestampConverter() required this.createdAt})
       : _partyNameList = partyNameList,
         _divisorList = divisorList,
         _eachMemo = eachMemo;
@@ -187,8 +202,12 @@ class _$_Party implements _Party {
   }
 
   @override
+  @TimestampConverter()
+  final Timestamp createdAt;
+
+  @override
   String toString() {
-    return 'Party(userId: $userId, partyId: $partyId, partyNameList: $partyNameList, divisorList: $divisorList, eachMemo: $eachMemo)';
+    return 'Party(userId: $userId, partyId: $partyId, partyNameList: $partyNameList, divisorList: $divisorList, eachMemo: $eachMemo, createdAt: $createdAt)';
   }
 
   @override
@@ -202,7 +221,9 @@ class _$_Party implements _Party {
                 .equals(other._partyNameList, _partyNameList) &&
             const DeepCollectionEquality()
                 .equals(other._divisorList, _divisorList) &&
-            const DeepCollectionEquality().equals(other._eachMemo, _eachMemo));
+            const DeepCollectionEquality().equals(other._eachMemo, _eachMemo) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -213,7 +234,8 @@ class _$_Party implements _Party {
       partyId,
       const DeepCollectionEquality().hash(_partyNameList),
       const DeepCollectionEquality().hash(_divisorList),
-      const DeepCollectionEquality().hash(_eachMemo));
+      const DeepCollectionEquality().hash(_eachMemo),
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -235,7 +257,8 @@ abstract class _Party implements Party {
       required final String partyId,
       required final List<String> partyNameList,
       required final List<String> divisorList,
-      required final Map<String, String> eachMemo}) = _$_Party;
+      required final Map<String, String> eachMemo,
+      @TimestampConverter() required final Timestamp createdAt}) = _$_Party;
 
   factory _Party.fromJson(Map<String, dynamic> json) = _$_Party.fromJson;
 
@@ -249,6 +272,9 @@ abstract class _Party implements Party {
   List<String> get divisorList;
   @override
   Map<String, String> get eachMemo;
+  @override
+  @TimestampConverter()
+  Timestamp get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PartyCopyWith<_$_Party> get copyWith =>
