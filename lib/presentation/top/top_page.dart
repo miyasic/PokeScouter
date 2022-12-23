@@ -5,12 +5,13 @@ import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/pokemon.dart';
 
 class TopPage extends HookConsumerWidget {
-  const TopPage({super.key});
+  TopPage({super.key});
 
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemon = useState<List<Pokemon>>([]);
@@ -39,6 +40,7 @@ class TopPage extends HookConsumerWidget {
                         .read(pokemonSuggestStateProvider.notifier)
                         .getPokemon(pokemonName))
                 ];
+                firestore.collection('test').doc().set({"test": pokemonName});
               },
               fieldViewBuilder: (BuildContext context,
                   TextEditingController fieldTextEditingController,
