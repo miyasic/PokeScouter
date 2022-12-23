@@ -2,7 +2,6 @@
 
 User:
   userId: String
-  userName: String
 
     Battle:
       userId: String
