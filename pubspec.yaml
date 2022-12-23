@@ -24,6 +24,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   badges: ^2.0.3
   firebase_core: ^2.4.0
+  cloud_firestore: ^4.3.0
 
 dev_dependencies:
   flutter_test:
