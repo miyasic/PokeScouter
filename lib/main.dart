@@ -5,10 +5,15 @@ import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:flutter_template/theme.dart';
 import 'package:flutter_template/util/provider_logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 String loadData = "";
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   loadData = await rootBundle.loadString('json/pokemon.json');
   runApp(ProviderScope(observers: [ProviderLogger()], child: const MyApp()));
 }
