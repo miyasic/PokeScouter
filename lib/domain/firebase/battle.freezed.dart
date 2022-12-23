@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'match.dart';
+part of 'battle.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Match _$MatchFromJson(Map<String, dynamic> json) {
-  return _Match.fromJson(json);
+Battle _$BattleFromJson(Map<String, dynamic> json) {
+  return _Battle.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Match {
+mixin _$Battle {
   String get userId => throw _privateConstructorUsedError;
-  String get matchId => throw _privateConstructorUsedError;
+  String get battleId => throw _privateConstructorUsedError;
   String? get partyId => throw _privateConstructorUsedError;
   List<String> get opponentParty => throw _privateConstructorUsedError;
   List<String> get divisorList => throw _privateConstructorUsedError;
@@ -34,17 +34,17 @@ mixin _$Match {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MatchCopyWith<Match> get copyWith => throw _privateConstructorUsedError;
+  $BattleCopyWith<Battle> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MatchCopyWith<$Res> {
-  factory $MatchCopyWith(Match value, $Res Function(Match) then) =
-      _$MatchCopyWithImpl<$Res, Match>;
+abstract class $BattleCopyWith<$Res> {
+  factory $BattleCopyWith(Battle value, $Res Function(Battle) then) =
+      _$BattleCopyWithImpl<$Res, Battle>;
   @useResult
   $Res call(
       {String userId,
-      String matchId,
+      String battleId,
       String? partyId,
       List<String> opponentParty,
       List<String> divisorList,
@@ -56,9 +56,9 @@ abstract class $MatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MatchCopyWithImpl<$Res, $Val extends Match>
-    implements $MatchCopyWith<$Res> {
-  _$MatchCopyWithImpl(this._value, this._then);
+class _$BattleCopyWithImpl<$Res, $Val extends Battle>
+    implements $BattleCopyWith<$Res> {
+  _$BattleCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -69,7 +69,7 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
   @override
   $Res call({
     Object? userId = null,
-    Object? matchId = null,
+    Object? battleId = null,
     Object? partyId = freezed,
     Object? opponentParty = null,
     Object? divisorList = null,
@@ -84,9 +84,9 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
+      battleId: null == battleId
+          ? _value.battleId
+          : battleId // ignore: cast_nullable_to_non_nullable
               as String,
       partyId: freezed == partyId
           ? _value.partyId
@@ -125,14 +125,14 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
 }
 
 /// @nodoc
-abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
-  factory _$$_MatchCopyWith(_$_Match value, $Res Function(_$_Match) then) =
-      __$$_MatchCopyWithImpl<$Res>;
+abstract class _$$_BattleCopyWith<$Res> implements $BattleCopyWith<$Res> {
+  factory _$$_BattleCopyWith(_$_Battle value, $Res Function(_$_Battle) then) =
+      __$$_BattleCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String userId,
-      String matchId,
+      String battleId,
       String? partyId,
       List<String> opponentParty,
       List<String> divisorList,
@@ -144,16 +144,17 @@ abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
-    implements _$$_MatchCopyWith<$Res> {
-  __$$_MatchCopyWithImpl(_$_Match _value, $Res Function(_$_Match) _then)
+class __$$_BattleCopyWithImpl<$Res>
+    extends _$BattleCopyWithImpl<$Res, _$_Battle>
+    implements _$$_BattleCopyWith<$Res> {
+  __$$_BattleCopyWithImpl(_$_Battle _value, $Res Function(_$_Battle) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? userId = null,
-    Object? matchId = null,
+    Object? battleId = null,
     Object? partyId = freezed,
     Object? opponentParty = null,
     Object? divisorList = null,
@@ -163,14 +164,14 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
     Object? result = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_Match(
+    return _then(_$_Battle(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
-      matchId: null == matchId
-          ? _value.matchId
-          : matchId // ignore: cast_nullable_to_non_nullable
+      battleId: null == battleId
+          ? _value.battleId
+          : battleId // ignore: cast_nullable_to_non_nullable
               as String,
       partyId: freezed == partyId
           ? _value.partyId
@@ -210,10 +211,10 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Match with DiagnosticableTreeMixin implements _Match {
-  const _$_Match(
+class _$_Battle with DiagnosticableTreeMixin implements _Battle {
+  const _$_Battle(
       {required this.userId,
-      required this.matchId,
+      required this.battleId,
       this.partyId,
       required final List<String> opponentParty,
       required final List<String> divisorList,
@@ -227,13 +228,13 @@ class _$_Match with DiagnosticableTreeMixin implements _Match {
         _order = order,
         _eachMemo = eachMemo;
 
-  factory _$_Match.fromJson(Map<String, dynamic> json) =>
-      _$$_MatchFromJson(json);
+  factory _$_Battle.fromJson(Map<String, dynamic> json) =>
+      _$$_BattleFromJson(json);
 
   @override
   final String userId;
   @override
-  final String matchId;
+  final String battleId;
   @override
   final String? partyId;
   final List<String> _opponentParty;
@@ -278,16 +279,16 @@ class _$_Match with DiagnosticableTreeMixin implements _Match {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Match(userId: $userId, matchId: $matchId, partyId: $partyId, opponentParty: $opponentParty, divisorList: $divisorList, order: $order, memo: $memo, eachMemo: $eachMemo, result: $result, createdAt: $createdAt)';
+    return 'Battle(userId: $userId, battleId: $battleId, partyId: $partyId, opponentParty: $opponentParty, divisorList: $divisorList, order: $order, memo: $memo, eachMemo: $eachMemo, result: $result, createdAt: $createdAt)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'Match'))
+      ..add(DiagnosticsProperty('type', 'Battle'))
       ..add(DiagnosticsProperty('userId', userId))
-      ..add(DiagnosticsProperty('matchId', matchId))
+      ..add(DiagnosticsProperty('battleId', battleId))
       ..add(DiagnosticsProperty('partyId', partyId))
       ..add(DiagnosticsProperty('opponentParty', opponentParty))
       ..add(DiagnosticsProperty('divisorList', divisorList))
@@ -302,9 +303,10 @@ class _$_Match with DiagnosticableTreeMixin implements _Match {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Match &&
+            other is _$_Battle &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.matchId, matchId) || other.matchId == matchId) &&
+            (identical(other.battleId, battleId) ||
+                other.battleId == battleId) &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
             const DeepCollectionEquality()
                 .equals(other._opponentParty, _opponentParty) &&
@@ -323,7 +325,7 @@ class _$_Match with DiagnosticableTreeMixin implements _Match {
   int get hashCode => Object.hash(
       runtimeType,
       userId,
-      matchId,
+      battleId,
       partyId,
       const DeepCollectionEquality().hash(_opponentParty),
       const DeepCollectionEquality().hash(_divisorList),
@@ -336,21 +338,21 @@ class _$_Match with DiagnosticableTreeMixin implements _Match {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
-      __$$_MatchCopyWithImpl<_$_Match>(this, _$identity);
+  _$$_BattleCopyWith<_$_Battle> get copyWith =>
+      __$$_BattleCopyWithImpl<_$_Battle>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MatchToJson(
+    return _$$_BattleToJson(
       this,
     );
   }
 }
 
-abstract class _Match implements Match {
-  const factory _Match(
+abstract class _Battle implements Battle {
+  const factory _Battle(
       {required final String userId,
-      required final String matchId,
+      required final String battleId,
       final String? partyId,
       required final List<String> opponentParty,
       required final List<String> divisorList,
@@ -358,14 +360,14 @@ abstract class _Match implements Match {
       required final String memo,
       required final Map<String, String> eachMemo,
       required final String result,
-      @TimestampConverter() required final Timestamp createdAt}) = _$_Match;
+      @TimestampConverter() required final Timestamp createdAt}) = _$_Battle;
 
-  factory _Match.fromJson(Map<String, dynamic> json) = _$_Match.fromJson;
+  factory _Battle.fromJson(Map<String, dynamic> json) = _$_Battle.fromJson;
 
   @override
   String get userId;
   @override
-  String get matchId;
+  String get battleId;
   @override
   String? get partyId;
   @override
@@ -385,6 +387,6 @@ abstract class _Match implements Match {
   Timestamp get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
+  _$$_BattleCopyWith<_$_Battle> get copyWith =>
       throw _privateConstructorUsedError;
 }
