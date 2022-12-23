@@ -11,7 +11,7 @@ import '../../domain/pokemon.dart';
 class TopPage extends HookConsumerWidget {
   TopPage({super.key});
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemon = useState<List<Pokemon>>([]);
