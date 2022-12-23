@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "146699168008",
+    "project_id": "pokescoutor",
+    "storage_bucket": "pokescoutor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146699168008:android:aebc66258b21c0dcfa64bd",
+        "android_client_info": {
+          "package_name": "com.example.flutter_template"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146699168008-mcggooha3s1phq18hrmu1ccvb5t26khr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYx25xQC1gP7SV39aZSrmoBVWy7eCRLk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146699168008-mcggooha3s1phq18hrmu1ccvb5t26khr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

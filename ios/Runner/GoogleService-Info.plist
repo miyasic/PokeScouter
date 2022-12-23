@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>146699168008-068sh66bmmseqa6v4ts5s4v1ohvkk0ks.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.146699168008-068sh66bmmseqa6v4ts5s4v1ohvkk0ks</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAyAWtQ5rWSFEU7rFZ1PBzsU1JKcbBXpf4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>146699168008</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterTemplate</string>
+	<key>PROJECT_ID</key>
+	<string>pokescoutor</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pokescoutor.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:146699168008:ios:d0fdcec6434b0dd9fa64bd</string>
+</dict>
+</plist>
