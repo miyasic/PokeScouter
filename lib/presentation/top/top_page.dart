@@ -10,8 +10,6 @@ import '../../domain/pokemon.dart';
 
 class TopPage extends HookConsumerWidget {
   TopPage({super.key});
-
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemon = useState<List<Pokemon>>([]);
@@ -40,7 +38,6 @@ class TopPage extends HookConsumerWidget {
                         .read(pokemonSuggestStateProvider.notifier)
                         .getPokemon(pokemonName))
                 ];
-                firestore.collection('test').doc().set({"test": pokemonName});
               },
               fieldViewBuilder: (BuildContext context,
                   TextEditingController fieldTextEditingController,
