@@ -13,3 +13,4 @@ class User with _$User {
   factory User.fromJson(Map<String, Object?> json) =>
       _$UserFromJson(json);
 }
+
