@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'match.dart';
+part of 'battle.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
+_$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       userId: json['userId'] as String,
-      matchId: json['matchId'] as String,
+      battleId: json['battleId'] as String,
       partyId: json['partyId'] as String?,
       opponentParty: (json['opponentParty'] as List<dynamic>)
           .map((e) => e as String)
@@ -24,9 +24,9 @@ _$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
           const TimestampConverter().fromJson(json['createdAt'] as Timestamp),
     );
 
-Map<String, dynamic> _$$_MatchToJson(_$_Match instance) => <String, dynamic>{
+Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
       'userId': instance.userId,
-      'matchId': instance.matchId,
+      'battleId': instance.battleId,
       'partyId': instance.partyId,
       'opponentParty': instance.opponentParty,
       'divisorList': instance.divisorList,

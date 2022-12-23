@@ -3,7 +3,7 @@
 User:
   userId: String
 
-    Match:
+    Battle:
       userId: String
       matchId: String
       partyId: String?
@@ -18,7 +18,7 @@ User:
     Party:
       userId: String
       partyId: String
-      party: List<String>
+      partyNameList: List<String>
       divisorList: List<String>
       eachMemo: Map<String,String>
 
