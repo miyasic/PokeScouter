@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_template/util/json_converter.dart';
+import 'package:flutter_template/util/union_timestamp.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
@@ -18,10 +18,10 @@ class Battle with _$Battle {
     required String memo,
     required Map<String, String> eachMemo,
     required String result,
-    @TimestampConverter() required Timestamp createdAt,
+    @alwaysUseServerTimestampUnionTimestampConverter
+    @Default(UnionTimestamp.serverTimestamp())
+        UnionTimestamp createdAt,
   }) = _Battle;
 
   factory Battle.fromJson(Map<String, Object?> json) => _$BattleFromJson(json);
 }
-
-

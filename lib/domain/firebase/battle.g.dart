@@ -20,8 +20,10 @@ _$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       memo: json['memo'] as String,
       eachMemo: Map<String, String>.from(json['eachMemo'] as Map),
       result: json['result'] as String,
-      createdAt:
-          const TimestampConverter().fromJson(json['createdAt'] as Timestamp),
+      createdAt: json['createdAt'] == null
+          ? const UnionTimestamp.serverTimestamp()
+          : alwaysUseServerTimestampUnionTimestampConverter
+              .fromJson(json['createdAt'] as Object),
     );
 
 Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
@@ -34,5 +36,6 @@ Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
       'memo': instance.memo,
       'eachMemo': instance.eachMemo,
       'result': instance.result,
-      'createdAt': const TimestampConverter().toJson(instance.createdAt),
+      'createdAt': alwaysUseServerTimestampUnionTimestampConverter
+          .toJson(instance.createdAt),
     };
