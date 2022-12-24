@@ -29,8 +29,8 @@ mixin _$Battle {
   String get memo => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
   String get result => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,7 +52,10 @@ abstract class $BattleCopyWith<$Res> {
       String memo,
       Map<String, String> eachMemo,
       String result,
-      @TimestampConverter() Timestamp createdAt});
+      @alwaysUseServerTimestampUnionTimestampConverter
+          UnionTimestamp createdAt});
+
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -119,8 +122,16 @@ class _$BattleCopyWithImpl<$Res, $Val extends Battle>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as UnionTimestamp,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UnionTimestampCopyWith<$Res> get createdAt {
+    return $UnionTimestampCopyWith<$Res>(_value.createdAt, (value) {
+      return _then(_value.copyWith(createdAt: value) as $Val);
+    });
   }
 }
 
@@ -140,7 +151,11 @@ abstract class _$$_BattleCopyWith<$Res> implements $BattleCopyWith<$Res> {
       String memo,
       Map<String, String> eachMemo,
       String result,
-      @TimestampConverter() Timestamp createdAt});
+      @alwaysUseServerTimestampUnionTimestampConverter
+          UnionTimestamp createdAt});
+
+  @override
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -204,7 +219,7 @@ class __$$_BattleCopyWithImpl<$Res>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as UnionTimestamp,
     ));
   }
 }
@@ -222,7 +237,8 @@ class _$_Battle with DiagnosticableTreeMixin implements _Battle {
       required this.memo,
       required final Map<String, String> eachMemo,
       required this.result,
-      @TimestampConverter() required this.createdAt})
+      @alwaysUseServerTimestampUnionTimestampConverter
+          this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _opponentParty = opponentParty,
         _divisorList = divisorList,
         _order = order,
@@ -274,8 +290,9 @@ class _$_Battle with DiagnosticableTreeMixin implements _Battle {
   @override
   final String result;
   @override
-  @TimestampConverter()
-  final Timestamp createdAt;
+  @JsonKey()
+  @alwaysUseServerTimestampUnionTimestampConverter
+  final UnionTimestamp createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -360,7 +377,8 @@ abstract class _Battle implements Battle {
       required final String memo,
       required final Map<String, String> eachMemo,
       required final String result,
-      @TimestampConverter() required final Timestamp createdAt}) = _$_Battle;
+      @alwaysUseServerTimestampUnionTimestampConverter
+          final UnionTimestamp createdAt}) = _$_Battle;
 
   factory _Battle.fromJson(Map<String, dynamic> json) = _$_Battle.fromJson;
 
@@ -383,8 +401,8 @@ abstract class _Battle implements Battle {
   @override
   String get result;
   @override
-  @TimestampConverter()
-  Timestamp get createdAt;
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_BattleCopyWith<_$_Battle> get copyWith =>

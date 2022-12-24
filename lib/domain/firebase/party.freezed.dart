@@ -25,8 +25,8 @@ mixin _$Party {
   List<String> get partyNameList => throw _privateConstructorUsedError;
   List<String> get divisorList => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
-  @TimestampConverter()
-  Timestamp get createdAt => throw _privateConstructorUsedError;
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,10 @@ abstract class $PartyCopyWith<$Res> {
       List<String> partyNameList,
       List<String> divisorList,
       Map<String, String> eachMemo,
-      @TimestampConverter() Timestamp createdAt});
+      @alwaysUseServerTimestampUnionTimestampConverter
+          UnionTimestamp createdAt});
+
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -91,8 +94,16 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as UnionTimestamp,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UnionTimestampCopyWith<$Res> get createdAt {
+    return $UnionTimestampCopyWith<$Res>(_value.createdAt, (value) {
+      return _then(_value.copyWith(createdAt: value) as $Val);
+    });
   }
 }
 
@@ -108,7 +119,11 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
       List<String> partyNameList,
       List<String> divisorList,
       Map<String, String> eachMemo,
-      @TimestampConverter() Timestamp createdAt});
+      @alwaysUseServerTimestampUnionTimestampConverter
+          UnionTimestamp createdAt});
+
+  @override
+  $UnionTimestampCopyWith<$Res> get createdAt;
 }
 
 /// @nodoc
@@ -151,7 +166,7 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as Timestamp,
+              as UnionTimestamp,
     ));
   }
 }
@@ -165,7 +180,8 @@ class _$_Party implements _Party {
       required final List<String> partyNameList,
       required final List<String> divisorList,
       required final Map<String, String> eachMemo,
-      @TimestampConverter() required this.createdAt})
+      @alwaysUseServerTimestampUnionTimestampConverter
+          this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _partyNameList = partyNameList,
         _divisorList = divisorList,
         _eachMemo = eachMemo;
@@ -202,8 +218,9 @@ class _$_Party implements _Party {
   }
 
   @override
-  @TimestampConverter()
-  final Timestamp createdAt;
+  @JsonKey()
+  @alwaysUseServerTimestampUnionTimestampConverter
+  final UnionTimestamp createdAt;
 
   @override
   String toString() {
@@ -258,7 +275,8 @@ abstract class _Party implements Party {
       required final List<String> partyNameList,
       required final List<String> divisorList,
       required final Map<String, String> eachMemo,
-      @TimestampConverter() required final Timestamp createdAt}) = _$_Party;
+      @alwaysUseServerTimestampUnionTimestampConverter
+          final UnionTimestamp createdAt}) = _$_Party;
 
   factory _Party.fromJson(Map<String, dynamic> json) = _$_Party.fromJson;
 
@@ -273,8 +291,8 @@ abstract class _Party implements Party {
   @override
   Map<String, String> get eachMemo;
   @override
-  @TimestampConverter()
-  Timestamp get createdAt;
+  @alwaysUseServerTimestampUnionTimestampConverter
+  UnionTimestamp get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$_PartyCopyWith<_$_Party> get copyWith =>

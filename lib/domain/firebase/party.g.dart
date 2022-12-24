@@ -16,8 +16,10 @@ _$_Party _$$_PartyFromJson(Map<String, dynamic> json) => _$_Party(
           .map((e) => e as String)
           .toList(),
       eachMemo: Map<String, String>.from(json['eachMemo'] as Map),
-      createdAt:
-          const TimestampConverter().fromJson(json['createdAt'] as Timestamp),
+      createdAt: json['createdAt'] == null
+          ? const UnionTimestamp.serverTimestamp()
+          : alwaysUseServerTimestampUnionTimestampConverter
+              .fromJson(json['createdAt'] as Object),
     );
 
 Map<String, dynamic> _$$_PartyToJson(_$_Party instance) => <String, dynamic>{
@@ -26,5 +28,6 @@ Map<String, dynamic> _$$_PartyToJson(_$_Party instance) => <String, dynamic>{
       'partyNameList': instance.partyNameList,
       'divisorList': instance.divisorList,
       'eachMemo': instance.eachMemo,
-      'createdAt': const TimestampConverter().toJson(instance.createdAt),
+      'createdAt': alwaysUseServerTimestampUnionTimestampConverter
+          .toJson(instance.createdAt),
     };
