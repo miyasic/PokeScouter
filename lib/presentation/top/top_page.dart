@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
+import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -85,6 +86,14 @@ class TopPage extends HookConsumerWidget {
                 pokemon.value = [...pokemon.value..insert(newIndex, item)];
               },
             ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              ref
+                  .read(firebaseRepositoryProvider)
+                  .setMatch('hoge', ['a'], ['0'], Map());
+            },
+            child: Text("party登録"),
           ),
         ],
       ),
