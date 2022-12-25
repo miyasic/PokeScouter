@@ -31,16 +31,16 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     state = [...state..insert(newIndex, item)];
   }
 
-  List<String> getPokemonNameList() {
+  List<String> _getPokemonNameList() {
     return state.map((pokemon) => pokemon.name).toList();
   }
 
-  List<String> getPokemonDivisorList() {
+  List<String> _getPokemonDivisorList() {
     return ["未実装"];
   }
 
   setParty() {
     firebaseRepository.setMatch(
-        'hoge', getPokemonNameList(), getPokemonDivisorList(), Map());
+        'hoge', _getPokemonNameList(), _getPokemonDivisorList(), Map());
   }
 }
