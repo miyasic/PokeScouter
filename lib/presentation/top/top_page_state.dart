@@ -27,4 +27,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     final Pokemon item = state.removeAt(oldIndex);
     state = [...state..insert(newIndex, item)];
   }
+
+  List<String> getPokemonNameList() {
+    return state.map((pokemon) => pokemon.name).toList();
+  }
 }
