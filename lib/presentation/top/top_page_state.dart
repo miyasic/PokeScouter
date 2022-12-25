@@ -10,7 +10,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
   PokemonListState(this.firebaseRepository) : super([]);
   final FirebaseRepository firebaseRepository;
 
-  void addPokemon(Pokemon pokemon) {
+  void addPokemon(Pokemon? pokemon) {
+    if (pokemon == null) return;
     state = [...state, pokemon];
   }
 
