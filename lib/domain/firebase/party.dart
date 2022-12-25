@@ -11,8 +11,10 @@ class Party with _$Party {
   const factory Party({
     required String userId,
     required String partyId,
+    required String name,
     required List<String> partyNameList,
     required List<String> divisorList,
+    required String memo,
     required Map<String, String> eachMemo,
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())

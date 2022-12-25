@@ -41,6 +41,11 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   setParty() {
     firebaseRepository.setMatch(
-        'hoge', _getPokemonNameList(), _getPokemonDivisorList(), Map());
+        userId: 'userId',
+        name: 'パーティのなまえ',
+        partyNameList: _getPokemonNameList(),
+        divisorList: _getPokemonDivisorList(),
+        memo: 'パーティめも',
+        eachMemo: Map());
   }
 }

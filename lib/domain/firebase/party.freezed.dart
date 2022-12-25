@@ -22,8 +22,10 @@ Party _$PartyFromJson(Map<String, dynamic> json) {
 mixin _$Party {
   String get userId => throw _privateConstructorUsedError;
   String get partyId => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   List<String> get partyNameList => throw _privateConstructorUsedError;
   List<String> get divisorList => throw _privateConstructorUsedError;
+  String get memo => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
   @alwaysUseServerTimestampUnionTimestampConverter
   UnionTimestamp get createdAt => throw _privateConstructorUsedError;
@@ -41,8 +43,10 @@ abstract class $PartyCopyWith<$Res> {
   $Res call(
       {String userId,
       String partyId,
+      String name,
       List<String> partyNameList,
       List<String> divisorList,
+      String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
           UnionTimestamp createdAt});
@@ -65,8 +69,10 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
   $Res call({
     Object? userId = null,
     Object? partyId = null,
+    Object? name = null,
     Object? partyNameList = null,
     Object? divisorList = null,
+    Object? memo = null,
     Object? eachMemo = null,
     Object? createdAt = null,
   }) {
@@ -79,6 +85,10 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       partyNameList: null == partyNameList
           ? _value.partyNameList
           : partyNameList // ignore: cast_nullable_to_non_nullable
@@ -87,6 +97,10 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
           ? _value.divisorList
           : divisorList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
       eachMemo: null == eachMemo
           ? _value.eachMemo
           : eachMemo // ignore: cast_nullable_to_non_nullable
@@ -116,8 +130,10 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
   $Res call(
       {String userId,
       String partyId,
+      String name,
       List<String> partyNameList,
       List<String> divisorList,
+      String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
           UnionTimestamp createdAt});
@@ -137,8 +153,10 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
   $Res call({
     Object? userId = null,
     Object? partyId = null,
+    Object? name = null,
     Object? partyNameList = null,
     Object? divisorList = null,
+    Object? memo = null,
     Object? eachMemo = null,
     Object? createdAt = null,
   }) {
@@ -151,6 +169,10 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       partyNameList: null == partyNameList
           ? _value._partyNameList
           : partyNameList // ignore: cast_nullable_to_non_nullable
@@ -159,6 +181,10 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
           ? _value._divisorList
           : divisorList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      memo: null == memo
+          ? _value.memo
+          : memo // ignore: cast_nullable_to_non_nullable
+              as String,
       eachMemo: null == eachMemo
           ? _value._eachMemo
           : eachMemo // ignore: cast_nullable_to_non_nullable
@@ -177,8 +203,10 @@ class _$_Party implements _Party {
   const _$_Party(
       {required this.userId,
       required this.partyId,
+      required this.name,
       required final List<String> partyNameList,
       required final List<String> divisorList,
+      required this.memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
           this.createdAt = const UnionTimestamp.serverTimestamp()})
@@ -193,6 +221,8 @@ class _$_Party implements _Party {
   final String userId;
   @override
   final String partyId;
+  @override
+  final String name;
   final List<String> _partyNameList;
   @override
   List<String> get partyNameList {
@@ -209,6 +239,8 @@ class _$_Party implements _Party {
     return EqualUnmodifiableListView(_divisorList);
   }
 
+  @override
+  final String memo;
   final Map<String, String> _eachMemo;
   @override
   Map<String, String> get eachMemo {
@@ -224,7 +256,7 @@ class _$_Party implements _Party {
 
   @override
   String toString() {
-    return 'Party(userId: $userId, partyId: $partyId, partyNameList: $partyNameList, divisorList: $divisorList, eachMemo: $eachMemo, createdAt: $createdAt)';
+    return 'Party(userId: $userId, partyId: $partyId, name: $name, partyNameList: $partyNameList, divisorList: $divisorList, memo: $memo, eachMemo: $eachMemo, createdAt: $createdAt)';
   }
 
   @override
@@ -234,10 +266,12 @@ class _$_Party implements _Party {
             other is _$_Party &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._partyNameList, _partyNameList) &&
             const DeepCollectionEquality()
                 .equals(other._divisorList, _divisorList) &&
+            (identical(other.memo, memo) || other.memo == memo) &&
             const DeepCollectionEquality().equals(other._eachMemo, _eachMemo) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -249,8 +283,10 @@ class _$_Party implements _Party {
       runtimeType,
       userId,
       partyId,
+      name,
       const DeepCollectionEquality().hash(_partyNameList),
       const DeepCollectionEquality().hash(_divisorList),
+      memo,
       const DeepCollectionEquality().hash(_eachMemo),
       createdAt);
 
@@ -272,8 +308,10 @@ abstract class _Party implements Party {
   const factory _Party(
       {required final String userId,
       required final String partyId,
+      required final String name,
       required final List<String> partyNameList,
       required final List<String> divisorList,
+      required final String memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
           final UnionTimestamp createdAt}) = _$_Party;
@@ -285,9 +323,13 @@ abstract class _Party implements Party {
   @override
   String get partyId;
   @override
+  String get name;
+  @override
   List<String> get partyNameList;
   @override
   List<String> get divisorList;
+  @override
+  String get memo;
   @override
   Map<String, String> get eachMemo;
   @override

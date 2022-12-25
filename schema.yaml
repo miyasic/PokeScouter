@@ -18,8 +18,10 @@ User:
     Party:
       userId: String
       partyId: String
+      name: String
       partyNameList: List<String>
       divisorList: List<String>
+      memo: String
       eachMemo: Map<String,String>
       createdAt: Timestamp
 

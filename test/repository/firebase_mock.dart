@@ -11,8 +11,13 @@ class FirebaseRepositoryMock implements FirebaseRepository {
   FirebaseFirestore get firestore => throw UnimplementedError();
 
   @override
-  Future setMatch(String userId, List<String> partyNameList,
-      List<String> divisorList, Map<String, String> eachMemo) {
+  Future setMatch(
+      {required String userId,
+      required String name,
+      required List<String> partyNameList,
+      required List<String> divisorList,
+      required String memo,
+      required Map<String, String> eachMemo}) {
     // TODO: implement setMatch
     throw UnimplementedError();
   }
