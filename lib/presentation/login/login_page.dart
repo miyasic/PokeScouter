@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/constants/text_style.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginPage extends ConsumerWidget {
@@ -12,20 +11,34 @@ class LoginPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(kPageNameLogin),
       ),
-      body: Center(
+      body: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
-        children: [
-          Text(
-            kPageNameLogin,
-            style: textStylePlain,
-          ),
-          Text("textStyleLarge", style: textStyleLarge),
-          Text("textStyleMedium", style: textStyleMedium),
-          Text("textStylePlane", style: textStylePlain),
-          Text("textStyleBold", style: textStyleBold),
-          const Text("textStyleNon")
-        ],
-      )),
+            children: [
+              TextField(
+                controller: null,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  labelText: 'メールアドレス',
+                ),
+              ),
+              const SizedBox(height: 24.0),
+              TextField(
+                controller: null, // Controller実装必要
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  labelText: 'パスワード',
+                ),
+              ),
+              const SizedBox(height: 24.0),
+              ElevatedButton(onPressed: () {}, child: Text('ログイン')),
+              ElevatedButton(onPressed: () {}, child: Text('新規登録')),
+            ],
+          )),
     );
   }
 }
