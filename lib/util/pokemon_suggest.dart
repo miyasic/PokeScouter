@@ -1,14 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_template/main.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/pokemon.dart';
 
 final pokemonSuggestStateProvider =
-    StateNotifierProvider<PokemonSuggestStateNotifier, PokemonSuggest>(
-        (ref) => PokemonSuggestStateNotifier(PokemonSuggest.first()));
+    StateNotifierProvider<PokemonSuggestStateNotifier, PokemonSuggest>((ref) {
+  final rawData = ref.read(pokemonRawDataProvider);
+  return PokemonSuggestStateNotifier(PokemonSuggest.first(rawData));
+});
 
 class PokemonSuggestStateNotifier extends StateNotifier<PokemonSuggest> {
   PokemonSuggestStateNotifier(super.state);
@@ -55,7 +58,7 @@ class PokemonSuggest {
   final List<String> suggestPokemonNameList;
   final String userInput;
 
-  factory PokemonSuggest.first() {
+  factory PokemonSuggest.first(String loadData) {
     final Map<String, Pokemon> pokemonMap = toJsonList(loadData);
     return PokemonSuggest(
         pokemonNameList: pokemonMap.keys.toList(),
@@ -86,4 +89,11 @@ class PokemonSuggest {
         map.map((key, value) => MapEntry(key, Pokemon.fromJson(value)));
     return pokemon;
   }
+}
+
+final pokemonRawDataProvider =
+    Provider<String>((_) => throw UnimplementedError());
+
+Future<String> get getPokemonRawData async {
+  return await rootBundle.loadString('json/pokemon.json');
 }
