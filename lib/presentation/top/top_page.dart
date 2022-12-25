@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
+import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,7 +14,8 @@ class TopPage extends HookConsumerWidget {
   TopPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemon = useState<List<Pokemon>>([]);
+    final pokemonListNotifier = ref.read(pokemonListProvider.notifier);
+    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider);
     late TextEditingController textEditingController;
     return Scaffold(
       appBar: AppBar(
@@ -33,12 +35,9 @@ class TopPage extends HookConsumerWidget {
                     .getSuggestPokemonName(textEditingValue.text);
               },
               onSelected: (String pokemonName) {
-                pokemon.value = [
-                  ...pokemon.value
-                    ..add(ref
-                        .read(pokemonSuggestStateProvider.notifier)
-                        .getPokemon(pokemonName))
-                ];
+                pokemonListNotifier.addPokemon(ref
+                    .read(pokemonSuggestStateProvider.notifier)
+                    .getPokemon(pokemonName));
               },
               fieldViewBuilder: (BuildContext context,
                   TextEditingController fieldTextEditingController,
@@ -62,28 +61,24 @@ class TopPage extends HookConsumerWidget {
           ),
           Expanded(
             child: ReorderableListView.builder(
-              itemCount: pokemon.value.length,
+              itemCount: pokemonListState.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  key: ValueKey(pokemon.value[index]),
+                  key: ValueKey(pokemonListState[index]),
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: InkWell(
                       onDoubleTap: () {
-                        pokemon.value = [...pokemon.value..removeAt(index)];
+                        pokemonListNotifier.removePokemon(index);
                       },
                       child: Badge(
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(pokemon.value[index]))),
+                          child: PokemonWidget(pokemonListState[index]))),
                 );
               },
               onReorder: (int oldIndex, int newIndex) {
-                if (oldIndex < newIndex) {
-                  newIndex -= 1;
-                }
-                final Pokemon item = pokemon.value.removeAt(oldIndex);
-                pokemon.value = [...pokemon.value..insert(newIndex, item)];
+                pokemonListNotifier.reorderList(oldIndex, newIndex);
               },
             ),
           ),
