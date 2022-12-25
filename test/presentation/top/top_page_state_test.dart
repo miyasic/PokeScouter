@@ -47,4 +47,46 @@ void main() {
     _container.read(pokemonListProvider.notifier).removePokemon(0);
     expect(_container.read(pokemonListProvider).length, 0);
   });
+
+  test("ポケモン順序変更のテスト1", () async {
+    final pokemonSuggest =
+        _container.read(pokemonSuggestStateProvider.notifier);
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ピカチュウ'));
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ライチュウ'));
+
+    _container.read(pokemonListProvider.notifier).reorderList(0, 3);
+    final state = _container.read(pokemonListProvider);
+    expect(state.length, 3);
+    expect(state[0].name, 'ピカチュウ');
+    expect(state[1].name, 'ライチュウ');
+    expect(state[2].name, 'ピチュー');
+  });
+
+  test("ポケモン順序変更のテスト2", () async {
+    final pokemonSuggest =
+        _container.read(pokemonSuggestStateProvider.notifier);
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ピカチュウ'));
+    _container
+        .read(pokemonListProvider.notifier)
+        .addPokemon(pokemonSuggest.getPokemon('ライチュウ'));
+
+    _container.read(pokemonListProvider.notifier).reorderList(2, 0);
+    final state = _container.read(pokemonListProvider);
+    expect(state.length, 3);
+    expect(state[0].name, 'ライチュウ');
+    expect(state[1].name, 'ピチュー');
+    expect(state[2].name, 'ピカチュウ');
+  });
 }
