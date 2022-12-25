@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/main.dart';
+import 'package:flutter_template/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../domain/pokemon.dart';
@@ -32,8 +33,13 @@ class PokemonSuggestStateNotifier extends StateNotifier<PokemonSuggest> {
     return suggestPokemonName;
   }
 
-  getPokemon(String name) {
-    return state.pokemonMap[name];
+  Pokemon? getPokemon(String name) {
+    try {
+      return state.pokemonMap[name];
+    } catch (e) {
+      logger.w('存在しないポケモンが選択されました。');
+      return null;
+    }
   }
 
   int getSuggestPokemonCount() {
