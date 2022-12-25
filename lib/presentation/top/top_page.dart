@@ -6,6 +6,7 @@ import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../domain/pokemon.dart';
@@ -19,6 +20,14 @@ class TopPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(kPagePathLogin);
+            },
+            icon: Icon(Icons.login),
+          ),
+        ],
       ),
       body: Column(
         children: [
