@@ -5,10 +5,21 @@ final authRepositoryProvider =
     Provider<AuthRepository>((ref) => AuthRepository());
 
 class AuthRepository {
+  AuthRepository();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  User? getCurrentUser() {
+    try {
+      return _auth.currentUser;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // アカウント作成
-  void createUserWithEmailAndPassword(String email, String password) async {
+  Future createUserWithEmailAndPassword(String email, String password) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -20,7 +31,7 @@ class AuthRepository {
   }
 
   // ログイン
-  void signInWithEmailAndPassword(String email, String password) async {
+  Future signInWithEmailAndPassword(String email, String password) async {
     try {
       final result = await _auth.signInWithEmailAndPassword(
         email: email,
@@ -29,5 +40,9 @@ class AuthRepository {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future logout() async {
+    await _auth.signOut();
   }
 }
