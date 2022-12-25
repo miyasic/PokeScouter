@@ -1,12 +1,14 @@
 import 'package:flutter_template/domain/pokemon.dart';
+import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final pokemonListProvider =
     StateNotifierProvider<PokemonListState, List<Pokemon>>(
-        (ref) => PokemonListState());
+        (ref) => PokemonListState(ref.read(firebaseRepositoryProvider)));
 
 class PokemonListState extends StateNotifier<List<Pokemon>> {
-  PokemonListState() : super([]);
+  PokemonListState(this.firebaseRepository) : super([]);
+  final FirebaseRepository firebaseRepository;
 
   void addPokemon(Pokemon pokemon) {
     state = [...state, pokemon];
@@ -30,5 +32,14 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   List<String> getPokemonNameList() {
     return state.map((pokemon) => pokemon.name).toList();
+  }
+
+  List<String> getPokemonDivisorList() {
+    return ["未実装"];
+  }
+
+  setParty() {
+    firebaseRepository.setMatch(
+        'hoge', getPokemonNameList(), getPokemonDivisorList(), Map());
   }
 }

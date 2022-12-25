@@ -82,10 +82,9 @@ class TopPage extends HookConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              ref.read(firebaseRepositoryProvider).setMatch('hoge',
-                  pokemonListNotifier.getPokemonNameList(), ['0'], Map());
+              pokemonListNotifier.setParty();
             },
-            child: Text("party登録"),
+            child: Text("Party登録"),
           ),
         ],
       ),
