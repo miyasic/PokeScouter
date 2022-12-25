@@ -16,7 +16,6 @@ class TopPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonListNotifier = ref.read(pokemonListProvider.notifier);
     List<Pokemon> pokemonListState = ref.watch(pokemonListProvider);
-    late TextEditingController textEditingController;
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
@@ -43,15 +42,14 @@ class TopPage extends HookConsumerWidget {
                   TextEditingController fieldTextEditingController,
                   FocusNode fieldFocusNode,
                   VoidCallback onFieldSubmitted) {
-                textEditingController = fieldTextEditingController;
                 return TextField(
-                  controller: textEditingController,
+                  controller: fieldTextEditingController,
                   focusNode: fieldFocusNode,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
-                      onPressed: textEditingController.clear,
+                      onPressed: fieldTextEditingController.clear,
                       icon: const Icon(Icons.clear),
                     ),
                   ),
