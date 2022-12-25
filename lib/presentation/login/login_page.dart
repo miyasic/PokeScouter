@@ -52,7 +52,7 @@ class LoginPage extends ConsumerWidget {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                TextField(
+                TextFormField(
                   controller: null,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -76,7 +76,7 @@ class LoginPage extends ConsumerWidget {
                     onPressed: () {
                       ref
                           .read(authControllerProvider.notifier)
-                          .signIn('kou.sepak@gmail.com', 'abcdef5');
+                          .signIn('kou.sepak@gmail.com', 'abc');
                     },
                     child: Text('ログイン')),
                 ElevatedButton(
