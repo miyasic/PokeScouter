@@ -10,14 +10,21 @@ final firebaseRepositoryProvider =
 class FirebaseRepository {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future setMatch(String userId, List<String> partyNameList,
-      List<String> divisorList, Map<String, String> eachMemo) async {
+  Future setMatch(
+      {required String userId,
+      required String name,
+      required List<String> partyNameList,
+      required List<String> divisorList,
+      required String memo,
+      required Map<String, String> eachMemo}) async {
     final partyDoc = userRef(userId: userId).collection(kPartyCollection).doc();
     final party = Party(
         userId: userId,
         partyId: partyDoc.id,
+        name: name,
         partyNameList: partyNameList,
         divisorList: divisorList,
+        memo: memo,
         eachMemo: eachMemo);
     final data = party.toJson();
     await partyDoc.set(data);
