@@ -49,8 +49,7 @@ void main() {
   });
 
   test("ポケモン順序変更のテスト1", () async {
-    final pokemonSuggest =
-        container.read(pokemonSuggestStateProvider.notifier);
+    final pokemonSuggest = container.read(pokemonSuggestStateProvider.notifier);
     container
         .read(pokemonListProvider.notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
@@ -70,8 +69,7 @@ void main() {
   });
 
   test("ポケモン順序変更のテスト2", () async {
-    final pokemonSuggest =
-        container.read(pokemonSuggestStateProvider.notifier);
+    final pokemonSuggest = container.read(pokemonSuggestStateProvider.notifier);
     container
         .read(pokemonListProvider.notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
