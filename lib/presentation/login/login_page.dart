@@ -5,7 +5,6 @@ import 'package:flutter_template/presentation/login/user_state_provider.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});
 
@@ -29,7 +28,9 @@ class LoginPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text('ログイン済みです。'),
-                const SizedBox(height: 8,),
+                const SizedBox(
+                  height: 8,
+                ),
                 ElevatedButton(
                     onPressed: () {
                       ref.read(authControllerProvider.notifier).signOut();
