@@ -6,7 +6,6 @@ import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
 import '../../domain/pokemon.dart';
 import '../Widget/show_dialog.dart';
 
