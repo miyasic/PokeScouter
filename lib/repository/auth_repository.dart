@@ -1,0 +1,49 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_template/util/logger.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final authRepositoryProvider =
+    Provider<AuthRepository>((ref) => AuthRepository());
+
+class AuthRepository {
+  AuthRepository();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  User? getCurrentUser() {
+    try {
+      return _auth.currentUser;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // アカウント作成
+  Future createUserWithEmailAndPassword(String email, String password) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      logger.w(e.toString());
+    }
+  }
+
+  // ログイン
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      logger.w(e.toString());
+    }
+  }
+
+  Future logout() async {
+    await _auth.signOut();
+  }
+}
