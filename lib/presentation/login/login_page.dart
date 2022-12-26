@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/login/user_state_provider.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
@@ -6,12 +7,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../top/top_page.dart';
 
-class LoginPage extends ConsumerWidget {
+class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(userStateProvider);
+    final emailController = useTextEditingController();
+    final passController = useTextEditingController();
 
     return state.when(data: (data) {
       // ログイン済みの場合
@@ -53,7 +56,7 @@ class LoginPage extends ConsumerWidget {
             child: Column(
               children: [
                 TextFormField(
-                  controller: null,
+                  controller: emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
@@ -63,7 +66,7 @@ class LoginPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 24.0),
                 TextField(
-                  controller: null, // Controller実装必要
+                  controller: passController, // Controller実装必要
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8.0),
@@ -76,14 +79,14 @@ class LoginPage extends ConsumerWidget {
                     onPressed: () {
                       ref
                           .read(authControllerProvider.notifier)
-                          .signIn('kou.sepak@gmail.com', 'abc');
+                          .signIn(emailController.text, passController.text);
                     },
                     child: Text('ログイン')),
                 ElevatedButton(
                     onPressed: () {
                       ref
                           .read(authControllerProvider.notifier)
-                          .signUp('kou.sepak@gmail.com', 'abcdef5');
+                          .signUp(emailController.text, passController.text);
                     },
                     child: Text('新規登録')),
               ],
