@@ -15,7 +15,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         name: kPageNameTop,
         path: kPagePathTop,
         builder: (BuildContext context, GoRouterState state) {
-          return TopPage();
+          return const TopPage();
         },
       ),
       GoRoute(
