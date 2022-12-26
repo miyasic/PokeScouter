@@ -11,7 +11,7 @@ import '../../domain/pokemon.dart';
 import '../Widget/show_dialog.dart';
 
 class TopPage extends HookConsumerWidget {
-  TopPage({super.key});
+  const TopPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +25,7 @@ class TopPage extends HookConsumerWidget {
             onPressed: () {
               context.push(kPagePathLogin);
             },
-            icon: Icon(Icons.login),
+            icon: const Icon(Icons.login),
           ),
         ],
       ),
@@ -102,7 +102,7 @@ class TopPage extends HookConsumerWidget {
                     });
               });
             },
-            child: Text("Party登録"),
+            child: const Text("Party登録"),
           ),
         ],
       ),
