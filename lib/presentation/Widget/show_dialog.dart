@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 /// ダイアログ
 Future<void> showTextDialog(
-    BuildContext context, {
-      required String title,
-      String? message,
-    }) async {
+  BuildContext context, {
+  required String title,
+  String? message,
+}) async {
   return await showDialog(
     context: context,
     barrierDismissible: false,
@@ -16,8 +16,8 @@ Future<void> showTextDialog(
         ),
         content: message != null
             ? SelectableText(
-          message,
-        )
+                message,
+              )
             : null,
         actions: <Widget>[
           TextButton(
@@ -51,8 +51,8 @@ Future<void> showConfirmDialog({
         ),
         content: message != null
             ? SelectableText(
-          message,
-        )
+                message,
+              )
             : null,
         actions: [
           TextButton(
