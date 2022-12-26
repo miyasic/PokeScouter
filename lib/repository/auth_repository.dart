@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_template/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final authRepositoryProvider =
@@ -21,24 +22,24 @@ class AuthRepository {
   // アカウント作成
   Future createUserWithEmailAndPassword(String email, String password) async {
     try {
-      final result = await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
     } catch (e) {
-      print(e);
+      logger.w(e.toString());
     }
   }
 
   // ログイン
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword(
+      await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
     } catch (e) {
-      print(e);
+      logger.w(e.toString());
     }
   }
 
