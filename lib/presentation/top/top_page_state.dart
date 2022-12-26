@@ -46,6 +46,6 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         partyNameList: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
         memo: 'パーティめも',
-        eachMemo: Map());
+        eachMemo: {});
   }
 }

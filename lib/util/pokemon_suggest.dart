@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_template/main.dart';
 import 'package:flutter_template/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

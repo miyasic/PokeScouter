@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_template/router.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:flutter_template/theme.dart';
