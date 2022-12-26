@@ -30,9 +30,13 @@ class AuthController extends StateNotifier<User?> {
       checkInputText(email, password);
       await authRepository.signInWithEmailAndPassword(email, password);
     } on String catch (text) {
-      ref.watch(scaffoldMessengerHelperProvider).showSnackBar(text);
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(text, isWarningMessage: true);
     } catch (e) {
-      ref.watch(scaffoldMessengerHelperProvider).showSnackBar(e.toString());
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(e.toString(), isWarningMessage: true);
     }
   }
 
@@ -41,9 +45,13 @@ class AuthController extends StateNotifier<User?> {
       checkInputText(email, password);
       await authRepository.createUserWithEmailAndPassword(email, password);
     } on String catch (text) {
-      ref.watch(scaffoldMessengerHelperProvider).showSnackBar(text);
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(text, isWarningMessage: true);
     } catch (e) {
-      ref.watch(scaffoldMessengerHelperProvider).showSnackBar(e.toString());
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(e.toString(), isWarningMessage: true);
     }
     // Firestoreにユーザデータを追加したり
   }
