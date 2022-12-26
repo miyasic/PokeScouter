@@ -1,0 +1,27 @@
+## https://docs.google.com/spreadsheets/d/1eJm9BLSt45iH4WW8ck1Wul9bfCG3bla9G1A4-cLSxug/edit#gid=172145375
+
+User:
+  userId: String
+
+    Battle:
+      userId: String
+      matchId: String
+      partyId: String?
+      opponentParty: List<String>
+      divisorList: List<String>
+      order: List<String>
+      memo: String
+      eachMemo: Map<String,String>
+      result: String
+      createdAt: Timestamp
+
+    Party:
+      userId: String
+      partyId: String
+      name: String
+      partyNameList: List<String>
+      divisorList: List<String>
+      memo: String
+      eachMemo: Map<String,String>
+      createdAt: Timestamp
+
