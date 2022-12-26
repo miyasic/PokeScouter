@@ -54,6 +54,7 @@ class ScaffoldMessengerHelper {
   void showSnackBar(
     String message, {
     bool removeCurrentSnackBar = true,
+    bool isWarningMessage = false,
   }) {
     final scaffoldMessengerState = scaffoldMessengerKey.currentState!;
     if (removeCurrentSnackBar) {
@@ -63,8 +64,10 @@ class ScaffoldMessengerHelper {
       SnackBar(
         content: Text(
           message,
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: isWarningMessage
+                ? ThemeData().errorColor
+                : ThemeData().highlightColor,
             fontSize: 14,
           ),
         ),
