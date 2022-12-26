@@ -5,7 +5,6 @@ import 'package:flutter_template/presentation/login/user_state_provider.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../top/top_page.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});
@@ -23,7 +22,7 @@ class LoginPage extends HookConsumerWidget {
           appBar: AppBar(
             title: const Text(kPageNameLogin),
           ),
-          body: Container(
+          body: SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,12 +34,12 @@ class LoginPage extends HookConsumerWidget {
                           ref.read(authControllerProvider.notifier).state;
                       print(user?.uid);
                     },
-                    child: Text('ログイン済みです。')),
+                    child: const Text('ログイン済みです。')),
                 ElevatedButton(
                     onPressed: () {
                       ref.read(authControllerProvider.notifier).signOut();
                     },
-                    child: Text("ログアウト")),
+                    child: const Text("ログアウト")),
               ],
             ),
           ),
@@ -81,14 +80,14 @@ class LoginPage extends HookConsumerWidget {
                           .read(authControllerProvider.notifier)
                           .signIn(emailController.text, passController.text);
                     },
-                    child: Text('ログイン')),
+                    child: const Text('ログイン')),
                 ElevatedButton(
                     onPressed: () {
                       ref
                           .read(authControllerProvider.notifier)
                           .signUp(emailController.text, passController.text);
                     },
-                    child: Text('新規登録')),
+                    child: const Text('新規登録')),
               ],
             )),
       );
