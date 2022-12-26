@@ -68,8 +68,9 @@ Future<void> showConfirmDialog({
               okText,
             ),
             onPressed: () async {
+              final navigator = Navigator.of(context);
               await function();
-              Navigator.of(context).pop();
+              navigator.pop();
             },
           ),
         ],

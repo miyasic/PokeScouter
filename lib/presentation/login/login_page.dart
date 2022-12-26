@@ -28,13 +28,8 @@ class LoginPage extends HookConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                InkWell(
-                    onTap: () {
-                      final user =
-                          ref.read(authControllerProvider.notifier).state;
-                      print(user?.uid);
-                    },
-                    child: const Text('ログイン済みです。')),
+                const Text('ログイン済みです。'),
+                const SizedBox(height: 8,),
                 ElevatedButton(
                     onPressed: () {
                       ref.read(authControllerProvider.notifier).signOut();
