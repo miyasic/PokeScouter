@@ -48,11 +48,10 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return ["未実装"];
   }
 
-  setParty() async {
+  setParty({required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
-      scaffoldMessengerHelper.showSnackBar('ログインしてください。',
-          isWarningMessage: true);
+      await showLoginDialog();
       return;
     }
     await firebaseRepository.setMatch(
