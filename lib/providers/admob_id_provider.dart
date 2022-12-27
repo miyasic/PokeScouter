@@ -9,7 +9,7 @@ final admobId = Provider<String>((ref) {
     throw UnimplementedError();
   } else {
     if (Platform.isAndroid) {
-      adUnitId = "ca-app-pub-3940256099942544/6978759866";
+      adUnitId = "ca-app-pub-3940256099942544/5224354917";
     } else if (Platform.isIOS) {
       adUnitId = "ca-app-pub-3940256099942544/1712485313";
     } else {
