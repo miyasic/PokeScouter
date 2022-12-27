@@ -84,9 +84,7 @@ class TopPage extends HookConsumerWidget {
                       },
                       child: Badge(
                           position: BadgePosition.topStart(),
-                          badgeColor: Theme
-                              .of(context)
-                              .primaryColorDark,
+                          badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
                           child: PokemonWidget(pokemonListState[index]))),
                 );
@@ -97,51 +95,8 @@ class TopPage extends HookConsumerWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              pokemonListNotifier.setParty(showLoginDialog: () async {
-// <<<<<<< HEAD
-                await ref.read(admobRepositoryProvider).load();
-// =======
-//                 // final interstitial = await InterstitialAd.load(
-//                 //     adUnitId: ref.read(admobId),
-//                 //     request: AdRequest(),
-//                 //     adLoadCallback: InterstitialAdLoadCallback(
-//                 //         onAdLoaded: (interstitialAd) {
-//                 //           interstitialAd.show();
-//                 //         }, onAdFailedToLoad: (interstitialAd) {
-//                 //       // Todo 広告が取得できなかった場合の処理を書く
-//                 //       logger.d("広告を取得できませんでした。");
-//                 //     }));
-//                 await RewardedInterstitialAd.load(
-//                   adUnitId: ref.read(admobId),
-//                   request: AdRequest(),
-//                   rewardedInterstitialAdLoadCallback:
-//                   RewardedInterstitialAdLoadCallback(
-//                       onAdLoaded: (interstitial) {
-//                         print("広告取得成功");
-//                         interstitial.show(onUserEarnedReward: (ad, reward) {
-//                           print("動画を見ました。");
-//                         });
-//                       },
-//                       onAdFailedToLoad: (interstitial) {
-//                         print("広告取得失敗");
-//                       }),
-//                 );
-//
-//                 //     onAdFailedToLoad: (interstitialAd) {
-//                 //   // Todo 広告が取得できなかった場合の処理を書く
-//                 //   logger.d("広告を取得できませんでした。");
-//                 // }), rewardedInterstitialAdLoadCallback: null);
-//                 // await showConfirmDialog(
-//                 //     context: context,
-//                 //     title: 'ログインしてください。',
-//                 //     okText: 'ログインページを開く。',
-//                 //     message: 'パーティを登録するにはログインが必要です。',
-//                 //     function: () {
-//                 //       context.push(kPagePathLogin);
-//                 //     });
-// >>>>>>> 92111caef0ba57c621114c7702490dde9362222e
-              });
+            onPressed: () async {
+              await ref.read(admobRepositoryProvider).load();
             },
             child: const Text("Party登録"),
           ),

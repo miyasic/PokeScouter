@@ -10,12 +10,25 @@ class AdmobRepository {
   AdmobRepository(this.id);
   final String id;
   Future load() async {
-    await RewardedInterstitialAd.load(
+    await RewardedAd.load(
       adUnitId: id,
       request: AdRequest(),
-      rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
-          onAdLoaded: _onAdLoaded, onAdFailedToLoad: _onAdFailedToLoad),
+      rewardedAdLoadCallback:
+          RewardedAdLoadCallback(onAdLoaded: (interstitial) {
+        print("広告取得成功");
+        interstitial.show(onUserEarnedReward: (ad, reward) {
+          print("動画を見ました。");
+        });
+      }, onAdFailedToLoad: (interstitial) {
+        print("広告取得失敗");
+      }),
     );
+    // await RewardedInterstitialAd.load(
+    //   adUnitId: id,
+    //   request: AdRequest(),
+    //   rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
+    //       onAdLoaded: _onAdLoaded, onAdFailedToLoad: _onAdFailedToLoad),
+    // );
   }
 
   // 広告取得に失敗した時のコールバック
