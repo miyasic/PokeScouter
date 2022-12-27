@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
+import 'package:flutter_template/util/logger.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../domain/pokemon.dart';
-import '../Widget/show_dialog.dart';
 
 class TopPage extends HookConsumerWidget {
   const TopPage({super.key});
@@ -91,14 +93,43 @@ class TopPage extends HookConsumerWidget {
           ElevatedButton(
             onPressed: () {
               pokemonListNotifier.setParty(showLoginDialog: () async {
-                await showConfirmDialog(
-                    context: context,
-                    title: 'ログインしてください。',
-                    okText: 'ログインページを開く。',
-                    message: 'パーティを登録するにはログインが必要です。',
-                    function: () {
-                      context.push(kPagePathLogin);
-                    });
+                final interstitial = await InterstitialAd.load(
+                    adUnitId: "ca-app-pub-3940256099942544/5135589807",
+                    request: AdRequest(),
+                    adLoadCallback: InterstitialAdLoadCallback(
+                        onAdLoaded: (interstitialAd) {
+                      interstitialAd.show();
+                    }, onAdFailedToLoad: (interstitialAd) {
+                      // Todo 広告が取得できなかった場合の処理を書く
+                      logger.d("広告を取得できませんでした。");
+                    }));
+                final interstial = await RewardedInterstitialAd.load(
+                  adUnitId: "ca-app-pub-3940256099942544/5135589807",
+                  request: AdRequest(),
+                  rewardedInterstitialAdLoadCallback:
+                      RewardedInterstitialAdLoadCallback(
+                          onAdLoaded: (interstitial) {
+                            print("広告取得成功");
+                            interstitial.show(onUserEarnedReward: (ad,reward){
+                              print("動画を見ました。");
+                            });
+                          },
+                          onAdFailedToLoad: (interstitial) {
+                            print("広告取得失敗");
+                          }),
+                );
+                //     onAdFailedToLoad: (interstitialAd) {
+                //   // Todo 広告が取得できなかった場合の処理を書く
+                //   logger.d("広告を取得できませんでした。");
+                // }), rewardedInterstitialAdLoadCallback: null);
+                // await showConfirmDialog(
+                //     context: context,
+                //     title: 'ログインしてください。',
+                //     okText: 'ログインページを開く。',
+                //     message: 'パーティを登録するにはログインが必要です。',
+                //     function: () {
+                //       context.push(kPagePathLogin);
+                //     });
               });
             },
             child: const Text("Party登録"),
