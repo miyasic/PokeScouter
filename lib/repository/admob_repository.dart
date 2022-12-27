@@ -1,14 +1,17 @@
+import 'package:flutter_template/providers/admob_id_provider.dart';
 import 'package:flutter_template/util/logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final admobRepositoryProvider =
-    Provider<AdmobRepository>((ref) => AdmobRepository());
+    Provider<AdmobRepository>((ref) => AdmobRepository(ref.read(admobId)));
 
 class AdmobRepository {
+  AdmobRepository(this.id);
+  final String id;
   Future load() async {
     await RewardedInterstitialAd.load(
-      adUnitId: "ca-app-pub-3940256099942544/5135589807",
+      adUnitId: id,
       request: AdRequest(),
       rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
           onAdLoaded: _onAdLoaded, onAdFailedToLoad: _onAdFailedToLoad),
