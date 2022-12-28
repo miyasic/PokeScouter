@@ -22,11 +22,15 @@ DocumentReference<User> userRef({
 }) =>
     usersRef.doc(userId);
 
-final partiesRef = db.collection(kPartyCollection).withConverter(
-    fromFirestore: (ds, _) => Party.fromDocumentSnapshot(ds),
-    toFirestore: (obj, _) => obj.toJson());
+CollectionReference<Party> partiesRef({
+  required String userId,
+}) =>
+    userRef(userId: userId).collection(kPartyCollection).withConverter(
+        fromFirestore: (ds, _) => Party.fromDocumentSnapshot(ds),
+        toFirestore: (obj, _) => obj.toJson());
 
 DocumentReference<Party> partyRef({
+  required userId,
   required partyId,
 }) =>
-    partiesRef.doc(partyId);
+    partiesRef(userId: userId).doc(partyId);

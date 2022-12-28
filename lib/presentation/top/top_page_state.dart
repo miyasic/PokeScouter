@@ -54,7 +54,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
       await showLoginDialog();
       return;
     }
-    await firebaseRepository.setMatch(
+    await firebaseRepository.setParty(
         userId: user.uid,
         name: 'パーティのなまえ',
         partyNameList: _getPokemonNameList(),
