@@ -13,26 +13,29 @@ class PartyWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final folded = useState(false);
-    String formatNumbers(String num) {
-      const spaceLater = "  ";
-      return spaceLater * (3 - num.length) + num;
-    }
     if(party.partyNameList.isEmpty){
       return Card(
         child: Text("ポケモンが登録されていません。"),
       );
     }
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Column(
-          children: [
-            Wrap(
-              children: party.partyNameList.map((name) => Text(name,style: textStylePlain,)).toList(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Column(
+              children: [
+                Text(party.name),
+                Row(
+                  children: party.partyNameList.map((name) => Text(name,style: textStylePlain,)).toList(),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        Text(party.createdAt.dateTime.toString(),style: textStyleGreySmall,)
+      ],
     );
   }
 }
