@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/route_path.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PartyListPage extends ConsumerWidget {
