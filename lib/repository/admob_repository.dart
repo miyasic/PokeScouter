@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_template/providers/admob_id_provider.dart';
 import 'package:flutter_template/util/logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -8,50 +9,45 @@ final admobRepositoryProvider =
 
 class AdmobRepository {
   AdmobRepository(this.id);
+
   final String id;
+  RewardedAd? ad;
+
+  // 広告取得
   Future load() async {
     await RewardedAd.load(
       adUnitId: id,
-      request: AdRequest(),
+      request: const AdRequest(),
       rewardedAdLoadCallback:
-          RewardedAdLoadCallback(onAdLoaded: (interstitial) {
-        print("広告取得成功");
-        interstitial.show(onUserEarnedReward: (ad, reward) {
-          print("動画を見ました。");
+          RewardedAdLoadCallback(onAdLoaded: (rewardAd) async {
+        logger.d("広告取得成功");
+        rewardAd.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (RewardedAd ad) async {
+          logger.d("広告の再生が終了しました。");
+          logger.d("広告を破棄します。");
+          await ad.dispose();
+        }, onAdFailedToShowFullScreenContent: (Ad ad, AdError error) async {
+          logger.d("広告の再生に失敗しました。");
+          logger.d("広告を破棄します。");
+          await ad.dispose();
         });
-      }, onAdFailedToLoad: (interstitial) {
-        print("広告取得失敗");
+        ad = rewardAd;
+      }, onAdFailedToLoad: (loadAdError) {
+        logger.d("広告取得失敗");
       }),
     );
-    // await RewardedInterstitialAd.load(
-    //   adUnitId: id,
-    //   request: AdRequest(),
-    //   rewardedInterstitialAdLoadCallback: RewardedInterstitialAdLoadCallback(
-    //       onAdLoaded: _onAdLoaded, onAdFailedToLoad: _onAdFailedToLoad),
-    // );
   }
 
-  // 広告取得に失敗した時のコールバック
-  FullScreenAdLoadErrorCallback _onAdFailedToLoad(LoadAdError error) {
-    return (LoadAdError error) {
-      logger.d("広告取得失敗");
-    };
-  }
-
-  // 広告取得に成功した時のコールバック
-  GenericAdEventCallback<RewardedInterstitialAd> _onAdLoaded(
-      RewardedInterstitialAd interstitialAd) {
-    return (RewardedInterstitialAd interstitialAd) {
-      logger.d("広告取得成功");
-      interstitialAd.show(onUserEarnedReward: _onUserEarnedRewardCallback);
-    };
-  }
-
-  // 広告動画を見終わった後のコールバック
-  OnUserEarnedRewardCallback _onUserEarnedRewardCallback(
-      AdWithoutView ad, RewardItem reward) {
-    return (AdWithoutView ad, RewardItem reward) {
-      logger.d("動画を見ました。");
-    };
+  // 広告表示
+  Future showAd(VoidCallback callback) async {
+    if (ad == null) {
+      logger.d("広告が存在しません。");
+      return;
+    } else {
+      await ad!.show(
+          onUserEarnedReward: (AdWithoutView adWithoutView, RewardItem reward) {
+        callback();
+      });
+    }
   }
 }
