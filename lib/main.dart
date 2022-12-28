@@ -4,12 +4,14 @@ import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:flutter_template/theme.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:flutter_template/util/provider_logger.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

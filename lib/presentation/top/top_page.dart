@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
+import 'package:flutter_template/repository/admob_repository.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../domain/pokemon.dart';
-import '../Widget/show_dialog.dart';
+import '../../util/logger.dart';
 
 class TopPage extends HookConsumerWidget {
   const TopPage({super.key});
@@ -89,19 +91,19 @@ class TopPage extends HookConsumerWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              pokemonListNotifier.setParty(showLoginDialog: () async {
-                await showConfirmDialog(
-                    context: context,
-                    title: 'ログインしてください。',
-                    okText: 'ログインページを開く。',
-                    message: 'パーティを登録するにはログインが必要です。',
-                    function: () {
-                      context.push(kPagePathLogin);
-                    });
+            onPressed: () async {
+              await ref.read(admobRepositoryProvider).load();
+            },
+            child: const Text("広告取得"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await ref.read(admobRepositoryProvider).showAd(() {
+                // 広告を再生したユーザに与える報酬
+                logger.d("動画を見ました。");
               });
             },
-            child: const Text("Party登録"),
+            child: const Text("広告表示"),
           ),
         ],
       ),
