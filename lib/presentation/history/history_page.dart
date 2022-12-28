@@ -14,18 +14,18 @@ class HistoryPage extends ConsumerWidget {
       ),
       body: Center(
           child: Column(
-            children: [
-              Text(
-                kPageNameHistory,
-                style: textStylePlain,
-              ),
-              Text("textStyleLarge", style: textStyleLarge),
-              Text("textStyleMedium", style: textStyleMedium),
-              Text("textStylePlane", style: textStylePlain),
-              Text("textStyleBold", style: textStyleBold),
-              const Text("textStyleNon")
-            ],
-          )),
+        children: [
+          Text(
+            kPageNameHistory,
+            style: textStylePlain,
+          ),
+          Text("textStyleLarge", style: textStyleLarge),
+          Text("textStyleMedium", style: textStyleMedium),
+          Text("textStylePlane", style: textStylePlain),
+          Text("textStyleBold", style: textStyleBold),
+          const Text("textStyleNon")
+        ],
+      )),
     );
   }
 }

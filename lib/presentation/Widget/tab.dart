@@ -20,7 +20,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
             icon: Icon(Icons.balance),
             label: "対戦",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.menu_book_sharp),label: "履歴"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.menu_book_sharp), label: "履歴"),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'マイページ',
