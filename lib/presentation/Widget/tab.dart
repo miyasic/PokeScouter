@@ -20,6 +20,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
             icon: Icon(Icons.balance),
             label: "対戦",
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.menu_book_sharp),label: "履歴"),
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'マイページ',
@@ -36,8 +37,11 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith(kPagePathTop)) {
       return 0;
     }
-    if (location.startsWith(kPagePathNext)) {
+    if (location.startsWith(kPagePathHistory)) {
       return 1;
+    }
+    if (location.startsWith(kPagePathNext)) {
+      return 2;
     }
     return 0;
   }
@@ -48,6 +52,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
         context.go(kPagePathTop);
         break;
       case 1:
+        context.go(kPagePathHistory);
+        break;
+      case 2:
         context.go(kPagePathNext);
         break;
     }
