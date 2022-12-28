@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/Widget/party_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../feature/party.dart';
@@ -15,7 +16,7 @@ class PartyListPage extends ConsumerWidget {
                   itemCount: parties.length,
                   itemBuilder: (BuildContext context, int index){
                 if (parties[index].partyNameList.length == 0) return Text("ポケモンが登録されていません");
-                return Text(parties[index].partyNameList[0]);
+                return PartyWidget(parties[index]);
               });
             },
             error: (e, __) {
