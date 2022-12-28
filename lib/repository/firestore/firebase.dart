@@ -10,7 +10,7 @@ final firebaseRepositoryProvider =
 class FirebaseRepository {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future setMatch(
+  Future setParty(
       {required String userId,
       required String name,
       required List<String> partyNameList,
@@ -28,5 +28,10 @@ class FirebaseRepository {
         eachMemo: eachMemo);
     final data = party.toJson();
     await partyDoc.set(data);
+  }
+
+  Stream<List<Party>> subscribeParties(String userId) {
+    final collectionStream = partiesRef(userId: userId).snapshots();
+    return collectionStream.map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
 }
