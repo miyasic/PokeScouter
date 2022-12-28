@@ -7,8 +7,7 @@ class BattleHistoryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
-      body: Center(
-          child: Text("対戦履歴")),
+      body: Center(child: Text("対戦履歴")),
     );
   }
 }

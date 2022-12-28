@@ -8,8 +8,7 @@ class PartyListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
-      body: Center(
-          child: Text("パーティ一覧")),
+      body: Center(child: Text("パーティ一覧")),
     );
   }
 }
