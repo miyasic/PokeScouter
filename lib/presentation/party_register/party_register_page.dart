@@ -13,10 +13,13 @@ import '../top/top_page_state.dart';
 
 class PartyRegisterPage extends HookConsumerWidget {
   const PartyRegisterPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier = ref.read(pokemonListProvider(kPageNamePartyRegister).notifier);
-    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider(kPageNamePartyRegister));
+    final pokemonListNotifier =
+        ref.read(pokemonListProvider(kPageNamePartyRegister).notifier);
+    List<Pokemon> pokemonListState =
+        ref.watch(pokemonListProvider(kPageNamePartyRegister));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNamePartyRegister),
@@ -65,16 +68,26 @@ class PartyRegisterPage extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                ref.read(pokemonListProvider(kPageNamePartyRegister).notifier).setParty(
-                    showLoginDialog: () async {
-                      await showConfirmDialog(
-                          context: context,
-                          title: 'ログインしてください。',
-                          okText: 'ログインページを開く。',
-                          message: 'パーティを登録するにはログインが必要です。',
-                          function: () {
-                            context.push(kPagePathLogin);
-                          });
+                showTextFieldDialog(
+                    context: context,
+                    title: "パーティの名前を決めてね。",
+                    okText: '登録する。',
+                    function: (String title) {
+                      ref
+                          .read(pokemonListProvider(kPageNamePartyRegister)
+                              .notifier)
+                          .setParty(
+                              title: title,
+                              showLoginDialog: () async {
+                                await showConfirmDialog(
+                                    context: context,
+                                    title: 'ログインしてください。',
+                                    okText: 'ログインページを開く。',
+                                    message: 'パーティを登録するにはログインが必要です。',
+                                    function: () {
+                                      context.push(kPagePathLogin);
+                                    });
+                              });
                     });
               },
               child: const Text("パーティ登録"),

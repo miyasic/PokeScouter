@@ -18,8 +18,10 @@ class TopPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier = ref.read(pokemonListProvider(kPageNameTop).notifier);
-    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider(kPageNameTop));
+    final pokemonListNotifier =
+        ref.read(pokemonListProvider(kPageNameTop).notifier);
+    List<Pokemon> pokemonListState =
+        ref.watch(pokemonListProvider(kPageNameTop));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
@@ -85,16 +87,17 @@ class TopPage extends HookConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               ref.read(pokemonListProvider(kPageNameTop).notifier).setParty(
+                  title: "パーティの名前",
                   showLoginDialog: () async {
-                await showConfirmDialog(
-                    context: context,
-                    title: 'ログインしてください。',
-                    okText: 'ログインページを開く。',
-                    message: 'パーティを登録するにはログインが必要です。',
-                    function: () {
-                      context.push(kPagePathLogin);
-                    });
-              });
+                    await showConfirmDialog(
+                        context: context,
+                        title: 'ログインしてください。',
+                        okText: 'ログインページを開く。',
+                        message: 'パーティを登録するにはログインが必要です。',
+                        function: () {
+                          context.push(kPagePathLogin);
+                        });
+                  });
             },
             child: const Text("パーティ登録"),
           ),
