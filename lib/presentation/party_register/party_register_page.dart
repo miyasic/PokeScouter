@@ -15,8 +15,8 @@ class PartyRegisterPage extends HookConsumerWidget {
   const PartyRegisterPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier = ref.read(pokemonListProvider.notifier);
-    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider);
+    final pokemonListNotifier = ref.read(pokemonListProvider(kPageNamePartyRegister).notifier);
+    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider(kPageNamePartyRegister));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNamePartyRegister),
@@ -65,7 +65,7 @@ class PartyRegisterPage extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                ref.read(pokemonListProvider.notifier).setParty(
+                ref.read(pokemonListProvider(kPageNamePartyRegister).notifier).setParty(
                     showLoginDialog: () async {
                       await showConfirmDialog(
                           context: context,
