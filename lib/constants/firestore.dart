@@ -3,7 +3,6 @@ const kUserCollection = 'user';
 const kPartyCollection = 'party';
 const kBattleCollection = 'battle';
 
-
 /// フィールド名
 // user
 // party

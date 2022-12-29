@@ -5,8 +5,8 @@ import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final pokemonListProvider =
-    StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>((ref,id) =>
-        PokemonListState(
+    StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>(
+        (ref, id) => PokemonListState(
             ref.read(firebaseRepositoryProvider),
             ref.read(authControllerProvider.notifier),
             ref.read(scaffoldMessengerHelperProvider)));
@@ -48,7 +48,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return ["未実装"];
   }
 
-  setParty({required String title,required Function showLoginDialog}) async {
+  setParty({required String title, required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
