@@ -15,8 +15,9 @@ class PartyListPage extends ConsumerWidget {
               return ListView.builder(
                   itemCount: parties.length,
                   itemBuilder: (BuildContext context, int index) {
-                    if (parties[index].partyNameList.isEmpty)
+                    if (parties[index].partyNameList.isEmpty) {
                       return const SizedBox();
+                    }
                     return PartyWidget(parties[index]);
                   });
             },
