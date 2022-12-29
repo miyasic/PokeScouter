@@ -15,7 +15,7 @@ class PartyListPage extends ConsumerWidget {
               return ListView.builder(
                   itemCount: parties.length,
                   itemBuilder: (BuildContext context, int index){
-                if (parties[index].partyNameList.length == 0) return Text("ポケモンが登録されていません");
+                if (parties[index].partyNameList.isEmpty) return SizedBox();
                 return PartyWidget(parties[index]);
               });
             },
@@ -23,7 +23,7 @@ class PartyListPage extends ConsumerWidget {
               print(e.toString());
               return const SizedBox(child: Text("error"),);
             },
-            loading: () => Center(child: const CircularProgressIndicator()),
+            loading: () => const Center(child: CircularProgressIndicator()),
           ),
     );
   }
