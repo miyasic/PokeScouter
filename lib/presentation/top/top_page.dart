@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
+import 'package:flutter_template/presentation/Widget/pokemon_textfield.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/repository/admob_repository.dart';
@@ -35,36 +36,11 @@ class TopPage extends HookConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Autocomplete(
-              optionsBuilder: (textEditingValue) {
-                if (textEditingValue.text == "") {
-                  return <String>[];
-                }
-                return ref
-                    .read(pokemonSuggestStateProvider.notifier)
-                    .getSuggestPokemonName(textEditingValue.text);
-              },
+            child: PokemonTextField(
               onSelected: (String pokemonName) {
                 pokemonListNotifier.addPokemon(ref
                     .read(pokemonSuggestStateProvider.notifier)
                     .getPokemon(pokemonName));
-              },
-              fieldViewBuilder: (BuildContext context,
-                  TextEditingController fieldTextEditingController,
-                  FocusNode fieldFocusNode,
-                  VoidCallback onFieldSubmitted) {
-                return TextField(
-                  controller: fieldTextEditingController,
-                  focusNode: fieldFocusNode,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      onPressed: fieldTextEditingController.clear,
-                      icon: const Icon(Icons.clear),
-                    ),
-                  ),
-                );
               },
             ),
           ),
