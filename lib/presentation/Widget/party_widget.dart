@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/text_style.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 
-
 class PartyWidget extends HookWidget {
   const PartyWidget(this.party, {super.key});
 
@@ -11,7 +10,7 @@ class PartyWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(party.partyNameList.isEmpty){
+    if (party.partyNameList.isEmpty) {
       return const SizedBox();
     }
     return Card(
@@ -24,15 +23,22 @@ class PartyWidget extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(party.name),
-                Text(party.createdAt.dateTime.toString(),style: textStyleGreySmall,)
+                Text(
+                  party.createdAt.dateTime.toString(),
+                  style: textStyleGreySmall,
+                )
               ],
             ),
             Wrap(
               children: party.partyNameList
                   .map((name) => Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
-                    child: Text(name,style: textStylePlain,),
-                  )).toList(),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                        child: Text(
+                          name,
+                          style: textStylePlain,
+                        ),
+                      ))
+                  .toList(),
             ),
           ],
         ),

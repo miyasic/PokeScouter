@@ -14,20 +14,25 @@ class PartyListPage extends ConsumerWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: (){
-        context.push(kPagePathPartyRegister);
-      },),
+        onPressed: () {
+          context.push(kPagePathPartyRegister);
+        },
+      ),
       body: ref.watch(roomsStreamProvider).when(
             data: (parties) {
               return ListView.builder(
                   itemCount: parties.length,
-                  itemBuilder: (BuildContext context, int index){
-                if (parties[index].partyNameList.isEmpty) return const SizedBox();
-                return PartyWidget(parties[index]);
-              });
+                  itemBuilder: (BuildContext context, int index) {
+                    if (parties[index].partyNameList.isEmpty) {
+                      return const SizedBox();
+                    }
+                    return PartyWidget(parties[index]);
+                  });
             },
             error: (e, __) {
-              return const SizedBox(child: Text("error"),);
+              return const SizedBox(
+                child: Text("error"),
+              );
             },
             loading: () => const Center(child: CircularProgressIndicator()),
           ),

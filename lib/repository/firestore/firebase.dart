@@ -31,7 +31,10 @@ class FirebaseRepository {
   }
 
   Stream<List<Party>> subscribeParties(String userId) {
-    final collectionStream = partiesRef(userId: userId).orderBy(kFieldPartyCreatedAt,descending: true).snapshots();
-    return collectionStream.map((qs) => qs.docs.map((qds) => qds.data()).toList());
+    final collectionStream = partiesRef(userId: userId)
+        .orderBy(kFieldPartyCreatedAt, descending: true)
+        .snapshots();
+    return collectionStream
+        .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
 }
