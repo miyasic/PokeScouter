@@ -48,7 +48,7 @@ class PartyRegisterPage extends HookConsumerWidget {
                 itemCount: pokemonListState.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    key: ValueKey(pokemonListState[index]),
+                    key: ValueKey(pokemonListState[index].toJson()),
                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                     child: InkWell(
                         onDoubleTap: () {
@@ -67,31 +67,34 @@ class PartyRegisterPage extends HookConsumerWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () async {
-                await showTextFieldDialog(
-                    context: context,
-                    title: "パーティの名前を決めてね。",
-                    okText: '登録する。',
-                    function: (String title) async {
-                      final navigator = Navigator.of(context);
-                      await ref
-                          .read(pokemonListProvider(kPageNamePartyRegister)
-                              .notifier)
-                          .setParty(
-                              title: title,
-                              showLoginDialog: () async {
-                                await showConfirmDialog(
-                                    context: context,
-                                    title: 'ログインしてください。',
-                                    okText: 'ログインページを開く。',
-                                    message: 'パーティを登録するにはログインが必要です。',
-                                    function: () {
-                                      context.push(kPagePathLogin);
+              onPressed: pokemonListState.isEmpty
+                  ? null
+                  : () async {
+                      await showTextFieldDialog(
+                          context: context,
+                          title: "パーティの名前を決めてね。",
+                          okText: '登録する。',
+                          function: (String title) async {
+                            final navigator = Navigator.of(context);
+                            await ref
+                                .read(
+                                    pokemonListProvider(kPageNamePartyRegister)
+                                        .notifier)
+                                .setParty(
+                                    title: title,
+                                    showLoginDialog: () async {
+                                      await showConfirmDialog(
+                                          context: context,
+                                          title: 'ログインしてください。',
+                                          okText: 'ログインページを開く。',
+                                          message: 'パーティを登録するにはログインが必要です。',
+                                          function: () {
+                                            context.push(kPagePathLogin);
+                                          });
                                     });
-                              });
-                      navigator.pop();
-                    });
-              },
+                            navigator.pop();
+                          });
+                    },
               child: const Text("パーティ登録"),
             ),
           ],
