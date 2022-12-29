@@ -18,8 +18,8 @@ class TopPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier = ref.read(pokemonListProvider.notifier);
-    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider);
+    final pokemonListNotifier = ref.read(pokemonListProvider(kPageNameTop).notifier);
+    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider(kPageNameTop));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
@@ -84,7 +84,7 @@ class TopPage extends HookConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              ref.read(pokemonListProvider.notifier).setParty(
+              ref.read(pokemonListProvider(kPageNameTop).notifier).setParty(
                   showLoginDialog: () async {
                 await showConfirmDialog(
                     context: context,

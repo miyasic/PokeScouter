@@ -5,7 +5,7 @@ import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final pokemonListProvider =
-    StateNotifierProvider<PokemonListState, List<Pokemon>>((ref) =>
+    StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>((ref,id) =>
         PokemonListState(
             ref.read(firebaseRepositoryProvider),
             ref.read(authControllerProvider.notifier),
