@@ -113,16 +113,15 @@ class TextFieldDialog extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController textEditingController = useTextEditingController();
+    final TextEditingController textEditingController =
+        useTextEditingController();
     final isFieldEmpty = useState(true);
     useEffect(() {
       textEditingController.addListener(() {
         isFieldEmpty.value = textEditingController.text.isEmpty;
       });
       return null;
-    }, [
-      textEditingController
-    ]);
+    }, [textEditingController]);
     return AlertDialog(
       title: Text(title),
       content: TextField(

@@ -28,5 +28,4 @@ class FirebaseRepositoryMock implements FirebaseRepository {
     // TODO: implement subscribeParties
     throw UnimplementedError();
   }
-  
 }
