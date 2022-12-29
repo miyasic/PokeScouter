@@ -48,7 +48,7 @@ class PartyRegisterPage extends HookConsumerWidget {
                 itemCount: pokemonListState.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    key: ValueKey(pokemonListState[index].toJson()),
+                    key: ValueKey(index),
                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                     child: InkWell(
                         onDoubleTap: () {
