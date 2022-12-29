@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
 import '../../util/pokemon_suggest.dart';
 
 class PokemonTextField extends ConsumerWidget {
-  const PokemonTextField({super.key,required this.onSelected, required this.enabled});
+  const PokemonTextField(
+      {super.key, required this.onSelected, required this.enabled});
+
   final Function(String title) onSelected;
   final bool enabled;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Autocomplete(
@@ -38,5 +42,4 @@ class PokemonTextField extends ConsumerWidget {
       },
     );
   }
-
 }
