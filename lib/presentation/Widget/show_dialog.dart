@@ -87,7 +87,6 @@ Future<void> showTextFieldDialog({
   required okText,
   required Function(String title) function,
 }) async {
-  TextEditingController textEditingController = TextEditingController();
   return await showDialog(
     context: context,
     builder: (context) {

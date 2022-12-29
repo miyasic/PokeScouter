@@ -61,6 +61,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         divisorList: _getPokemonDivisorList(),
         memo: 'パーティめも',
         eachMemo: {});
+    state = [];
     scaffoldMessengerHelper.showSnackBar('登録できました！');
   }
 }
