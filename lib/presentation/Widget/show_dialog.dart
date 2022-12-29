@@ -119,6 +119,7 @@ class TextFieldDialog extends HookWidget {
       textEditingController.addListener(() {
         isFieldEmpty.value = textEditingController.text.isEmpty;
       });
+      return null;
     }, [
       textEditingController
     ]);

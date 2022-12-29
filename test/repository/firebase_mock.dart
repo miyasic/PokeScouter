@@ -24,8 +24,9 @@ class FirebaseRepositoryMock implements FirebaseRepository {
   }
 
   @override
-  Stream<List<Party>> subscribeParties() {
+  Stream<List<Party>> subscribeParties(String userId) {
     // TODO: implement subscribeParties
     throw UnimplementedError();
   }
+  
 }

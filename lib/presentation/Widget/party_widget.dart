@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/text_style.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 
-import '../../domain/pokemon.dart';
 
 class PartyWidget extends HookWidget {
   const PartyWidget(this.party, {super.key});
@@ -12,7 +11,6 @@ class PartyWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final folded = useState(false);
     if(party.partyNameList.isEmpty){
       return const SizedBox();
     }
