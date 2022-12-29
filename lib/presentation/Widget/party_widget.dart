@@ -14,28 +14,31 @@ class PartyWidget extends HookWidget {
   Widget build(BuildContext context) {
     final folded = useState(false);
     if(party.partyNameList.isEmpty){
-      return Card(
-        child: Text("ポケモンが登録されていません。"),
-      );
+      return const SizedBox();
     }
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Column(
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(party.name),
-                Row(
-                  children: party.partyNameList.map((name) => Text(name,style: textStylePlain,)).toList(),
-                ),
+                Text(party.createdAt.dateTime.toString(),style: textStyleGreySmall,)
               ],
             ),
-          ),
+            Wrap(
+              children: party.partyNameList
+                  .map((name) => Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                    child: Text(name,style: textStylePlain,),
+                  )).toList(),
+            ),
+          ],
         ),
-        Text(party.createdAt.dateTime.toString(),style: textStyleGreySmall,)
-      ],
+      ),
     );
   }
 }
