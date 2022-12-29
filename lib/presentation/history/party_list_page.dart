@@ -18,7 +18,7 @@ class PartyListPage extends ConsumerWidget {
           context.push(kPagePathPartyRegister);
         },
       ),
-      body: ref.watch(roomsStreamProvider).when(
+      body: ref.watch(partyStreamProvider).when(
             data: (parties) {
               return ListView.builder(
                   itemCount: parties.length,
