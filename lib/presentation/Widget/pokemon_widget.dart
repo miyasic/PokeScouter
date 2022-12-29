@@ -24,6 +24,34 @@ class PokemonWidget extends HookWidget {
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        pokemon.name,
+                        style: textStyleBold,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    Wrap(
+                      children: [
+                        Text("H:${formatNumbers(pokemon.h)}"),
+                        Text("A:${formatNumbers(pokemon.a)}"),
+                        Text("B:${formatNumbers(pokemon.b)}"),
+                        Text("C:${formatNumbers(pokemon.c)}"),
+                        Text("D:${formatNumbers(pokemon.d)}"),
+                        Text("S:${formatNumbers(pokemon.s)}"),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : Card(
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
@@ -99,34 +127,6 @@ class PokemonWidget extends HookWidget {
                           Text("Total:${pokemon.sum}"),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            )
-          : Card(
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        pokemon.name,
-                        style: textStyleBold,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    Wrap(
-                      children: [
-                        Text("H:${formatNumbers(pokemon.h)}"),
-                        Text("A:${formatNumbers(pokemon.a)}"),
-                        Text("B:${formatNumbers(pokemon.b)}"),
-                        Text("C:${formatNumbers(pokemon.c)}"),
-                        Text("D:${formatNumbers(pokemon.d)}"),
-                        Text("S:${formatNumbers(pokemon.s)}"),
-                      ],
                     ),
                   ],
                 ),
