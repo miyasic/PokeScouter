@@ -39,6 +39,7 @@ class TopPage extends HookConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: PokemonTextField(
+              enabled: pokemonListState.length > 6,
               onSelected: (String pokemonName) {
                 pokemonListNotifier.addPokemon(ref
                     .read(pokemonSuggestStateProvider.notifier)

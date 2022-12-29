@@ -37,6 +37,7 @@ class PartyRegisterPage extends HookConsumerWidget {
         child: Column(
           children: [
             PokemonTextField(
+              enabled: pokemonListState.length < 6,
               onSelected: (String pokemonName) {
                 pokemonListNotifier.addPokemon(ref
                     .read(pokemonSuggestStateProvider.notifier)
