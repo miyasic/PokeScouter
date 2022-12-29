@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_template/domain/firebase/party.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,7 +12,7 @@ class FirebaseRepositoryMock implements FirebaseRepository {
   FirebaseFirestore get firestore => throw UnimplementedError();
 
   @override
-  Future setMatch(
+  Future setParty(
       {required String userId,
       required String name,
       required List<String> partyNameList,
@@ -19,6 +20,12 @@ class FirebaseRepositoryMock implements FirebaseRepository {
       required String memo,
       required Map<String, String> eachMemo}) {
     // TODO: implement setMatch
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<List<Party>> subscribeParties(String userId) {
+    // TODO: implement subscribeParties
     throw UnimplementedError();
   }
 }
