@@ -48,7 +48,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return ["未実装"];
   }
 
-  setParty({required Function showLoginDialog}) async {
+  setParty({required String title,required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
@@ -56,7 +56,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     }
     await firebaseRepository.setParty(
         userId: user.uid,
-        name: 'パーティのなまえ',
+        name: title,
         partyNameList: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
         memo: 'パーティめも',
