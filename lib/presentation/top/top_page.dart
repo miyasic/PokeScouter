@@ -10,6 +10,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/pokemon.dart';
 import '../../util/logger.dart';
+import '../Widget/show_dialog.dart';
 
 class TopPage extends HookConsumerWidget {
   const TopPage({super.key});
@@ -104,6 +105,22 @@ class TopPage extends HookConsumerWidget {
               });
             },
             child: const Text("広告表示"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              ref.read(pokemonListProvider.notifier).setParty(
+                  showLoginDialog: () async {
+                await showConfirmDialog(
+                    context: context,
+                    title: 'ログインしてください。',
+                    okText: 'ログインページを開く。',
+                    message: 'パーティを登録するにはログインが必要です。',
+                    function: () {
+                      context.push(kPagePathLogin);
+                    });
+              });
+            },
+            child: const Text("パーティ登録"),
           ),
         ],
       ),
