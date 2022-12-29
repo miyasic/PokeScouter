@@ -68,12 +68,13 @@ class PartyRegisterPage extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                showTextFieldDialog(
+                await showTextFieldDialog(
                     context: context,
                     title: "パーティの名前を決めてね。",
                     okText: '登録する。',
-                    function: (String title) {
-                      ref
+                    function: (String title) async {
+                      final navigator = Navigator.of(context);
+                      await ref
                           .read(pokemonListProvider(kPageNamePartyRegister)
                               .notifier)
                           .setParty(
@@ -88,6 +89,7 @@ class PartyRegisterPage extends HookConsumerWidget {
                                       context.push(kPagePathLogin);
                                     });
                               });
+                      navigator.pop();
                     });
               },
               child: const Text("パーティ登録"),
