@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
+import 'package:flutter_template/presentation/Widget/pokemon_textfield.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/repository/admob_repository.dart';
@@ -17,8 +18,10 @@ class TopPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier = ref.read(pokemonListProvider.notifier);
-    List<Pokemon> pokemonListState = ref.watch(pokemonListProvider);
+    final pokemonListNotifier =
+        ref.read(pokemonListProvider(kPageNameTop).notifier);
+    List<Pokemon> pokemonListState =
+        ref.watch(pokemonListProvider(kPageNameTop));
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameTop),
@@ -35,36 +38,12 @@ class TopPage extends HookConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Autocomplete(
-              optionsBuilder: (textEditingValue) {
-                if (textEditingValue.text == "") {
-                  return <String>[];
-                }
-                return ref
-                    .read(pokemonSuggestStateProvider.notifier)
-                    .getSuggestPokemonName(textEditingValue.text);
-              },
+            child: PokemonTextField(
+              enabled: pokemonListState.length > 6,
               onSelected: (String pokemonName) {
                 pokemonListNotifier.addPokemon(ref
                     .read(pokemonSuggestStateProvider.notifier)
                     .getPokemon(pokemonName));
-              },
-              fieldViewBuilder: (BuildContext context,
-                  TextEditingController fieldTextEditingController,
-                  FocusNode fieldFocusNode,
-                  VoidCallback onFieldSubmitted) {
-                return TextField(
-                  controller: fieldTextEditingController,
-                  focusNode: fieldFocusNode,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      onPressed: fieldTextEditingController.clear,
-                      icon: const Icon(Icons.clear),
-                    ),
-                  ),
-                );
               },
             ),
           ),
@@ -108,17 +87,18 @@ class TopPage extends HookConsumerWidget {
           ),
           ElevatedButton(
             onPressed: () async {
-              ref.read(pokemonListProvider.notifier).setParty(
+              ref.read(pokemonListProvider(kPageNameTop).notifier).setParty(
+                  title: "パーティの名前",
                   showLoginDialog: () async {
-                await showConfirmDialog(
-                    context: context,
-                    title: 'ログインしてください。',
-                    okText: 'ログインページを開く。',
-                    message: 'パーティを登録するにはログインが必要です。',
-                    function: () {
-                      context.push(kPagePathLogin);
-                    });
-              });
+                    await showConfirmDialog(
+                        context: context,
+                        title: 'ログインしてください。',
+                        okText: 'ログインページを開く。',
+                        message: 'パーティを登録するにはログインが必要です。',
+                        function: () {
+                          context.push(kPagePathLogin);
+                        });
+                  });
             },
             child: const Text("パーティ登録"),
           ),

@@ -15,8 +15,8 @@ void main() {
     final pokemon = container
         .read(pokemonSuggestStateProvider.notifier)
         .getPokemon('ピカチュウ');
-    container.read(pokemonListProvider.notifier).addPokemon(pokemon);
-    final state = container.read(pokemonListProvider);
+    container.read(pokemonListProvider("test").notifier).addPokemon(pokemon);
+    final state = container.read(pokemonListProvider("test"));
     expect(state.length, 1);
     expect(state[0].name, 'ピカチュウ');
   });
@@ -25,8 +25,8 @@ void main() {
     final pokemon = container
         .read(pokemonSuggestStateProvider.notifier)
         .getPokemon('ぴかちゅう');
-    container.read(pokemonListProvider.notifier).addPokemon(pokemon);
-    final state = container.read(pokemonListProvider);
+    container.read(pokemonListProvider("test").notifier).addPokemon(pokemon);
+    final state = container.read(pokemonListProvider("test"));
     expect(state.length, 0);
   });
 
@@ -34,34 +34,34 @@ void main() {
     final pokemon = container
         .read(pokemonSuggestStateProvider.notifier)
         .getPokemon('ピカチュウ');
-    container.read(pokemonListProvider.notifier).addPokemon(pokemon);
-    final state = container.read(pokemonListProvider);
+    container.read(pokemonListProvider("test").notifier).addPokemon(pokemon);
+    final state = container.read(pokemonListProvider("test"));
     expect(state.length, 1);
     expect(state[0].name, 'ピカチュウ');
-    container.read(pokemonListProvider.notifier).removePokemon(0);
+    container.read(pokemonListProvider("test").notifier).removePokemon(0);
 
-    expect(container.read(pokemonListProvider).length, 0);
+    expect(container.read(pokemonListProvider("test")).length, 0);
   });
 
   test("ポケモン削除(失敗)", () async {
-    container.read(pokemonListProvider.notifier).removePokemon(0);
-    expect(container.read(pokemonListProvider).length, 0);
+    container.read(pokemonListProvider("test").notifier).removePokemon(0);
+    expect(container.read(pokemonListProvider("test")).length, 0);
   });
 
   test("ポケモン順序変更のテスト1", () async {
     final pokemonSuggest = container.read(pokemonSuggestStateProvider.notifier);
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピカチュウ'));
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ライチュウ'));
 
-    container.read(pokemonListProvider.notifier).reorderList(0, 3);
-    final state = container.read(pokemonListProvider);
+    container.read(pokemonListProvider("test").notifier).reorderList(0, 3);
+    final state = container.read(pokemonListProvider("test"));
     expect(state.length, 3);
     expect(state[0].name, 'ピカチュウ');
     expect(state[1].name, 'ライチュウ');
@@ -71,17 +71,17 @@ void main() {
   test("ポケモン順序変更のテスト2", () async {
     final pokemonSuggest = container.read(pokemonSuggestStateProvider.notifier);
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピチュー'));
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ピカチュウ'));
     container
-        .read(pokemonListProvider.notifier)
+        .read(pokemonListProvider("test").notifier)
         .addPokemon(pokemonSuggest.getPokemon('ライチュウ'));
 
-    container.read(pokemonListProvider.notifier).reorderList(2, 0);
-    final state = container.read(pokemonListProvider);
+    container.read(pokemonListProvider("test").notifier).reorderList(2, 0);
+    final state = container.read(pokemonListProvider("test"));
     expect(state.length, 3);
     expect(state[0].name, 'ライチュウ');
     expect(state[1].name, 'ピチュー');

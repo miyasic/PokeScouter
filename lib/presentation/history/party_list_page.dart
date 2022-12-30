@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/party_widget.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../feature/party.dart';
@@ -10,7 +12,13 @@ class PartyListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      body: ref.watch(roomsStreamProvider).when(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          context.push(kPagePathPartyRegister);
+        },
+      ),
+      body: ref.watch(partyStreamProvider).when(
             data: (parties) {
               return ListView.builder(
                   itemCount: parties.length,

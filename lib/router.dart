@@ -3,6 +3,7 @@ import 'package:flutter_template/constants/provider_name.dart';
 import 'package:flutter_template/presentation/Widget/tab.dart';
 import 'package:flutter_template/presentation/history/history_page.dart';
 import 'package:flutter_template/presentation/login/login_page.dart';
+import 'package:flutter_template/presentation/party_register/party_register_page.dart';
 import 'package:flutter_template/presentation/top/top_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -49,7 +50,13 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: kPagePathLogin,
           builder: (BuildContext context, GoRouterState state) {
             return const LoginPage();
-          })
+          }),
+      GoRoute(
+          name: kPageNamePartyRegister,
+          path: kPagePathPartyRegister,
+          builder: (BuildContext context, GoRouterState state) {
+            return const PartyRegisterPage();
+          }),
     ],
   );
 }, name: kProviderNameRouter);
