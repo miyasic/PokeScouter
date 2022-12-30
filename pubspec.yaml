@@ -28,6 +28,7 @@ dependencies:
   firebase_auth: ^4.2.3
   email_validator: ^2.1.17
   google_mobile_ads: ^2.3.0
+  trotter: ^2.0.0
 
 dev_dependencies:
   flutter_test:
