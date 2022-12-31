@@ -9,6 +9,7 @@ class Pokemon with _$Pokemon {
   const factory Pokemon({
     required String name,
     required String number,
+    required String primeNumber,
     required String h,
     required String a,
     required String b,

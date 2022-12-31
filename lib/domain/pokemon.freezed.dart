@@ -22,6 +22,7 @@ Pokemon _$PokemonFromJson(Map<String, dynamic> json) {
 mixin _$Pokemon {
   String get name => throw _privateConstructorUsedError;
   String get number => throw _privateConstructorUsedError;
+  String get primeNumber => throw _privateConstructorUsedError;
   String get h => throw _privateConstructorUsedError;
   String get a => throw _privateConstructorUsedError;
   String get b => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $PokemonCopyWith<$Res> {
   $Res call(
       {String name,
       String number,
+      String primeNumber,
       String h,
       String a,
       String b,
@@ -77,6 +79,7 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
   $Res call({
     Object? name = null,
     Object? number = null,
+    Object? primeNumber = null,
     Object? h = null,
     Object? a = null,
     Object? b = null,
@@ -98,6 +101,10 @@ class _$PokemonCopyWithImpl<$Res, $Val extends Pokemon>
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      primeNumber: null == primeNumber
+          ? _value.primeNumber
+          : primeNumber // ignore: cast_nullable_to_non_nullable
               as String,
       h: null == h
           ? _value.h
@@ -161,6 +168,7 @@ abstract class _$$_PokemonCopyWith<$Res> implements $PokemonCopyWith<$Res> {
   $Res call(
       {String name,
       String number,
+      String primeNumber,
       String h,
       String a,
       String b,
@@ -187,6 +195,7 @@ class __$$_PokemonCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? number = null,
+    Object? primeNumber = null,
     Object? h = null,
     Object? a = null,
     Object? b = null,
@@ -208,6 +217,10 @@ class __$$_PokemonCopyWithImpl<$Res>
       number: null == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
+              as String,
+      primeNumber: null == primeNumber
+          ? _value.primeNumber
+          : primeNumber // ignore: cast_nullable_to_non_nullable
               as String,
       h: null == h
           ? _value.h
@@ -267,6 +280,7 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
   const _$_Pokemon(
       {required this.name,
       required this.number,
+      required this.primeNumber,
       required this.h,
       required this.a,
       required this.b,
@@ -287,6 +301,8 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
   final String name;
   @override
   final String number;
+  @override
+  final String primeNumber;
   @override
   final String h;
   @override
@@ -314,7 +330,7 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Pokemon(name: $name, number: $number, h: $h, a: $a, b: $b, c: $c, d: $d, s: $s, sum: $sum, type1: $type1, type2: $type2, ability1: $ability1, ability2: $ability2, hiddenAbility: $hiddenAbility)';
+    return 'Pokemon(name: $name, number: $number, primeNumber: $primeNumber, h: $h, a: $a, b: $b, c: $c, d: $d, s: $s, sum: $sum, type1: $type1, type2: $type2, ability1: $ability1, ability2: $ability2, hiddenAbility: $hiddenAbility)';
   }
 
   @override
@@ -324,6 +340,7 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
       ..add(DiagnosticsProperty('type', 'Pokemon'))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('number', number))
+      ..add(DiagnosticsProperty('primeNumber', primeNumber))
       ..add(DiagnosticsProperty('h', h))
       ..add(DiagnosticsProperty('a', a))
       ..add(DiagnosticsProperty('b', b))
@@ -345,6 +362,8 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
             other is _$_Pokemon &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.number, number) || other.number == number) &&
+            (identical(other.primeNumber, primeNumber) ||
+                other.primeNumber == primeNumber) &&
             (identical(other.h, h) || other.h == h) &&
             (identical(other.a, a) || other.a == a) &&
             (identical(other.b, b) || other.b == b) &&
@@ -364,8 +383,8 @@ class _$_Pokemon with DiagnosticableTreeMixin implements _Pokemon {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, number, h, a, b, c, d, s,
-      sum, type1, type2, ability1, ability2, hiddenAbility);
+  int get hashCode => Object.hash(runtimeType, name, number, primeNumber, h, a,
+      b, c, d, s, sum, type1, type2, ability1, ability2, hiddenAbility);
 
   @JsonKey(ignore: true)
   @override
@@ -385,6 +404,7 @@ abstract class _Pokemon implements Pokemon {
   const factory _Pokemon(
       {required final String name,
       required final String number,
+      required final String primeNumber,
       required final String h,
       required final String a,
       required final String b,
@@ -404,6 +424,8 @@ abstract class _Pokemon implements Pokemon {
   String get name;
   @override
   String get number;
+  @override
+  String get primeNumber;
   @override
   String get h;
   @override
