@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../constants/firestore.dart';
 import '../../util/union_timestamp.dart';
 
 part 'party.freezed.dart';
+
 part 'party.g.dart';
 
 @freezed
@@ -25,6 +27,6 @@ class Party with _$Party {
 
   factory Party.fromDocumentSnapshot(DocumentSnapshot ds) {
     final data = ds.data()! as Map<String, dynamic>;
-    return Party.fromJson(<String, dynamic>{...data, 'partyId': ds.id});
+    return Party.fromJson(<String, dynamic>{...data, kFieldBattleId: ds.id});
   }
 }
