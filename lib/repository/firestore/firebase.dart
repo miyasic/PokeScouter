@@ -61,4 +61,12 @@ class FirebaseRepository {
     return collectionStream
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
+
+  Future<List<Battle>> getBattle(
+      String userId, List<String> divisorList) async {
+    final qs = await battlesRef(userId: userId)
+        .where('divisorList', arrayContainsAny: divisorList)
+        .get();
+    return qs.docs.map((qds) => qds.data()).toList();
+  }
 }
