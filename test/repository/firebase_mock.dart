@@ -8,18 +8,6 @@ final firebaseRepositoryMockProvider =
 
 class FirebaseRepositoryMock implements FirebaseRepository {
   @override
-  Future<String> setParty(
-      {required String userId,
-      required String name,
-      required List<String> partyNameList,
-      required List<String> divisorList,
-      required String memo,
-      required Map<String, String> eachMemo}) {
-    // TODO: implement setParty
-    throw UnimplementedError();
-  }
-
-  @override
   // TODO: implement firestore
   FirebaseFirestore get firestore => throw UnimplementedError();
 
@@ -34,12 +22,24 @@ class FirebaseRepositoryMock implements FirebaseRepository {
       {required String userId,
       required String partyId,
       required List<String> opponentParty,
-      required List<String> divisorList,
+      required List<List<String>> divisorList,
       required List<int> order,
       required String memo,
       required Map<String, String> eachMemo,
       required String result}) {
     // TODO: implement setBattle
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String> setParty(
+      {required String userId,
+      required String name,
+      required List<String> partyNameList,
+      required List<List<String>> divisorList,
+      required String memo,
+      required Map<String, String> eachMemo}) {
+    // TODO: implement setParty
     throw UnimplementedError();
   }
 }

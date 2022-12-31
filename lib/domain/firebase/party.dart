@@ -15,7 +15,12 @@ class Party with _$Party {
     required String partyId,
     required String name,
     required List<String> partyNameList,
-    required List<String> divisorList,
+    required List<String> divisorList6,
+    required List<String> divisorList5,
+    required List<String> divisorList4,
+    required List<String> divisorList3,
+    required List<String> divisorList2,
+    required List<String> divisorList1,
     required String memo,
     required Map<String, String> eachMemo,
     @alwaysUseServerTimestampUnionTimestampConverter

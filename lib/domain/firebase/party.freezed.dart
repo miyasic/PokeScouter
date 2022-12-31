@@ -24,7 +24,12 @@ mixin _$Party {
   String get partyId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get partyNameList => throw _privateConstructorUsedError;
-  List<String> get divisorList => throw _privateConstructorUsedError;
+  List<String> get divisorList6 => throw _privateConstructorUsedError;
+  List<String> get divisorList5 => throw _privateConstructorUsedError;
+  List<String> get divisorList4 => throw _privateConstructorUsedError;
+  List<String> get divisorList3 => throw _privateConstructorUsedError;
+  List<String> get divisorList2 => throw _privateConstructorUsedError;
+  List<String> get divisorList1 => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
   @alwaysUseServerTimestampUnionTimestampConverter
@@ -45,7 +50,12 @@ abstract class $PartyCopyWith<$Res> {
       String partyId,
       String name,
       List<String> partyNameList,
-      List<String> divisorList,
+      List<String> divisorList6,
+      List<String> divisorList5,
+      List<String> divisorList4,
+      List<String> divisorList3,
+      List<String> divisorList2,
+      List<String> divisorList1,
       String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
@@ -71,7 +81,12 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
     Object? partyId = null,
     Object? name = null,
     Object? partyNameList = null,
-    Object? divisorList = null,
+    Object? divisorList6 = null,
+    Object? divisorList5 = null,
+    Object? divisorList4 = null,
+    Object? divisorList3 = null,
+    Object? divisorList2 = null,
+    Object? divisorList1 = null,
     Object? memo = null,
     Object? eachMemo = null,
     Object? createdAt = null,
@@ -93,9 +108,29 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
           ? _value.partyNameList
           : partyNameList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      divisorList: null == divisorList
-          ? _value.divisorList
-          : divisorList // ignore: cast_nullable_to_non_nullable
+      divisorList6: null == divisorList6
+          ? _value.divisorList6
+          : divisorList6 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList5: null == divisorList5
+          ? _value.divisorList5
+          : divisorList5 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList4: null == divisorList4
+          ? _value.divisorList4
+          : divisorList4 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList3: null == divisorList3
+          ? _value.divisorList3
+          : divisorList3 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList2: null == divisorList2
+          ? _value.divisorList2
+          : divisorList2 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList1: null == divisorList1
+          ? _value.divisorList1
+          : divisorList1 // ignore: cast_nullable_to_non_nullable
               as List<String>,
       memo: null == memo
           ? _value.memo
@@ -132,7 +167,12 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
       String partyId,
       String name,
       List<String> partyNameList,
-      List<String> divisorList,
+      List<String> divisorList6,
+      List<String> divisorList5,
+      List<String> divisorList4,
+      List<String> divisorList3,
+      List<String> divisorList2,
+      List<String> divisorList1,
       String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
@@ -155,7 +195,12 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
     Object? partyId = null,
     Object? name = null,
     Object? partyNameList = null,
-    Object? divisorList = null,
+    Object? divisorList6 = null,
+    Object? divisorList5 = null,
+    Object? divisorList4 = null,
+    Object? divisorList3 = null,
+    Object? divisorList2 = null,
+    Object? divisorList1 = null,
     Object? memo = null,
     Object? eachMemo = null,
     Object? createdAt = null,
@@ -177,9 +222,29 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
           ? _value._partyNameList
           : partyNameList // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      divisorList: null == divisorList
-          ? _value._divisorList
-          : divisorList // ignore: cast_nullable_to_non_nullable
+      divisorList6: null == divisorList6
+          ? _value._divisorList6
+          : divisorList6 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList5: null == divisorList5
+          ? _value._divisorList5
+          : divisorList5 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList4: null == divisorList4
+          ? _value._divisorList4
+          : divisorList4 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList3: null == divisorList3
+          ? _value._divisorList3
+          : divisorList3 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList2: null == divisorList2
+          ? _value._divisorList2
+          : divisorList2 // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      divisorList1: null == divisorList1
+          ? _value._divisorList1
+          : divisorList1 // ignore: cast_nullable_to_non_nullable
               as List<String>,
       memo: null == memo
           ? _value.memo
@@ -205,13 +270,23 @@ class _$_Party implements _Party {
       required this.partyId,
       required this.name,
       required final List<String> partyNameList,
-      required final List<String> divisorList,
+      required final List<String> divisorList6,
+      required final List<String> divisorList5,
+      required final List<String> divisorList4,
+      required final List<String> divisorList3,
+      required final List<String> divisorList2,
+      required final List<String> divisorList1,
       required this.memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
           this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _partyNameList = partyNameList,
-        _divisorList = divisorList,
+        _divisorList6 = divisorList6,
+        _divisorList5 = divisorList5,
+        _divisorList4 = divisorList4,
+        _divisorList3 = divisorList3,
+        _divisorList2 = divisorList2,
+        _divisorList1 = divisorList1,
         _eachMemo = eachMemo;
 
   factory _$_Party.fromJson(Map<String, dynamic> json) =>
@@ -231,12 +306,52 @@ class _$_Party implements _Party {
     return EqualUnmodifiableListView(_partyNameList);
   }
 
-  final List<String> _divisorList;
+  final List<String> _divisorList6;
   @override
-  List<String> get divisorList {
-    if (_divisorList is EqualUnmodifiableListView) return _divisorList;
+  List<String> get divisorList6 {
+    if (_divisorList6 is EqualUnmodifiableListView) return _divisorList6;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_divisorList);
+    return EqualUnmodifiableListView(_divisorList6);
+  }
+
+  final List<String> _divisorList5;
+  @override
+  List<String> get divisorList5 {
+    if (_divisorList5 is EqualUnmodifiableListView) return _divisorList5;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_divisorList5);
+  }
+
+  final List<String> _divisorList4;
+  @override
+  List<String> get divisorList4 {
+    if (_divisorList4 is EqualUnmodifiableListView) return _divisorList4;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_divisorList4);
+  }
+
+  final List<String> _divisorList3;
+  @override
+  List<String> get divisorList3 {
+    if (_divisorList3 is EqualUnmodifiableListView) return _divisorList3;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_divisorList3);
+  }
+
+  final List<String> _divisorList2;
+  @override
+  List<String> get divisorList2 {
+    if (_divisorList2 is EqualUnmodifiableListView) return _divisorList2;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_divisorList2);
+  }
+
+  final List<String> _divisorList1;
+  @override
+  List<String> get divisorList1 {
+    if (_divisorList1 is EqualUnmodifiableListView) return _divisorList1;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_divisorList1);
   }
 
   @override
@@ -256,7 +371,7 @@ class _$_Party implements _Party {
 
   @override
   String toString() {
-    return 'Party(userId: $userId, partyId: $partyId, name: $name, partyNameList: $partyNameList, divisorList: $divisorList, memo: $memo, eachMemo: $eachMemo, createdAt: $createdAt)';
+    return 'Party(userId: $userId, partyId: $partyId, name: $name, partyNameList: $partyNameList, divisorList6: $divisorList6, divisorList5: $divisorList5, divisorList4: $divisorList4, divisorList3: $divisorList3, divisorList2: $divisorList2, divisorList1: $divisorList1, memo: $memo, eachMemo: $eachMemo, createdAt: $createdAt)';
   }
 
   @override
@@ -270,7 +385,17 @@ class _$_Party implements _Party {
             const DeepCollectionEquality()
                 .equals(other._partyNameList, _partyNameList) &&
             const DeepCollectionEquality()
-                .equals(other._divisorList, _divisorList) &&
+                .equals(other._divisorList6, _divisorList6) &&
+            const DeepCollectionEquality()
+                .equals(other._divisorList5, _divisorList5) &&
+            const DeepCollectionEquality()
+                .equals(other._divisorList4, _divisorList4) &&
+            const DeepCollectionEquality()
+                .equals(other._divisorList3, _divisorList3) &&
+            const DeepCollectionEquality()
+                .equals(other._divisorList2, _divisorList2) &&
+            const DeepCollectionEquality()
+                .equals(other._divisorList1, _divisorList1) &&
             (identical(other.memo, memo) || other.memo == memo) &&
             const DeepCollectionEquality().equals(other._eachMemo, _eachMemo) &&
             (identical(other.createdAt, createdAt) ||
@@ -285,7 +410,12 @@ class _$_Party implements _Party {
       partyId,
       name,
       const DeepCollectionEquality().hash(_partyNameList),
-      const DeepCollectionEquality().hash(_divisorList),
+      const DeepCollectionEquality().hash(_divisorList6),
+      const DeepCollectionEquality().hash(_divisorList5),
+      const DeepCollectionEquality().hash(_divisorList4),
+      const DeepCollectionEquality().hash(_divisorList3),
+      const DeepCollectionEquality().hash(_divisorList2),
+      const DeepCollectionEquality().hash(_divisorList1),
       memo,
       const DeepCollectionEquality().hash(_eachMemo),
       createdAt);
@@ -310,7 +440,12 @@ abstract class _Party implements Party {
       required final String partyId,
       required final String name,
       required final List<String> partyNameList,
-      required final List<String> divisorList,
+      required final List<String> divisorList6,
+      required final List<String> divisorList5,
+      required final List<String> divisorList4,
+      required final List<String> divisorList3,
+      required final List<String> divisorList2,
+      required final List<String> divisorList1,
       required final String memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
@@ -327,7 +462,17 @@ abstract class _Party implements Party {
   @override
   List<String> get partyNameList;
   @override
-  List<String> get divisorList;
+  List<String> get divisorList6;
+  @override
+  List<String> get divisorList5;
+  @override
+  List<String> get divisorList4;
+  @override
+  List<String> get divisorList3;
+  @override
+  List<String> get divisorList2;
+  @override
+  List<String> get divisorList1;
   @override
   String get memo;
   @override
