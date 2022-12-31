@@ -35,7 +35,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
-    if (location.startsWith(kPagePathTop)) {
+    if (location.startsWith(kPagePathBattleStart)) {
       return 0;
     }
     if (location.startsWith(kPagePathHistory)) {
@@ -50,7 +50,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        context.go(kPagePathTop);
+        context.go(kPagePathBattleStart);
         break;
       case 1:
         context.go(kPagePathHistory);
