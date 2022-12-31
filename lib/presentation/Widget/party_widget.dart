@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/text_style.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PartyWidget extends HookWidget {
-  const PartyWidget(this.party, {super.key});
+class PartyWidget extends HookConsumerWidget {
+  const PartyWidget(this.party, this.selected, {super.key});
 
   final Party party;
+  final bool selected;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     if (party.partyNameList.isEmpty) {
       return const SizedBox();
     }
+
     return Card(
+      shape: selected
+          ? const RoundedRectangleBorder(
+              side: BorderSide(
+                color: Colors.pink,
+              ),
+            )
+          : null,
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Column(
