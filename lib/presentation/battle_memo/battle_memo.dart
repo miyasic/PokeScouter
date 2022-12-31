@@ -38,12 +38,8 @@ class BattleMemoPage extends ConsumerWidget {
                 itemCount: pokemonListState.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
-                    key: ValueKey(pokemonListState[index]),
                     padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                     child: InkWell(
-                        onDoubleTap: () {
-                          pokemonListNotifier.removePokemon(index);
-                        },
                         child: Badge(
                             position: BadgePosition.topStart(),
                             badgeColor: Theme.of(context).primaryColorDark,
@@ -52,6 +48,10 @@ class BattleMemoPage extends ConsumerWidget {
                   );
                 },
               ),
+            ),
+            Text(
+              '対戦相手の選出',
+              style: textStyleBold,
             ),
             ElevatedButton(
               onPressed: () {
