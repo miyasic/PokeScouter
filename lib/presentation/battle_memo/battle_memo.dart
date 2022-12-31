@@ -24,6 +24,7 @@ class BattleMemoPage extends HookConsumerWidget {
     final List<Pokemon> pokemonListState =
         ref.watch(pokemonListProvider(kPageNameBattleStart));
     final order = useState<List<int>>([]);
+    final memoController = useTextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
@@ -90,11 +91,24 @@ class BattleMemoPage extends HookConsumerWidget {
             )),
             SliverList(
                 delegate: SliverChildListDelegate([
+              Text(
+                '対戦メモ',
+                style: textStyleBold,
+              ),
+              TextField(
+                controller: memoController,
+                minLines: 5,
+                maxLines: 10,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+              ),
               ElevatedButton(
                 onPressed: () {
                   ref
                       .read(pokemonListProvider(kPageNameBattleStart).notifier)
                       .setBattle(
+                          memo: memoController.text,
                           order: order.value,
                           showLoginDialog: () async {
                             await showConfirmDialog(
@@ -111,88 +125,6 @@ class BattleMemoPage extends HookConsumerWidget {
               )
             ])),
           ], //子にSliverたちを並べていく
-        ),
-      ),
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(kPageNameBattleMemo),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '対戦相手のパーティ',
-              style: textStyleBold,
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: pokemonListState.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                    child: InkWell(
-                        onDoubleTap: () {
-                          if (!order.value.contains(index)) {
-                            order.value = [...order.value, index];
-                          } else {
-                            ref
-                                .read(scaffoldMessengerHelperProvider)
-                                .showSnackBar('既に登録されているポケモンです。',
-                                    isWarningMessage: true);
-                          }
-                        },
-                        child: Badge(
-                            position: BadgePosition.topStart(),
-                            badgeColor: Theme.of(context).primaryColorDark,
-                            badgeContent: Text((index + 1).toString()),
-                            child: PokemonWidget(pokemonListState[index]))),
-                  );
-                },
-              ),
-            ),
-            Text(
-              '対戦相手の選出',
-              style: textStyleBold,
-            ),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: order.value.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                    child: InkWell(
-                        onDoubleTap: () {},
-                        child: Badge(
-                            position: BadgePosition.topStart(),
-                            badgeColor: Theme.of(context).primaryColorDark,
-                            badgeContent: Text((index + 1).toString()),
-                            child: PokemonWidget(
-                                pokemonListState[order.value[index]]))),
-                  );
-                }),
-            ElevatedButton(
-              onPressed: () {
-                ref
-                    .read(pokemonListProvider(kPageNameBattleStart).notifier)
-                    .setBattle(
-                        order: order.value,
-                        showLoginDialog: () async {
-                          await showConfirmDialog(
-                              context: context,
-                              title: 'ログインしてください。',
-                              okText: 'ログインページを開く。',
-                              message: '過去の対戦を表示するにはログインが必要です。',
-                              function: () {
-                                context.push(kPagePathLogin);
-                              });
-                        });
-              },
-              child: const Text("対戦を登録する"),
-            )
-          ],
         ),
       ),
     );
