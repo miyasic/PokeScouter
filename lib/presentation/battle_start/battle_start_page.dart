@@ -52,7 +52,7 @@ class BattleStartPage extends HookConsumerWidget {
               itemCount: pokemonListState.length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  key: ValueKey(pokemonListState[index]),
+                  key: ValueKey(index),
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: InkWell(
                       onDoubleTap: () {
