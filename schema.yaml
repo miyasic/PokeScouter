@@ -8,7 +8,12 @@ User:
       matchId: String
       partyId: String?
       opponentParty: List<String>
-      divisorList: List<String>
+      divisorList6: List<String>
+      divisorList5: List<String>
+      divisorList4: List<String>
+      divisorList3: List<String>
+      divisorList2: List<String>
+      divisorList1: List<String>
       order: List<int>
       memo: String
       eachMemo: Map<String,String>
@@ -20,7 +25,12 @@ User:
       partyId: String
       name: String
       partyNameList: List<String>
-      divisorList: List<String>
+      divisorList6: List<String>
+      divisorList5: List<String>
+      divisorList4: List<String>
+      divisorList3: List<String>
+      divisorList2: List<String>
+      divisorList1: List<String>
       memo: String
       eachMemo: Map<String,String>
       createdAt: Timestamp
