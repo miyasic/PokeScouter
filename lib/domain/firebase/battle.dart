@@ -17,7 +17,7 @@ class Battle with _$Battle {
     String? partyId,
     required List<String> opponentParty,
     required List<String> divisorList,
-    required List<String> order,
+    required List<int> order,
     required String memo,
     required Map<String, String> eachMemo,
     required String result,
