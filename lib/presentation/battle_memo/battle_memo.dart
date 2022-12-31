@@ -1,12 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/constants/text_style.dart';
-import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -21,8 +18,6 @@ class BattleMemoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pokemonListNotifier =
-        ref.read(pokemonListProvider(kPageNameBattleStart).notifier);
     final List<Pokemon> pokemonListState =
         ref.watch(pokemonListProvider(kPageNameBattleStart));
     final order = useState<List<int>>([]);
@@ -102,7 +97,7 @@ class BattleMemoPage extends HookConsumerWidget {
                 controller: memoController,
                 minLines: 5,
                 maxLines: 10,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -110,7 +105,7 @@ class BattleMemoPage extends HookConsumerWidget {
                 spacing: 10,
                 children: [
                   ChoiceChip(
-                    label: Text("勝利"),
+                    label: const Text("勝利"),
                     selected: result.value == BattleResult.win,
                     backgroundColor: Colors.grey[600],
                     selectedColor: Colors.white,
@@ -119,7 +114,7 @@ class BattleMemoPage extends HookConsumerWidget {
                     },
                   ),
                   ChoiceChip(
-                    label: Text("引き分け"),
+                    label: const Text("引き分け"),
                     selected: result.value == BattleResult.draw,
                     backgroundColor: Colors.grey[600],
                     selectedColor: Colors.white,
@@ -128,7 +123,7 @@ class BattleMemoPage extends HookConsumerWidget {
                     },
                   ),
                   ChoiceChip(
-                    label: Text("負け"),
+                    label: const Text("負け"),
                     selected: result.value == BattleResult.lose,
                     backgroundColor: Colors.grey[600],
                     selectedColor: Colors.white,

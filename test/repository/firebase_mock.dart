@@ -28,4 +28,18 @@ class FirebaseRepositoryMock implements FirebaseRepository {
     // TODO: implement subscribeParties
     throw UnimplementedError();
   }
+
+  @override
+  Future setBattle(
+      {required String userId,
+      required String partyId,
+      required List<String> opponentParty,
+      required List<String> divisorList,
+      required List<int> order,
+      required String memo,
+      required Map<String, String> eachMemo,
+      required String result}) {
+    // TODO: implement setBattle
+    throw UnimplementedError();
+  }
 }
