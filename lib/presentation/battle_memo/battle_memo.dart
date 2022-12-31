@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_template/constants/route_path.dart';
+import 'package:flutter_template/constants/text_style.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -23,49 +24,54 @@ class BattleMemoPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ReorderableListView.builder(
-              itemCount: pokemonListState.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  key: ValueKey(pokemonListState[index]),
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                  child: InkWell(
-                      onDoubleTap: () {
-                        pokemonListNotifier.removePokemon(index);
-                      },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
-                          badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(pokemonListState[index]))),
-                );
-              },
-              onReorder: (int oldIndex, int newIndex) {
-                pokemonListNotifier.reorderList(oldIndex, newIndex);
-              },
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '対戦相手のパーティ',
+              style: textStyleBold,
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              ref
-                  .read(pokemonListProvider(kPageNameBattleStart).notifier)
-                  .setBattle(showLoginDialog: () async {
-                await showConfirmDialog(
-                    context: context,
-                    title: 'ログインしてください。',
-                    okText: 'ログインページを開く。',
-                    message: '過去の対戦を表示するにはログインが必要です。',
-                    function: () {
-                      context.push(kPagePathLogin);
-                    });
-              });
-            },
-            child: const Text("対戦を登録する"),
-          )
-        ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: pokemonListState.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    key: ValueKey(pokemonListState[index]),
+                    padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                    child: InkWell(
+                        onDoubleTap: () {
+                          pokemonListNotifier.removePokemon(index);
+                        },
+                        child: Badge(
+                            position: BadgePosition.topStart(),
+                            badgeColor: Theme.of(context).primaryColorDark,
+                            badgeContent: Text((index + 1).toString()),
+                            child: PokemonWidget(pokemonListState[index]))),
+                  );
+                },
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                ref
+                    .read(pokemonListProvider(kPageNameBattleStart).notifier)
+                    .setBattle(showLoginDialog: () async {
+                  await showConfirmDialog(
+                      context: context,
+                      title: 'ログインしてください。',
+                      okText: 'ログインページを開く。',
+                      message: '過去の対戦を表示するにはログインが必要です。',
+                      function: () {
+                        context.push(kPagePathLogin);
+                      });
+                });
+              },
+              child: const Text("対戦を登録する"),
+            )
+          ],
+        ),
       ),
     );
   }
