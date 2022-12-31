@@ -1,9 +1,12 @@
 import 'package:flutter_template/constants/firestore.dart';
+import 'package:flutter_template/constants/shared_preferences.dart';
 import 'package:flutter_template/domain/pokemon.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
+import 'package:flutter_template/repository/shared_preferences.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
 
 final pokemonListProvider =
@@ -11,15 +14,17 @@ final pokemonListProvider =
         (ref, id) => PokemonListState(
             ref.read(firebaseRepositoryProvider),
             ref.read(authControllerProvider.notifier),
-            ref.read(scaffoldMessengerHelperProvider)));
+            ref.read(scaffoldMessengerHelperProvider),
+            ref.read(sharedPreferencesProvider)));
 
 class PokemonListState extends StateNotifier<List<Pokemon>> {
   PokemonListState(this.firebaseRepository, this._authController,
-      this.scaffoldMessengerHelper)
+      this.scaffoldMessengerHelper, this.sharedPreferences)
       : super([]);
   final FirebaseRepository firebaseRepository;
   final AuthController _authController;
   final ScaffoldMessengerHelper scaffoldMessengerHelper;
+  final SharedPreferences sharedPreferences;
 
   void addPokemon(Pokemon? pokemon) {
     if (pokemon == null) return;
@@ -72,19 +77,21 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return divisorList;
   }
 
-  setParty({required String title, required Function showLoginDialog}) async {
+  Future setParty(
+      {required String title, required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
       return;
     }
-    await firebaseRepository.setParty(
+    final partyId = await firebaseRepository.setParty(
         userId: user.uid,
         name: title,
         partyNameList: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
         memo: 'パーティめも',
         eachMemo: {});
+    sharedPreferences.setString(kSharedPrefsPartyId, partyId);
     state = [];
     scaffoldMessengerHelper.showSnackBar('登録できました！');
   }
@@ -99,9 +106,15 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
       await showLoginDialog();
       return;
     }
+    final partyId = sharedPreferences.get(kSharedPrefsPartyId) as String?;
+    if (partyId == null) {
+      scaffoldMessengerHelper.showSnackBar('パーティを選択してください',
+          isWarningMessage: true);
+      return;
+    }
     await firebaseRepository.setBattle(
         userId: user.uid,
-        partyId: 'partyId',
+        partyId: partyId,
         opponentParty: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
         order: order,

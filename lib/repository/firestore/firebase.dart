@@ -11,7 +11,7 @@ final firebaseRepositoryProvider =
 class FirebaseRepository {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future setParty(
+  Future<String> setParty(
       {required String userId,
       required String name,
       required List<String> partyNameList,
@@ -28,6 +28,7 @@ class FirebaseRepository {
         memo: memo,
         eachMemo: eachMemo);
     await partyDoc.set(party);
+    return partyDoc.id;
   }
 
   Future setBattle(
@@ -42,6 +43,7 @@ class FirebaseRepository {
     final battleDoc = battlesRef(userId: userId).doc();
     final battle = Battle(
         userId: userId,
+        partyId: partyId,
         battleId: battleDoc.id,
         opponentParty: opponentParty,
         divisorList: divisorList,
