@@ -8,20 +8,20 @@ final firebaseRepositoryMockProvider =
 
 class FirebaseRepositoryMock implements FirebaseRepository {
   @override
-  // TODO: implement firestore
-  FirebaseFirestore get firestore => throw UnimplementedError();
-
-  @override
-  Future setParty(
+  Future<String> setParty(
       {required String userId,
       required String name,
       required List<String> partyNameList,
       required List<String> divisorList,
       required String memo,
       required Map<String, String> eachMemo}) {
-    // TODO: implement setMatch
+    // TODO: implement setParty
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement firestore
+  FirebaseFirestore get firestore => throw UnimplementedError();
 
   @override
   Stream<List<Party>> subscribeParties(String userId) {
