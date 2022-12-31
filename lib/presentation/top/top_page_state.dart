@@ -89,7 +89,9 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
   }
 
   setBattle(
-      {required List<int> order, required Function showLoginDialog}) async {
+      {required String memo,
+      required List<int> order,
+      required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
@@ -101,7 +103,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         opponentParty: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
         order: order,
-        memo: '対戦メモ',
+        memo: memo,
         eachMemo: {},
         result: "Win");
   }
