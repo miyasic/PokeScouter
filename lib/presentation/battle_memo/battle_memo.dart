@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/pokemon.dart';
 import '../Widget/pokemon_widget.dart';
+import '../Widget/show_dialog.dart';
 import '../top/top_page_state.dart';
 
 class BattleMemoPage extends ConsumerWidget {
@@ -22,26 +23,49 @@ class BattleMemoPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
       ),
-      body: ReorderableListView.builder(
-        itemCount: pokemonListState.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            key: ValueKey(pokemonListState[index]),
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: InkWell(
-                onDoubleTap: () {
-                  pokemonListNotifier.removePokemon(index);
-                },
-                child: Badge(
-                    position: BadgePosition.topStart(),
-                    badgeColor: Theme.of(context).primaryColorDark,
-                    badgeContent: Text((index + 1).toString()),
-                    child: PokemonWidget(pokemonListState[index]))),
-          );
-        },
-        onReorder: (int oldIndex, int newIndex) {
-          pokemonListNotifier.reorderList(oldIndex, newIndex);
-        },
+      body: Column(
+        children: [
+          Expanded(
+            child: ReorderableListView.builder(
+              itemCount: pokemonListState.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  key: ValueKey(pokemonListState[index]),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: InkWell(
+                      onDoubleTap: () {
+                        pokemonListNotifier.removePokemon(index);
+                      },
+                      child: Badge(
+                          position: BadgePosition.topStart(),
+                          badgeColor: Theme.of(context).primaryColorDark,
+                          badgeContent: Text((index + 1).toString()),
+                          child: PokemonWidget(pokemonListState[index]))),
+                );
+              },
+              onReorder: (int oldIndex, int newIndex) {
+                pokemonListNotifier.reorderList(oldIndex, newIndex);
+              },
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              ref
+                  .read(pokemonListProvider(kPageNameBattleStart).notifier)
+                  .setBattle(showLoginDialog: () async {
+                await showConfirmDialog(
+                    context: context,
+                    title: 'ログインしてください。',
+                    okText: 'ログインページを開く。',
+                    message: '過去の対戦を表示するにはログインが必要です。',
+                    function: () {
+                      context.push(kPagePathLogin);
+                    });
+              });
+            },
+            child: const Text("対戦を登録する"),
+          )
+        ],
       ),
     );
   }
