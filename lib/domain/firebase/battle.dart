@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_template/util/union_timestamp.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../constants/firestore.dart';
+
 part 'battle.freezed.dart';
+
 part 'battle.g.dart';
 
 @freezed
@@ -13,7 +17,7 @@ class Battle with _$Battle {
     String? partyId,
     required List<String> opponentParty,
     required List<String> divisorList,
-    required List<String> order,
+    required List<int> order,
     required String memo,
     required Map<String, String> eachMemo,
     required String result,
@@ -23,4 +27,9 @@ class Battle with _$Battle {
   }) = _Battle;
 
   factory Battle.fromJson(Map<String, Object?> json) => _$BattleFromJson(json);
+
+  factory Battle.fromDocumentSnapshot(DocumentSnapshot ds) {
+    final data = ds.data()! as Map<String, dynamic>;
+    return Battle.fromJson(<String, dynamic>{...data, kFieldBattleId: ds.id});
+  }
 }

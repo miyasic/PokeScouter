@@ -1,3 +1,4 @@
+import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/domain/pokemon.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
@@ -86,5 +87,26 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         eachMemo: {});
     state = [];
     scaffoldMessengerHelper.showSnackBar('登録できました！');
+  }
+
+  setBattle(
+      {required String memo,
+      required List<int> order,
+      required BattleResult result,
+      required Function showLoginDialog}) async {
+    final user = _authController.state;
+    if (user == null) {
+      await showLoginDialog();
+      return;
+    }
+    await firebaseRepository.setBattle(
+        userId: user.uid,
+        partyId: 'partyId',
+        opponentParty: _getPokemonNameList(),
+        divisorList: _getPokemonDivisorList(),
+        order: order,
+        memo: memo,
+        eachMemo: {},
+        result: result.toString());
   }
 }
