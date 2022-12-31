@@ -13,7 +13,22 @@ _$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       opponentParty: (json['opponentParty'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      divisorList: (json['divisorList'] as List<dynamic>)
+      divisorList6: (json['divisorList6'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      divisorList5: (json['divisorList5'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      divisorList4: (json['divisorList4'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      divisorList3: (json['divisorList3'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      divisorList2: (json['divisorList2'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      divisorList1: (json['divisorList1'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
       order: (json['order'] as List<dynamic>).map((e) => e as int).toList(),
@@ -31,7 +46,12 @@ Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
       'battleId': instance.battleId,
       'partyId': instance.partyId,
       'opponentParty': instance.opponentParty,
-      'divisorList': instance.divisorList,
+      'divisorList6': instance.divisorList6,
+      'divisorList5': instance.divisorList5,
+      'divisorList4': instance.divisorList4,
+      'divisorList3': instance.divisorList3,
+      'divisorList2': instance.divisorList2,
+      'divisorList1': instance.divisorList1,
       'order': instance.order,
       'memo': instance.memo,
       'eachMemo': instance.eachMemo,
