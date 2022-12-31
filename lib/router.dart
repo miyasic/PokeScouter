@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/provider_name.dart';
 import 'package:flutter_template/presentation/Widget/tab.dart';
+import 'package:flutter_template/presentation/battle_memo/battle_memo.dart';
 import 'package:flutter_template/presentation/battle_start/battle_start_page.dart';
+import 'package:flutter_template/presentation/battle_suggest/battle_suggest_page.dart';
 import 'package:flutter_template/presentation/history/history_page.dart';
 import 'package:flutter_template/presentation/login/login_page.dart';
 import 'package:flutter_template/presentation/party_register/party_register_page.dart';
@@ -63,6 +65,18 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: kPagePathPartyRegister,
           builder: (BuildContext context, GoRouterState state) {
             return const PartyRegisterPage();
+          }),
+      GoRoute(
+          name: kPageNameBattleSuggest,
+          path: kPagePathBattleSuggest,
+          builder: (BuildContext context, GoRouterState state) {
+            return const BattleSuggestPage();
+          }),
+      GoRoute(
+          name: kPageNameBattleMemo,
+          path: kPagePathBattleMemo,
+          builder: (BuildContext context, GoRouterState state) {
+            return const BattleMemoPage();
           }),
     ],
   );
