@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 import 'package:flutter_template/domain/firebase/user.dart';
-
 import '../../domain/firebase/battle.dart';
 
 final db = FirebaseFirestore.instance;
