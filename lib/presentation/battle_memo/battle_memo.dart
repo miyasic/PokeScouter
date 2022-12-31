@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/constants/text_style.dart';
+import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,6 +27,7 @@ class BattleMemoPage extends HookConsumerWidget {
         ref.watch(pokemonListProvider(kPageNameBattleStart));
     final order = useState<List<int>>([]);
     final memoController = useTextEditingController();
+    final result = useState<BattleResult>(BattleResult.win);
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
@@ -103,6 +106,38 @@ class BattleMemoPage extends HookConsumerWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
+              Wrap(
+                spacing: 10,
+                children: [
+                  ChoiceChip(
+                    label: Text("勝利"),
+                    selected: result.value == BattleResult.win,
+                    backgroundColor: Colors.grey[600],
+                    selectedColor: Colors.white,
+                    onSelected: (_) {
+                      result.value = BattleResult.win;
+                    },
+                  ),
+                  ChoiceChip(
+                    label: Text("引き分け"),
+                    selected: result.value == BattleResult.draw,
+                    backgroundColor: Colors.grey[600],
+                    selectedColor: Colors.white,
+                    onSelected: (_) {
+                      result.value = BattleResult.draw;
+                    },
+                  ),
+                  ChoiceChip(
+                    label: Text("負け"),
+                    selected: result.value == BattleResult.lose,
+                    backgroundColor: Colors.grey[600],
+                    selectedColor: Colors.white,
+                    onSelected: (_) {
+                      result.value = BattleResult.lose;
+                    },
+                  ),
+                ],
+              ),
               ElevatedButton(
                 onPressed: () {
                   ref
@@ -110,6 +145,7 @@ class BattleMemoPage extends HookConsumerWidget {
                       .setBattle(
                           memo: memoController.text,
                           order: order.value,
+                          result: result.value,
                           showLoginDialog: () async {
                             await showConfirmDialog(
                                 context: context,
