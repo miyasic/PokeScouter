@@ -1,3 +1,4 @@
+import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/domain/pokemon.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
@@ -91,6 +92,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
   setBattle(
       {required String memo,
       required List<int> order,
+      required BattleResult result,
       required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
@@ -105,6 +107,6 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         order: order,
         memo: memo,
         eachMemo: {},
-        result: "Win");
+        result: result.toString());
   }
 }
