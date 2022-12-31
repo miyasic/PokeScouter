@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 import 'package:flutter_template/domain/firebase/user.dart';
+import '../../domain/firebase/battle.dart';
 
 final db = FirebaseFirestore.instance;
 
@@ -34,3 +35,16 @@ DocumentReference<Party> partyRef({
   required partyId,
 }) =>
     partiesRef(userId: userId).doc(partyId);
+
+CollectionReference<Battle> battlesRef({
+  required String userId,
+}) =>
+    userRef(userId: userId).collection(kBattleCollection).withConverter(
+        fromFirestore: (ds, _) => Battle.fromDocumentSnapshot(ds),
+        toFirestore: (obj, _) => obj.toJson());
+
+DocumentReference<Battle> battleRef({
+  required userId,
+  required battleId,
+}) =>
+    battlesRef(userId: userId).doc(battleId);

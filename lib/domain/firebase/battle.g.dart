@@ -16,7 +16,7 @@ _$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       divisorList: (json['divisorList'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      order: (json['order'] as List<dynamic>).map((e) => e as String).toList(),
+      order: (json['order'] as List<dynamic>).map((e) => e as int).toList(),
       memo: json['memo'] as String,
       eachMemo: Map<String, String>.from(json['eachMemo'] as Map),
       result: json['result'] as String,

@@ -25,7 +25,7 @@ mixin _$Battle {
   String? get partyId => throw _privateConstructorUsedError;
   List<String> get opponentParty => throw _privateConstructorUsedError;
   List<String> get divisorList => throw _privateConstructorUsedError;
-  List<String> get order => throw _privateConstructorUsedError;
+  List<int> get order => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
   Map<String, String> get eachMemo => throw _privateConstructorUsedError;
   String get result => throw _privateConstructorUsedError;
@@ -48,7 +48,7 @@ abstract class $BattleCopyWith<$Res> {
       String? partyId,
       List<String> opponentParty,
       List<String> divisorList,
-      List<String> order,
+      List<int> order,
       String memo,
       Map<String, String> eachMemo,
       String result,
@@ -106,7 +106,7 @@ class _$BattleCopyWithImpl<$Res, $Val extends Battle>
       order: null == order
           ? _value.order
           : order // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<int>,
       memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -147,7 +147,7 @@ abstract class _$$_BattleCopyWith<$Res> implements $BattleCopyWith<$Res> {
       String? partyId,
       List<String> opponentParty,
       List<String> divisorList,
-      List<String> order,
+      List<int> order,
       String memo,
       Map<String, String> eachMemo,
       String result,
@@ -203,7 +203,7 @@ class __$$_BattleCopyWithImpl<$Res>
       order: null == order
           ? _value._order
           : order // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<int>,
       memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -233,7 +233,7 @@ class _$_Battle with DiagnosticableTreeMixin implements _Battle {
       this.partyId,
       required final List<String> opponentParty,
       required final List<String> divisorList,
-      required final List<String> order,
+      required final List<int> order,
       required this.memo,
       required final Map<String, String> eachMemo,
       required this.result,
@@ -269,9 +269,9 @@ class _$_Battle with DiagnosticableTreeMixin implements _Battle {
     return EqualUnmodifiableListView(_divisorList);
   }
 
-  final List<String> _order;
+  final List<int> _order;
   @override
-  List<String> get order {
+  List<int> get order {
     if (_order is EqualUnmodifiableListView) return _order;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_order);
@@ -373,7 +373,7 @@ abstract class _Battle implements Battle {
       final String? partyId,
       required final List<String> opponentParty,
       required final List<String> divisorList,
-      required final List<String> order,
+      required final List<int> order,
       required final String memo,
       required final Map<String, String> eachMemo,
       required final String result,
@@ -393,7 +393,7 @@ abstract class _Battle implements Battle {
   @override
   List<String> get divisorList;
   @override
-  List<String> get order;
+  List<int> get order;
   @override
   String get memo;
   @override
