@@ -51,7 +51,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return state.map((pokemon) => pokemon.name).toList();
   }
 
-  List<String> _getPokemonDivisorList() {
+  List<List<String>> _getPokemonDivisorList() {
     final primeNumbers =
         state.map((pokemon) => BigInt.parse(pokemon.primeNumber)).toList();
 
@@ -60,9 +60,10 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
       ...List.filled(6 - primeNumbers.length, BigInt.one)
     ];
 
-    final List<String> divisorList = [];
+    final List<List<String>> divisorList = [];
     for (int i = 6; i >= 1; i--) {
       final combinationIndexes = Combinations(i, List.generate(6, (j) => j));
+      final List<String> divisor = [];
       for (final indexes in combinationIndexes()) {
         final result = indexes
             .map((index) => primeNumbersComplemented[index])
@@ -71,8 +72,11 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
                 BigInt.one, (previousValue, element) => previousValue * element)
             .toString();
 
-        if (!divisorList.contains(result)) divisorList.add(result);
+        if (!divisor.contains(result) && result != "1") {
+          divisor.add(result);
+        }
       }
+      divisorList.add(divisor);
     }
     return divisorList;
   }
