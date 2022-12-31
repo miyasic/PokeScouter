@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/repository/shared_preferences.dart';
 import 'package:flutter_template/router.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:flutter_template/theme.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_template/util/provider_logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 
 Future main() async {
@@ -16,7 +18,9 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(ProviderScope(overrides: <Override>[
-    pokemonRawDataProvider.overrideWithValue(await getPokemonRawData)
+    pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
+    sharedPreferencesProvider
+        .overrideWithValue(await SharedPreferences.getInstance())
   ], observers: [
     ProviderLogger()
   ], child: const MyApp()));
