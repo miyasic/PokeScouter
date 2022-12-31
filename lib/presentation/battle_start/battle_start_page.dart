@@ -4,14 +4,11 @@ import 'package:flutter_template/constants/route_path.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_textfield.dart';
 import 'package:flutter_template/presentation/Widget/pokemon_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
-import 'package:flutter_template/repository/admob_repository.dart';
 import 'package:flutter_template/util/pokemon_suggest.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/pokemon.dart';
-import '../../util/logger.dart';
-import '../Widget/show_dialog.dart';
 
 class BattleStartPage extends HookConsumerWidget {
   const BattleStartPage({super.key});
