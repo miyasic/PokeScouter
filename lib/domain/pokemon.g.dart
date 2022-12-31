@@ -9,6 +9,7 @@ part of 'pokemon.dart';
 _$_Pokemon _$$_PokemonFromJson(Map<String, dynamic> json) => _$_Pokemon(
       name: json['name'] as String,
       number: json['number'] as String,
+      primeNumber: json['primeNumber'] as String,
       h: json['h'] as String,
       a: json['a'] as String,
       b: json['b'] as String,
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_PokemonToJson(_$_Pokemon instance) =>
     <String, dynamic>{
       'name': instance.name,
       'number': instance.number,
+      'primeNumber': instance.primeNumber,
       'h': instance.h,
       'a': instance.a,
       'b': instance.b,
