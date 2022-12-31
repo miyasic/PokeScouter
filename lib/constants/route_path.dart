@@ -6,6 +6,8 @@ const kPageNameBattleHistory = "対戦履歴";
 const kPageNamePartyList = "パーティ一覧";
 const kPageNamePartyRegister = "パーティ登録";
 const kPageNameBattleStart = "対戦開始";
+const kPageNameBattleSuggest = "過去の対戦";
+const kPageNameBattleMemo = "対戦情報登録";
 
 const kPagePathTop = "/battle";
 const kPagePathNext = "/next";
@@ -13,3 +15,5 @@ const kPagePathLogin = "/login";
 const kPagePathHistory = "/history";
 const kPagePathPartyRegister = "/party_register";
 const kPagePathBattleStart = "/battle/start";
+const kPagePathBattleSuggest = "/battle/suggest";
+const kPagePathBattleMemo = "/battle/memo";

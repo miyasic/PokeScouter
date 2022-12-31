@@ -71,25 +71,28 @@ class BattleStartPage extends HookConsumerWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: pokemonListState.isEmpty
-                ? null
-                : () async {
-                    ref
-                        .read(
-                            pokemonListProvider(kPageNameBattleStart).notifier)
-                        .setParty(
-                            title: "パーティの名前",
-                            showLoginDialog: () async {
-                              await showConfirmDialog(
-                                  context: context,
-                                  title: 'ログインしてください。',
-                                  okText: 'ログインページを開く。',
-                                  message: '過去の対戦を表示するにはログインが必要です。',
-                                  function: () {
-                                    context.push(kPagePathLogin);
-                                  });
-                            });
-                  },
+            onPressed: () {
+              context.push(kPagePathBattleSuggest);
+
+              // pokemonListState.isEmpty
+              // ? null
+              // : () async {
+              //     ref
+              //         .read(
+              //             pokemonListProvider(kPageNameBattleStart).notifier)
+              //         .setParty(
+              //             title: "パーティの名前",
+              //             showLoginDialog: () async {
+              //               await showConfirmDialog(
+              //                   context: context,
+              //                   title: 'ログインしてください。',
+              //                   okText: 'ログインページを開く。',
+              //                   message: '過去の対戦を表示するにはログインが必要です。',
+              //                   function: () {
+              //                     context.push(kPagePathLogin);
+              //                   });
+              //             });
+            },
             child: const Text("過去の対戦"),
           ),
         ],
