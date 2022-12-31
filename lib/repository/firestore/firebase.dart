@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_template/constants/firestore.dart';
+import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 import 'package:flutter_template/repository/firestore/refs.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,7 +18,7 @@ class FirebaseRepository {
       required List<String> divisorList,
       required String memo,
       required Map<String, String> eachMemo}) async {
-    final partyDoc = userRef(userId: userId).collection(kPartyCollection).doc();
+    final partyDoc = partiesRef(userId: userId).doc();
     final party = Party(
         userId: userId,
         partyId: partyDoc.id,
@@ -26,8 +27,29 @@ class FirebaseRepository {
         divisorList: divisorList,
         memo: memo,
         eachMemo: eachMemo);
-    final data = party.toJson();
-    await partyDoc.set(data);
+    await partyDoc.set(party);
+  }
+
+  Future setBattle(
+      {required String userId,
+      required String partyId,
+      required List<String> opponentParty,
+      required List<String> divisorList,
+      required List<String> order,
+      required String memo,
+      required Map<String, String> eachMemo,
+      required String result}) async {
+    final battleDoc = battlesRef(userId: userId).doc();
+    final battle = Battle(
+        userId: userId,
+        battleId: battleDoc.id,
+        opponentParty: opponentParty,
+        divisorList: divisorList,
+        order: order,
+        memo: memo,
+        eachMemo: eachMemo,
+        result: result);
+    await battleDoc.set(battle);
   }
 
   Stream<List<Party>> subscribeParties(String userId) {
