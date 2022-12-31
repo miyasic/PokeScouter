@@ -87,4 +87,21 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     state = [];
     scaffoldMessengerHelper.showSnackBar('登録できました！');
   }
+
+  setBattle({required Function showLoginDialog}) async {
+    final user = _authController.state;
+    if (user == null) {
+      await showLoginDialog();
+      return;
+    }
+    await firebaseRepository.setBattle(
+        userId: user.uid,
+        partyId: 'partyId',
+        opponentParty: _getPokemonNameList(),
+        divisorList: _getPokemonDivisorList(),
+        order: [''],
+        memo: '対戦メモ',
+        eachMemo: {},
+        result: "Win");
+  }
 }
