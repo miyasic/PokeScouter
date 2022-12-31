@@ -88,7 +88,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     scaffoldMessengerHelper.showSnackBar('登録できました！');
   }
 
-  setBattle({required Function showLoginDialog}) async {
+  setBattle(
+      {required List<int> order, required Function showLoginDialog}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
@@ -99,7 +100,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         partyId: 'partyId',
         opponentParty: _getPokemonNameList(),
         divisorList: _getPokemonDivisorList(),
-        order: [''],
+        order: order,
         memo: '対戦メモ',
         eachMemo: {},
         result: "Win");

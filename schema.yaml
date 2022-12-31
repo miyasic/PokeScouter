@@ -9,7 +9,7 @@ User:
       partyId: String?
       opponentParty: List<String>
       divisorList: List<String>
-      order: List<String>
+      order: List<int>
       memo: String
       eachMemo: Map<String,String>
       result: String
