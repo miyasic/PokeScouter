@@ -75,7 +75,9 @@ class FirebaseRepository {
   Future<List<Battle>> getBattle(
       String userId, List<String> divisorList) async {
     final qs = await battlesRef(userId: userId)
-        .where('divisorList', arrayContainsAny: divisorList)
+        .where('divisorList6', arrayContainsAny: divisorList)
+        .orderBy('createdAt', descending: true)
+        .limit(5)
         .get();
     return qs.docs.map((qds) => qds.data()).toList();
   }
