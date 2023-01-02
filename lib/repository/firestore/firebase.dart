@@ -72,11 +72,17 @@ class FirebaseRepository {
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
 
-  Future<List<Battle>> loadBattles(String userId) async {
-    final qs = await battlesRef(userId: userId)
+  Future<QuerySnapshot<Battle>> loadBattles(
+    String userId, {
+    required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+  }) async {
+    var query = await battlesRef(userId: userId)
         .orderBy(kFieldBattleCreatedAt)
-        .limit(5)
-        .get();
-    return qs.docs.map((qds) => qds.data()).toList();
+        .limit(5);
+    final qds = lastReadQueryDocumentSnapshot;
+    if (qds != null) {
+      query = query.startAfterDocument(qds);
+    }
+    return query.get();
   }
 }

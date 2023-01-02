@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/feature/battle_history_state.dart';
+import 'package:flutter_template/feature/battle_history.dart';
 import 'package:flutter_template/presentation/Widget/battle_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -11,10 +11,10 @@ class BattleHistoryPage extends ConsumerWidget {
     final state = ref.watch(battleHistoryProvider);
     return Scaffold(
       body: ListView.builder(
-          itemCount: state.length,
+          itemCount: state.battles.length,
           itemBuilder: (BuildContext context, int index) {
             return BattleWidget(
-              battle: state[index],
+              battle: state.battles[index],
             );
           }),
     );

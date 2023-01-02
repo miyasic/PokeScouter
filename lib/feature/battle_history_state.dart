@@ -1,30 +1,14 @@
-import 'package:flutter_template/providers/auth_controller.dart';
-import 'package:flutter_template/repository/firestore/firebase.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../domain/firebase/battle.dart';
 
-final battleHistoryProvider =
-    StateNotifierProvider<BattleHistoryState, List<Battle>>((ref) {
-  return BattleHistoryState(
-      firebaseRepository: ref.read(firebaseRepositoryProvider),
-      authController: ref.read(authControllerProvider.notifier))
-    ..fetchBattles();
-});
+part 'battle_history_state.freezed.dart';
 
-class BattleHistoryState extends StateNotifier<List<Battle>> {
-  BattleHistoryState(
-      {required this.firebaseRepository, required this.authController})
-      : super([]);
-  final FirebaseRepository firebaseRepository;
-  final AuthController authController;
-
-  fetchBattles() async {
-    final user = authController.state;
-    if (user == null) {
-      return;
-    }
-    final newBattles = await firebaseRepository.loadBattles(user.uid);
-    state = [...state, ...newBattles];
-  }
+@freezed
+class BattleHistoryState with _$BattleHistoryState {
+  const factory BattleHistoryState({
+    @Default(<Battle>[]) List<Battle> battles,
+    QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+  }) = _BattleHistoryState;
 }
