@@ -71,4 +71,12 @@ class FirebaseRepository {
     return collectionStream
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
+
+  Future<List<Battle>> loadBattles(String userId) async {
+    final qs = await battlesRef(userId: userId)
+        .orderBy(kFieldBattleCreatedAt)
+        .limit(5)
+        .get();
+    return qs.docs.map((qds) => qds.data()).toList();
+  }
 }

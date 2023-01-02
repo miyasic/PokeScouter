@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/feature/battle_history_state.dart';
+import 'package:flutter_template/presentation/Widget/battle_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BattleHistoryPage extends ConsumerWidget {
@@ -6,8 +8,15 @@ class BattleHistoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Scaffold(
-      body: Center(child: Text("対戦履歴")),
+    final state = ref.watch(battleHistoryProvider);
+    return Scaffold(
+      body: ListView.builder(
+          itemCount: state.length,
+          itemBuilder: (BuildContext context, int index) {
+            return BattleWidget(
+              battle: state[index],
+            );
+          }),
     );
   }
 }
