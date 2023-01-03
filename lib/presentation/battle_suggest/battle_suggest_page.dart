@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/presentation/battle_suggest/battle_suggest_state.dart';
+import 'package:flutter_template/feature/battle_suggest.dart';
+import 'package:flutter_template/presentation/Widget/battle_widget.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -12,27 +13,26 @@ class BattleSuggestPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonListNotifier =
         ref.read(pokemonListProvider(kPageNameBattleStart).notifier);
-    final battleListState = ref.watch(battleListProvider);
+    final battleSuggestState = ref.watch(battleSuggestProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleSuggest),
       ),
       body: Column(
         children: [
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: battleListState.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Text(battleListState[index].battleId);
-              }),
+          Expanded(
+            child: ListView.builder(
+                itemCount: battleSuggestState.battles.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return BattleWidget(
+                    battle: battleSuggestState.battles[index],
+                  );
+                }),
+          ),
           ElevatedButton(
-            child: const Text("次へ"),
+            child: const Text("対戦登録に進む"),
             onPressed: () {
-              final divisorList = pokemonListNotifier.getPokemonDivisorList();
-              print(divisorList);
-              // ref.read(battleListProvider.notifier).fetchBattle(
-              //     divisorList: , showLoginDialog: () {});
-              // context.push(kPagePathBattleMemo);
+              context.push(kPagePathBattleMemo);
             },
           ),
         ],
