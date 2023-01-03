@@ -33,7 +33,7 @@ class BattleWidget extends ConsumerWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(
@@ -51,7 +51,7 @@ class BattleWidget extends ConsumerWidget {
                     ))
                 .toList(),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(
