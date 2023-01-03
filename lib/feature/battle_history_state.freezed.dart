@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$BattleHistoryState {
+  bool get loading => throw _privateConstructorUsedError;
   List<Battle> get battles => throw _privateConstructorUsedError;
   QueryDocumentSnapshot<Battle>? get lastReadQueryDocumentSnapshot =>
       throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ abstract class $BattleHistoryStateCopyWith<$Res> {
       _$BattleHistoryStateCopyWithImpl<$Res, BattleHistoryState>;
   @useResult
   $Res call(
-      {List<Battle> battles,
+      {bool loading,
+      List<Battle> battles,
       QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
 }
 
@@ -49,10 +51,15 @@ class _$BattleHistoryStateCopyWithImpl<$Res, $Val extends BattleHistoryState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? loading = null,
     Object? battles = null,
     Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_value.copyWith(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
       battles: null == battles
           ? _value.battles
           : battles // ignore: cast_nullable_to_non_nullable
@@ -74,7 +81,8 @@ abstract class _$$_BattleHistoryStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Battle> battles,
+      {bool loading,
+      List<Battle> battles,
       QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
 }
 
@@ -89,10 +97,15 @@ class __$$_BattleHistoryStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? loading = null,
     Object? battles = null,
     Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_$_BattleHistoryState(
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
       battles: null == battles
           ? _value._battles
           : battles // ignore: cast_nullable_to_non_nullable
@@ -109,10 +122,14 @@ class __$$_BattleHistoryStateCopyWithImpl<$Res>
 
 class _$_BattleHistoryState implements _BattleHistoryState {
   const _$_BattleHistoryState(
-      {final List<Battle> battles = const <Battle>[],
+      {this.loading = true,
+      final List<Battle> battles = const <Battle>[],
       this.lastReadQueryDocumentSnapshot})
       : _battles = battles;
 
+  @override
+  @JsonKey()
+  final bool loading;
   final List<Battle> _battles;
   @override
   @JsonKey()
@@ -127,7 +144,7 @@ class _$_BattleHistoryState implements _BattleHistoryState {
 
   @override
   String toString() {
-    return 'BattleHistoryState(battles: $battles, lastReadQueryDocumentSnapshot: $lastReadQueryDocumentSnapshot)';
+    return 'BattleHistoryState(loading: $loading, battles: $battles, lastReadQueryDocumentSnapshot: $lastReadQueryDocumentSnapshot)';
   }
 
   @override
@@ -135,6 +152,7 @@ class _$_BattleHistoryState implements _BattleHistoryState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BattleHistoryState &&
+            (identical(other.loading, loading) || other.loading == loading) &&
             const DeepCollectionEquality().equals(other._battles, _battles) &&
             (identical(other.lastReadQueryDocumentSnapshot,
                     lastReadQueryDocumentSnapshot) ||
@@ -145,6 +163,7 @@ class _$_BattleHistoryState implements _BattleHistoryState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      loading,
       const DeepCollectionEquality().hash(_battles),
       lastReadQueryDocumentSnapshot);
 
@@ -158,10 +177,13 @@ class _$_BattleHistoryState implements _BattleHistoryState {
 
 abstract class _BattleHistoryState implements BattleHistoryState {
   const factory _BattleHistoryState(
-          {final List<Battle> battles,
+          {final bool loading,
+          final List<Battle> battles,
           final QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot}) =
       _$_BattleHistoryState;
 
+  @override
+  bool get loading;
   @override
   List<Battle> get battles;
   @override

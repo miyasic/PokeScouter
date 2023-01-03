@@ -9,8 +9,13 @@ class BattleHistoryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(battleHistoryProvider);
+    print(state.loading);
+    if (state.loading) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Scaffold(
       body: ListView.builder(
+          controller: ref.read(battleHistoryProvider.notifier).scrollController,
           itemCount: state.battles.length,
           itemBuilder: (BuildContext context, int index) {
             return BattleWidget(
