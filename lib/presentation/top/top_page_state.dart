@@ -128,14 +128,14 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         result: result.toString());
   }
 
-  Future<List<Battle>> getBattle({required Function showLoginDialog}) async {
-    final user = _authController.state;
-    if (user == null) {
-      await showLoginDialog();
-      return [];
-    }
-    final divisorList = getPokemonDivisorList();
-
-    return await firebaseRepository.getBattle(user.uid, divisorList[0]);
-  }
+  // Future<List<Battle>> getBattle({required Function showLoginDialog}) async {
+  //   final user = _authController.state;
+  //   if (user == null) {
+  //     await showLoginDialog();
+  //     return [];
+  //   }
+  //   final divisorList = getPokemonDivisorList();
+  //
+  //   return await firebaseRepository.getBattle(user.uid, divisorList[0]);
+  // }
 }

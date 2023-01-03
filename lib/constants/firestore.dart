@@ -11,6 +11,7 @@ const kFieldPartyId = 'partyId';
 const kFieldPartyCreatedAt = 'createdAt';
 // battle
 const kFieldBattleId = 'battleId';
+const kFieldBattleCreatedAt = 'createdAt';
 
 /// enum
 enum BattleResult {

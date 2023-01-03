@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -40,6 +41,13 @@ class FirebaseRepositoryMock implements FirebaseRepository {
       required String memo,
       required Map<String, String> eachMemo}) {
     // TODO: implement setParty
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<QuerySnapshot<Battle>> loadBattles(String userId,
+      {required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot}) {
+    // TODO: implement loadBattles
     throw UnimplementedError();
   }
 }
