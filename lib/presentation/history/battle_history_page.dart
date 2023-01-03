@@ -23,6 +23,14 @@ class BattleHistoryPage extends ConsumerWidget {
     if (state.loading) {
       return const Center(child: CircularProgressIndicator());
     }
+    if (state.battles.isEmpty) {
+      return Center(
+        child: Text(
+          "対戦履歴がありません",
+          style: textStyleGreyPlain,
+        ),
+      );
+    }
     return Scaffold(
       body: ListView.builder(
           controller: ref.read(battleHistoryProvider.notifier).scrollController,
