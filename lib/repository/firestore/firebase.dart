@@ -72,13 +72,26 @@ class FirebaseRepository {
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
 
-  Future<List<Battle>> getBattle(
-      String userId, List<String> divisorList) async {
-    final qs = await battlesRef(userId: userId)
-        .where('divisorList6', arrayContainsAny: divisorList)
-        .orderBy('createdAt', descending: true)
-        .limit(5)
-        .get();
-    return qs.docs.map((qds) => qds.data()).toList();
+  Future<QuerySnapshot<Battle>> loadBattles(
+    String userId, {
+    required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+  }) async {
+    var query = battlesRef(userId: userId)
+        .orderBy(kFieldBattleCreatedAt, descending: true)
+        .limit(7);
+    final qds = lastReadQueryDocumentSnapshot;
+    if (qds != null) {
+      query = query.startAfterDocument(qds);
+    }
+    return query.get();
   }
+
+// Future<List<Battle>> getBattle(
+//     String userId, List<String> divisorList) async {
+//   final qs = await battlesRef(userId: userId)
+//       .where('divisorList6', arrayContainsAny: divisorList)
+//       .orderBy('createdAt', descending: true)
+//       .limit(5)
+//       .get();
+//   return qs.docs.map((qds) => qds.data()).toList();}
 }

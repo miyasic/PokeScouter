@@ -19,15 +19,15 @@ class BattleListState extends StateNotifier<List<Battle>> {
   final AuthController authController;
   final ScrollController scrollController = ScrollController();
 
-  fetchBattle(
-      {required List<String> divisorList,
-      required Function showLoginDialog}) async {
-    final user = authController.state;
-    if (user == null) {
-      await showLoginDialog();
-      return;
-    }
-    final newBattle = await firebaseRepository.getBattle(user.uid, divisorList);
-    state = [...state, ...newBattle];
-  }
+  // fetchBattle(
+  //     {required List<String> divisorList,
+  //     required Function showLoginDialog}) async {
+  //   final user = authController.state;
+  //   if (user == null) {
+  //     await showLoginDialog();
+  //     return;
+  //   }
+  //   final newBattle = await firebaseRepository.getBattle(user.uid, divisorList);
+  //   state = [...state, ...newBattle];
+  // }
 }
