@@ -24,22 +24,36 @@ class BattleHistoryPage extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (state.battles.isEmpty) {
-      return Center(
-        child: Text(
-          "対戦履歴がありません",
-          style: textStyleGreyPlain,
-        ),
+      return RefreshIndicator(
+        onRefresh: () async {
+          await ref.read(battleHistoryProvider.notifier).fetchBattles();
+        },
+        child: ListView(children: [
+          Center(
+            child: Text(
+              "対戦履歴がありません",
+              style: textStyleGreyPlain,
+            ),
+          ),
+        ]),
       );
     }
     return Scaffold(
-      body: ListView.builder(
-          controller: ref.read(battleHistoryProvider.notifier).scrollController,
-          itemCount: state.battles.length,
-          itemBuilder: (BuildContext context, int index) {
-            return BattleWidget(
-              battle: state.battles[index],
-            );
-          }),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await ref.read(battleHistoryProvider.notifier).refresh();
+        },
+        child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            controller:
+                ref.read(battleHistoryProvider.notifier).scrollController,
+            itemCount: state.battles.length,
+            itemBuilder: (BuildContext context, int index) {
+              return BattleWidget(
+                battle: state.battles[index],
+              );
+            }),
+      ),
     );
   }
 }

@@ -50,6 +50,17 @@ class BattleHistory extends StateNotifier<BattleHistoryState> {
     }
   }
 
+  refresh() async {
+    state = state.copyWith(
+      loading: true,
+      battles: [],
+      lastReadQueryDocumentSnapshot: null,
+    );
+
+    await fetchBattles();
+    state = state.copyWith(loading: false);
+  }
+
   void _initializeScrollController() {
     scrollController = ScrollController()
       ..addListener(() async {
