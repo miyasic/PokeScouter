@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/constants/text_style.dart';
 import 'package:flutter_template/feature/battle_history.dart';
 import 'package:flutter_template/presentation/Widget/battle_widget.dart';
+import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BattleHistoryPage extends ConsumerWidget {
@@ -9,9 +11,17 @@ class BattleHistoryPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(battleHistoryProvider);
-    print(state.loading);
+    final uid = ref.read(authControllerProvider)?.uid;
+    if (uid == null) {
+      return Center(
+        child: Text(
+          "ログインしてください",
+          style: textStyleGreyPlain,
+        ),
+      );
+    }
     if (state.loading) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     }
     return Scaffold(
       body: ListView.builder(
