@@ -31,7 +31,7 @@ class BattleHistory extends StateNotifier<BattleHistoryState> {
   Future _init() async {
     _initializeScrollController();
     await fetchBattles();
-    // state = state.copyWith(loading: false);
+    state = state.copyWith(loading: false);
   }
 
   fetchBattles() async {
@@ -45,7 +45,6 @@ class BattleHistory extends StateNotifier<BattleHistoryState> {
     final List<Battle> newBattles = qs.docs.map((qds) => qds.data()).toList();
     if (newBattles.isNotEmpty) {
       state = state.copyWith(
-          loading: false,
           battles: [...state.battles, ...newBattles],
           lastReadQueryDocumentSnapshot: qs.docs.last);
     }
