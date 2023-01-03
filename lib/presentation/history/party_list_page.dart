@@ -6,7 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/shared_preferences.dart';
+import '../../constants/text_style.dart';
 import '../../feature/party.dart';
+import '../../providers/auth_controller.dart';
 import '../../repository/shared_preferences.dart';
 
 class PartyListPage extends HookConsumerWidget {
@@ -16,6 +18,15 @@ class PartyListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedPartyId =
         useState(ref.read(sharedPreferencesProvider).get(kSharedPrefsPartyId));
+    final uid = ref.read(authControllerProvider)?.uid;
+    if (uid == null) {
+      return Center(
+        child: Text(
+          "ログインしてください",
+          style: textStyleGreyPlain,
+        ),
+      );
+    }
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
