@@ -8,6 +8,7 @@ part 'battle_history_state.freezed.dart';
 @freezed
 class BattleHistoryState with _$BattleHistoryState {
   const factory BattleHistoryState({
+    @Default(true) bool loading,
     @Default(<Battle>[]) List<Battle> battles,
     QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
   }) = _BattleHistoryState;

@@ -78,7 +78,7 @@ class FirebaseRepository {
   }) async {
     var query = await battlesRef(userId: userId)
         .orderBy(kFieldBattleCreatedAt)
-        .limit(5);
+        .limit(7);
     final qds = lastReadQueryDocumentSnapshot;
     if (qds != null) {
       query = query.startAfterDocument(qds);
