@@ -79,7 +79,10 @@ class BattleMemoPage extends HookConsumerWidget {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                   child: InkWell(
-                      onDoubleTap: () {},
+                      onDoubleTap: () {
+                        order.value.removeAt(index);
+                        order.value = [...order.value];
+                      },
                       child: Badge(
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
