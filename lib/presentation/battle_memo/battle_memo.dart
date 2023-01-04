@@ -58,7 +58,10 @@ class BattleMemoPage extends HookConsumerWidget {
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(pokemonListState[index]))),
+                          child: PokemonWidget(
+                            pokemonListState[index],
+                            initialFolded: true,
+                          ))),
                 );
               },
               childCount: pokemonListState.length,
@@ -82,7 +85,9 @@ class BattleMemoPage extends HookConsumerWidget {
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
                           child: PokemonWidget(
-                              pokemonListState[order.value[index]]))),
+                            pokemonListState[order.value[index]],
+                            initialFolded: true,
+                          ))),
                 );
               },
               childCount: order.value.length,
