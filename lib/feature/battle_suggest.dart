@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_template/feature/battle_suggest_state.dart';
 import 'package:flutter_template/presentation/top/top_page_state.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../constants/firestore.dart';
 import '../constants/route_path.dart';
 import '../domain/firebase/battle.dart';
 
@@ -28,25 +30,53 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   final AuthController authController;
   final FirebaseRepository firebaseRepository;
   final List<List<String>> divisorList;
+  late final ScrollController scrollController;
+  static const _scrollValueThreshold = 0.8;
 
   Future _init() async {
-    await fetchBattles(divisorList[0]);
+    _initializeScrollController();
+    await fetchBattles();
   }
 
-  fetchBattles(List<String> divisorList) async {
+  fetchBattles() async {
+    if (state.sameStatus == BattleSuggestStatus.threeSame) {
+      return;
+    }
     final user = authController.state;
     if (user == null) {
       return;
     }
+    var divisor = divisorList[state.sameStatus.getIndex()];
+    if (divisor.length > 10) {
+      divisor = divisor.take(10).toList();
+    }
     final qs = await firebaseRepository.loadBattlesWithDivisorList(
         userId: user.uid,
-        divisorList: divisorList,
-        lastReadQueryDocumentSnapshot: state.lastReadQueryDocumentSnapshot);
+        divisorList: divisor,
+        lastReadQueryDocumentSnapshot: state.lastReadQueryDocumentSnapshot,
+        status: state.sameStatus);
     final List<Battle> newBattles = qs.docs.map((qds) => qds.data()).toList();
-    if (newBattles.isNotEmpty) {
+    if (newBattles.isNotEmpty && newBattles.length == kLimitLoadBattles) {
       state = state.copyWith(
           battles: [...state.battles, ...newBattles],
           lastReadQueryDocumentSnapshot: qs.docs.last);
+    } else {
+      state = state.copyWith(
+          sameStatus: state.sameStatus.getNext(),
+          lastReadQueryDocumentSnapshot: null);
+
+      await fetchBattles();
     }
+  }
+
+  void _initializeScrollController() {
+    scrollController = ScrollController()
+      ..addListener(() async {
+        final scrollValue =
+            scrollController.offset / scrollController.position.maxScrollExtent;
+        if (scrollValue > _scrollValueThreshold) {
+          await fetchBattles();
+        }
+      });
   }
 }

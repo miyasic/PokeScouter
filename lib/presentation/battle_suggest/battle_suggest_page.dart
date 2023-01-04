@@ -22,6 +22,8 @@ class BattleSuggestPage extends ConsumerWidget {
         children: [
           Expanded(
             child: ListView.builder(
+                controller:
+                    ref.read(battleSuggestProvider.notifier).scrollController,
                 itemCount: battleSuggestState.battles.length,
                 itemBuilder: (BuildContext context, int index) {
                   return BattleWidget(

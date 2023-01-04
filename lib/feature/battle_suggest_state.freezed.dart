@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BattleSuggestState {
   bool get loading => throw _privateConstructorUsedError;
   List<Battle> get battles => throw _privateConstructorUsedError;
+  BattleSuggestStatus get sameStatus => throw _privateConstructorUsedError;
   QueryDocumentSnapshot<Battle>? get lastReadQueryDocumentSnapshot =>
       throw _privateConstructorUsedError;
 
@@ -35,6 +36,7 @@ abstract class $BattleSuggestStateCopyWith<$Res> {
   $Res call(
       {bool loading,
       List<Battle> battles,
+      BattleSuggestStatus sameStatus,
       QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
 }
 
@@ -53,6 +55,7 @@ class _$BattleSuggestStateCopyWithImpl<$Res, $Val extends BattleSuggestState>
   $Res call({
     Object? loading = null,
     Object? battles = null,
+    Object? sameStatus = null,
     Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +67,10 @@ class _$BattleSuggestStateCopyWithImpl<$Res, $Val extends BattleSuggestState>
           ? _value.battles
           : battles // ignore: cast_nullable_to_non_nullable
               as List<Battle>,
+      sameStatus: null == sameStatus
+          ? _value.sameStatus
+          : sameStatus // ignore: cast_nullable_to_non_nullable
+              as BattleSuggestStatus,
       lastReadQueryDocumentSnapshot: freezed == lastReadQueryDocumentSnapshot
           ? _value.lastReadQueryDocumentSnapshot
           : lastReadQueryDocumentSnapshot // ignore: cast_nullable_to_non_nullable
@@ -83,6 +90,7 @@ abstract class _$$_BattleSuggestStateCopyWith<$Res>
   $Res call(
       {bool loading,
       List<Battle> battles,
+      BattleSuggestStatus sameStatus,
       QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
 }
 
@@ -99,6 +107,7 @@ class __$$_BattleSuggestStateCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? battles = null,
+    Object? sameStatus = null,
     Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_$_BattleSuggestState(
@@ -110,6 +119,10 @@ class __$$_BattleSuggestStateCopyWithImpl<$Res>
           ? _value._battles
           : battles // ignore: cast_nullable_to_non_nullable
               as List<Battle>,
+      sameStatus: null == sameStatus
+          ? _value.sameStatus
+          : sameStatus // ignore: cast_nullable_to_non_nullable
+              as BattleSuggestStatus,
       lastReadQueryDocumentSnapshot: freezed == lastReadQueryDocumentSnapshot
           ? _value.lastReadQueryDocumentSnapshot
           : lastReadQueryDocumentSnapshot // ignore: cast_nullable_to_non_nullable
@@ -124,6 +137,7 @@ class _$_BattleSuggestState implements _BattleSuggestState {
   const _$_BattleSuggestState(
       {this.loading = true,
       final List<Battle> battles = const <Battle>[],
+      this.sameStatus = BattleSuggestStatus.sixSame,
       this.lastReadQueryDocumentSnapshot})
       : _battles = battles;
 
@@ -140,11 +154,14 @@ class _$_BattleSuggestState implements _BattleSuggestState {
   }
 
   @override
+  @JsonKey()
+  final BattleSuggestStatus sameStatus;
+  @override
   final QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot;
 
   @override
   String toString() {
-    return 'BattleSuggestState(loading: $loading, battles: $battles, lastReadQueryDocumentSnapshot: $lastReadQueryDocumentSnapshot)';
+    return 'BattleSuggestState(loading: $loading, battles: $battles, sameStatus: $sameStatus, lastReadQueryDocumentSnapshot: $lastReadQueryDocumentSnapshot)';
   }
 
   @override
@@ -154,6 +171,8 @@ class _$_BattleSuggestState implements _BattleSuggestState {
             other is _$_BattleSuggestState &&
             (identical(other.loading, loading) || other.loading == loading) &&
             const DeepCollectionEquality().equals(other._battles, _battles) &&
+            (identical(other.sameStatus, sameStatus) ||
+                other.sameStatus == sameStatus) &&
             (identical(other.lastReadQueryDocumentSnapshot,
                     lastReadQueryDocumentSnapshot) ||
                 other.lastReadQueryDocumentSnapshot ==
@@ -165,6 +184,7 @@ class _$_BattleSuggestState implements _BattleSuggestState {
       runtimeType,
       loading,
       const DeepCollectionEquality().hash(_battles),
+      sameStatus,
       lastReadQueryDocumentSnapshot);
 
   @JsonKey(ignore: true)
@@ -179,6 +199,7 @@ abstract class _BattleSuggestState implements BattleSuggestState {
   const factory _BattleSuggestState(
           {final bool loading,
           final List<Battle> battles,
+          final BattleSuggestStatus sameStatus,
           final QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot}) =
       _$_BattleSuggestState;
 
@@ -186,6 +207,8 @@ abstract class _BattleSuggestState implements BattleSuggestState {
   bool get loading;
   @override
   List<Battle> get battles;
+  @override
+  BattleSuggestStatus get sameStatus;
   @override
   QueryDocumentSnapshot<Battle>? get lastReadQueryDocumentSnapshot;
   @override
