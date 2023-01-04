@@ -14,7 +14,8 @@ User:
       divisorList3: List<String>
       divisorList2: List<String>
       divisorList1: List<String>
-      order: List<int>
+      opponentOrder: List<int>
+      myOrder: List<int>
       memo: String
       eachMemo: Map<String,String>
       result: String

@@ -20,7 +20,8 @@ class BattleMemoPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Pokemon> pokemonListState =
         ref.watch(pokemonListProvider(kPageNameBattleStart));
-    final order = useState<List<int>>([]);
+    final opponentOrder = useState<List<int>>([]);
+    final myOrder = useState<List<int>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
     return Scaffold(
@@ -45,8 +46,8 @@ class BattleMemoPage extends HookConsumerWidget {
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                   child: InkWell(
                       onDoubleTap: () {
-                        if (!order.value.contains(index)) {
-                          order.value = [...order.value, index];
+                        if (!opponentOrder.value.contains(index)) {
+                          opponentOrder.value = [...opponentOrder.value, index];
                         } else {
                           ref
                               .read(scaffoldMessengerHelperProvider)
@@ -80,20 +81,20 @@ class BattleMemoPage extends HookConsumerWidget {
                   padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                   child: InkWell(
                       onDoubleTap: () {
-                        order.value.removeAt(index);
-                        order.value = [...order.value];
+                        opponentOrder.value.removeAt(index);
+                        opponentOrder.value = [...opponentOrder.value];
                       },
                       child: Badge(
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
                           child: PokemonWidget(
-                            pokemonListState[order.value[index]],
+                            pokemonListState[opponentOrder.value[index]],
                             initialFolded: true,
                           ))),
                 );
               },
-              childCount: order.value.length,
+              childCount: opponentOrder.value.length,
             )),
             SliverList(
                 delegate: SliverChildListDelegate([
@@ -147,7 +148,8 @@ class BattleMemoPage extends HookConsumerWidget {
                       .read(pokemonListProvider(kPageNameBattleStart).notifier)
                       .setBattle(
                           memo: memoController.text,
-                          order: order.value,
+                          opponentOrder: opponentOrder.value,
+                          myOrder: myOrder.value,
                           result: result.value,
                           showLoginDialog: () async {
                             await showConfirmDialog(

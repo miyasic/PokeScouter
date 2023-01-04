@@ -31,7 +31,10 @@ _$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       divisorList1: (json['divisorList1'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      order: (json['order'] as List<dynamic>).map((e) => e as int).toList(),
+      opponentOrder: (json['opponentOrder'] as List<dynamic>)
+          .map((e) => e as int)
+          .toList(),
+      myOrder: (json['myOrder'] as List<dynamic>).map((e) => e as int).toList(),
       memo: json['memo'] as String,
       eachMemo: Map<String, String>.from(json['eachMemo'] as Map),
       result: json['result'] as String,
@@ -52,7 +55,8 @@ Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
       'divisorList3': instance.divisorList3,
       'divisorList2': instance.divisorList2,
       'divisorList1': instance.divisorList1,
-      'order': instance.order,
+      'opponentOrder': instance.opponentOrder,
+      'myOrder': instance.myOrder,
       'memo': instance.memo,
       'eachMemo': instance.eachMemo,
       'result': instance.result,

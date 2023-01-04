@@ -69,7 +69,7 @@ class BattleWidget extends ConsumerWidget {
             style: textStyleBold,
           ),
           Wrap(
-            children: battle.order
+            children: battle.opponentOrder
                 .map((index) => Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                       child: Text(

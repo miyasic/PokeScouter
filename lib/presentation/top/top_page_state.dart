@@ -102,7 +102,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   setBattle(
       {required String memo,
-      required List<int> order,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
       required BattleResult result,
       required Function showLoginDialog}) async {
     final user = _authController.state;
@@ -121,20 +122,10 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         partyId: partyId,
         opponentParty: _getPokemonNameList(),
         divisorList: getPokemonDivisorList(),
-        order: order,
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
         memo: memo,
         eachMemo: {},
         result: result.toString());
   }
-
-  // Future<List<Battle>> getBattle({required Function showLoginDialog}) async {
-  //   final user = _authController.state;
-  //   if (user == null) {
-  //     await showLoginDialog();
-  //     return [];
-  //   }
-  //   final divisorList = getPokemonDivisorList();
-  //
-  //   return await firebaseRepository.getBattle(user.uid, divisorList[0]);
-  // }
 }

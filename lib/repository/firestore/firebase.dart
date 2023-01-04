@@ -42,7 +42,8 @@ class FirebaseRepository {
       required String partyId,
       required List<String> opponentParty,
       required List<List<String>> divisorList,
-      required List<int> order,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
       required String memo,
       required Map<String, String> eachMemo,
       required String result}) async {
@@ -58,7 +59,8 @@ class FirebaseRepository {
         divisorList3: divisorList[3],
         divisorList2: divisorList[4],
         divisorList1: divisorList[5],
-        order: order,
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
         memo: memo,
         eachMemo: eachMemo,
         result: result);
