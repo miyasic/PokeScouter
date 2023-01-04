@@ -1,6 +1,5 @@
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/constants/shared_preferences.dart';
-import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/domain/pokemon.dart';
 import 'package:flutter_template/providers/auth_controller.dart';
 import 'package:flutter_template/repository/firestore/firebase.dart';
