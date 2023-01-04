@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/domain/firebase/battle.dart';
 import 'package:flutter_template/domain/firebase/party.dart';
+import 'package:flutter_template/feature/battle_suggest_state.dart';
 import 'package:flutter_template/repository/firestore/refs.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -90,15 +91,16 @@ class FirebaseRepository {
     required String userId,
     required List<String> divisorList,
     required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+    required BattleSuggestStatus status,
   }) async {
     var query = battlesRef(userId: userId)
-        .where('divisorList6', arrayContainsAny: divisorList)
+        .where(status.getQueryField(), arrayContainsAny: divisorList)
         .orderBy('createdAt', descending: true)
-        .limit(7);
+        .limit(kLimitLoadBattles);
     final qds = lastReadQueryDocumentSnapshot;
     if (qds != null) {
       query = query.startAfterDocument(qds);
     }
-    return query.get();
+    return await query.get();
   }
 }
