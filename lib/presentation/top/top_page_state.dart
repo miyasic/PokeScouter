@@ -51,7 +51,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return state.map((pokemon) => pokemon.name).toList();
   }
 
-  List<List<String>> _getPokemonDivisorList() {
+  List<List<String>> getPokemonDivisorList() {
     final primeNumbers =
         state.map((pokemon) => BigInt.parse(pokemon.primeNumber)).toList();
 
@@ -92,7 +92,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         userId: user.uid,
         name: title,
         partyNameList: _getPokemonNameList(),
-        divisorList: _getPokemonDivisorList(),
+        divisorList: getPokemonDivisorList(),
         memo: 'パーティめも',
         eachMemo: {});
     sharedPreferences.setString(kSharedPrefsPartyId, partyId);
@@ -120,10 +120,21 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         userId: user.uid,
         partyId: partyId,
         opponentParty: _getPokemonNameList(),
-        divisorList: _getPokemonDivisorList(),
+        divisorList: getPokemonDivisorList(),
         order: order,
         memo: memo,
         eachMemo: {},
         result: result.toString());
   }
+
+  // Future<List<Battle>> getBattle({required Function showLoginDialog}) async {
+  //   final user = _authController.state;
+  //   if (user == null) {
+  //     await showLoginDialog();
+  //     return [];
+  //   }
+  //   final divisorList = getPokemonDivisorList();
+  //
+  //   return await firebaseRepository.getBattle(user.uid, divisorList[0]);
+  // }
 }

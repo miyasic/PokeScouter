@@ -5,12 +5,20 @@ import '../../constants/text_style.dart';
 import '../../domain/firebase/battle.dart';
 
 class BattleWidget extends ConsumerWidget {
-  const BattleWidget({super.key, required this.battle});
+  const BattleWidget({super.key, required this.battle, this.pokemonNameList});
 
   final Battle battle;
+  final List<String>? pokemonNameList;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    bool isContains(String name) {
+      if (pokemonNameList == null) {
+        return false;
+      }
+      return pokemonNameList!.contains(name);
+    }
+
     return Card(
         child: Padding(
       padding: const EdgeInsets.all(4.0),
@@ -46,7 +54,9 @@ class BattleWidget extends ConsumerWidget {
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                       child: Text(
                         name,
-                        style: textStylePlain,
+                        style: textStylePlain.copyWith(
+                            color:
+                                isContains(name) ? Colors.black : Colors.red),
                       ),
                     ))
                 .toList(),
@@ -64,7 +74,10 @@ class BattleWidget extends ConsumerWidget {
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                       child: Text(
                         battle.opponentParty[index],
-                        style: textStylePlain,
+                        style: textStylePlain.copyWith(
+                            color: isContains(battle.opponentParty[index])
+                                ? Colors.black
+                                : Colors.red),
                       ),
                     ))
                 .toList(),
