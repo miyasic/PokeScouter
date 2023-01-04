@@ -12,7 +12,7 @@ class BattleSuggestPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pokemonListNotifier =
-        ref.read(pokemonListProvider(kPageNameBattleStart).notifier);
+        ref.read(pokemonListProvider(kPageNameBattleStart));
     final battleSuggestState = ref.watch(battleSuggestProvider);
     return Scaffold(
       appBar: AppBar(
@@ -28,6 +28,9 @@ class BattleSuggestPage extends ConsumerWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return BattleWidget(
                     battle: battleSuggestState.battles[index],
+                    pokemonNameList: pokemonListNotifier
+                        .map((pokemon) => pokemon.name)
+                        .toList(),
                   );
                 }),
           ),
