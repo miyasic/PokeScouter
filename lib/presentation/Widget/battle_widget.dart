@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/text_style.dart';
 import '../../domain/firebase/battle.dart';
-import '../../domain/firebase/party.dart';
 
 class BattleWidget extends ConsumerWidget {
   const BattleWidget({super.key, required this.battle, this.pokemonNameList});
