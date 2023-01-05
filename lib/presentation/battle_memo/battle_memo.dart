@@ -240,6 +240,7 @@ class BattleMemoPage extends HookConsumerWidget {
                       .read(pokemonListProvider(kPageNameBattleStart).notifier)
                       .setBattle(
                           memo: memoController.text,
+                          myPartyNameList: myOrderNameList.value,
                           opponentOrder: opponentOrder.value,
                           myOrder: myOrder.value,
                           result: result.value,

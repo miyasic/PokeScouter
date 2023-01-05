@@ -102,6 +102,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   setBattle(
       {required String memo,
+      required List<String> myPartyNameList,
       required List<int> opponentOrder,
       required List<int> myOrder,
       required BattleResult result,
@@ -121,6 +122,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         userId: user.uid,
         partyId: partyId,
         opponentParty: _getPokemonNameList(),
+        myParty: myPartyNameList,
         divisorList: getPokemonDivisorList(),
         opponentOrder: opponentOrder,
         myOrder: myOrder,
