@@ -9,10 +9,12 @@ part of 'battle.dart';
 _$_Battle _$$_BattleFromJson(Map<String, dynamic> json) => _$_Battle(
       userId: json['userId'] as String,
       battleId: json['battleId'] as String,
-      partyId: json['partyId'] as String?,
+      partyId: json['partyId'] as String,
       opponentParty: (json['opponentParty'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      myParty:
+          (json['myParty'] as List<dynamic>).map((e) => e as String).toList(),
       divisorList6: (json['divisorList6'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -49,6 +51,7 @@ Map<String, dynamic> _$$_BattleToJson(_$_Battle instance) => <String, dynamic>{
       'battleId': instance.battleId,
       'partyId': instance.partyId,
       'opponentParty': instance.opponentParty,
+      'myParty': instance.myParty,
       'divisorList6': instance.divisorList6,
       'divisorList5': instance.divisorList5,
       'divisorList4': instance.divisorList4,

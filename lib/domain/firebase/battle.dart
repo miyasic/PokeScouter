@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_template/util/union_timestamp.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../constants/firestore.dart';
 
@@ -14,8 +14,9 @@ class Battle with _$Battle {
   const factory Battle({
     required String userId,
     required String battleId,
-    String? partyId,
+    required String partyId,
     required List<String> opponentParty,
+    required List<String> myParty,
     required List<String> divisorList6,
     required List<String> divisorList5,
     required List<String> divisorList4,
