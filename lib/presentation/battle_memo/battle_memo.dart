@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/constants/firestore.dart';
 import 'package:flutter_template/constants/route_path.dart';
+import 'package:flutter_template/constants/shared_preferences.dart';
 import 'package:flutter_template/constants/text_style.dart';
+import 'package:flutter_template/feature/party.dart';
+import 'package:flutter_template/presentation/Widget/party_widget.dart';
+import 'package:flutter_template/repository/shared_preferences.dart';
 import 'package:flutter_template/scaffold_messenger.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -96,6 +100,29 @@ class BattleMemoPage extends HookConsumerWidget {
               },
               childCount: opponentOrder.value.length,
             )),
+            SliverList(
+                delegate: SliverChildListDelegate([
+              Text(
+                '自分のパーティ',
+                style: textStyleBold,
+              ),
+              ref.watch(partyFutureProvider).when(
+                    data: (party) {
+                      if (party == null) {
+                        return const Text("パーティが選択されていません");
+                      }
+                      return PartyWidget(party, false);
+                      // return PartyWidget(party, false);
+                    },
+                    error: (e, __) {
+                      return const SizedBox(
+                        child: Text("error"),
+                      );
+                    },
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                  )
+            ])),
             SliverList(
                 delegate: SliverChildListDelegate([
               Text(

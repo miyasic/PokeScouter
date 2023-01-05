@@ -75,6 +75,11 @@ class FirebaseRepository {
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
   }
 
+  Future<Party?> fetchParty(String userId, String partyId) async {
+    final qs = await partyRef(userId: userId, partyId: partyId).get();
+    return qs.data();
+  }
+
   Future<QuerySnapshot<Battle>> loadBattles(
     String userId, {
     required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
