@@ -117,7 +117,7 @@ class BattleMemoPage extends HookConsumerWidget {
                       (BuildContext context, int index) {
                         final pokemon = ref
                             .read(pokemonSuggestStateProvider.notifier)
-                            .getPokemon(party!.partyNameList[index]);
+                            .getPokemon(party.partyNameList[index]);
                         return Padding(
                           padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
                           child: InkWell(
@@ -126,7 +126,7 @@ class BattleMemoPage extends HookConsumerWidget {
                                   myOrder.value = [...myOrder.value, index];
                                   myOrderNameList.value = [
                                     ...myOrderNameList.value,
-                                    party!.partyNameList[index]
+                                    party.partyNameList[index]
                                   ];
                                 } else {
                                   ref
@@ -253,8 +253,10 @@ class BattleMemoPage extends HookConsumerWidget {
                                 function: () {
                                   context.push(kPagePathLogin);
                                 });
+                          },
+                          onComplete: () {
+                            context.go(kPagePathBattleStart);
                           });
-                  context.go(kPagePathBattleStart);
                 },
                 child: const Text("対戦を登録する"),
               )

@@ -106,7 +106,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
       required List<int> opponentOrder,
       required List<int> myOrder,
       required BattleResult result,
-      required Function showLoginDialog}) async {
+      required Function showLoginDialog,
+      required Function onComplete}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
@@ -132,5 +133,6 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     // 登録成功した場合の処理
     state = [];
     scaffoldMessengerHelper.showSnackBar('登録しました。');
+    onComplete();
   }
 }
