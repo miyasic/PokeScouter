@@ -235,8 +235,8 @@ class BattleMemoPage extends HookConsumerWidget {
                 ],
               ),
               ElevatedButton(
-                onPressed: () {
-                  ref
+                onPressed: () async {
+                  await ref
                       .read(pokemonListProvider(kPageNameBattleStart).notifier)
                       .setBattle(
                           memo: memoController.text,
@@ -254,6 +254,7 @@ class BattleMemoPage extends HookConsumerWidget {
                                   context.push(kPagePathLogin);
                                 });
                           });
+                  context.go(kPagePathBattleStart);
                 },
                 child: const Text("対戦を登録する"),
               )
