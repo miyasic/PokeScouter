@@ -72,6 +72,7 @@ class BattleStartPage extends HookConsumerWidget {
                 ? null
                 : () {
                     context.push(kPagePathBattleSuggest);
+                    primaryFocus?.unfocus();
                   },
             child: const Text("過去の対戦"),
           ),
