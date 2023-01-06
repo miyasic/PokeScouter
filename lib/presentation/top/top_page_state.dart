@@ -131,6 +131,6 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         result: result.toString());
     // 登録成功した場合の処理
     state = [];
-    await scaffoldMessengerHelper.showSnackBar('登録しました。');
+    scaffoldMessengerHelper.showSnackBar('登録しました。');
   }
 }
