@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/shared_preferences.dart';
-import 'package:flutter_template/router.dart';
-import 'package:flutter_template/scaffold_messenger.dart';
-import 'package:flutter_template/theme.dart';
-import 'package:flutter_template/util/pokemon_suggest.dart';
-import 'package:flutter_template/util/provider_logger.dart';
+import 'package:poke_scouter/repository/shared_preferences.dart';
+import 'package:poke_scouter/router.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
+import 'package:poke_scouter/theme.dart';
+import 'package:poke_scouter/util/pokemon_suggest.dart';
+import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';

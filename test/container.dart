@@ -1,5 +1,5 @@
-import 'package:flutter_template/repository/firestore/firebase.dart';
-import 'package:flutter_template/util/pokemon_suggest.dart';
+import 'package:poke_scouter/repository/firestore/firebase.dart';
+import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

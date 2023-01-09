@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:146699168008:android:aebc66258b21c0dcfa64bd",
+        "mobilesdk_app_id": "1:146699168008:android:a9b0e80ca537d30efa64bd",
         "android_client_info": {
-          "package_name": "com.example.flutter_template"
+          "package_name": "com.google.sepak.kou.poke_scouter"
         }
       },
       "oauth_client": [

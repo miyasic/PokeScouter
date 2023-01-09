@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_template/constants/firestore.dart';
-import 'package:flutter_template/domain/firebase/battle.dart';
-import 'package:flutter_template/domain/firebase/party.dart';
-import 'package:flutter_template/feature/battle_suggest_state.dart';
-import 'package:flutter_template/repository/firestore/refs.dart';
+import 'package:poke_scouter/constants/firestore.dart';
+import 'package:poke_scouter/domain/firebase/battle.dart';
+import 'package:poke_scouter/domain/firebase/party.dart';
+import 'package:poke_scouter/feature/battle_suggest_state.dart';
+import 'package:poke_scouter/repository/firestore/refs.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final firebaseRepositoryProvider =
