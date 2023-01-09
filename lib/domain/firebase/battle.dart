@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:poke_scouter/util/union_timestamp.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../constants/firestore.dart';
 
@@ -14,15 +14,17 @@ class Battle with _$Battle {
   const factory Battle({
     required String userId,
     required String battleId,
-    String? partyId,
+    required String partyId,
     required List<String> opponentParty,
+    required List<String> myParty,
     required List<String> divisorList6,
     required List<String> divisorList5,
     required List<String> divisorList4,
     required List<String> divisorList3,
     required List<String> divisorList2,
     required List<String> divisorList1,
-    required List<int> order,
+    required List<int> opponentOrder,
+    required List<int> myOrder,
     required String memo,
     required Map<String, String> eachMemo,
     required String result,

@@ -68,9 +68,12 @@ class BattleStartPage extends HookConsumerWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              context.push(kPagePathBattleSuggest);
-            },
+            onPressed: pokemonListState.isEmpty
+                ? null
+                : () {
+                    context.push(kPagePathBattleSuggest);
+                    primaryFocus?.unfocus();
+                  },
             child: const Text("過去の対戦"),
           ),
         ],

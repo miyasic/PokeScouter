@@ -20,20 +20,6 @@ class FirebaseRepositoryMock implements FirebaseRepository {
   }
 
   @override
-  Future setBattle(
-      {required String userId,
-      required String partyId,
-      required List<String> opponentParty,
-      required List<List<String>> divisorList,
-      required List<int> order,
-      required String memo,
-      required Map<String, String> eachMemo,
-      required String result}) {
-    // TODO: implement setBattle
-    throw UnimplementedError();
-  }
-
-  @override
   Future<String> setParty(
       {required String userId,
       required String name,
@@ -59,6 +45,28 @@ class FirebaseRepositoryMock implements FirebaseRepository {
       required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
       required BattleSuggestStatus status}) {
     // TODO: implement loadBattlesWithDivisorList
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Party?> fetchParty(String userId, String partyId) {
+    // TODO: implement fetchParty
+    throw UnimplementedError();
+  }
+
+  @override
+  Future setBattle(
+      {required String userId,
+      required String partyId,
+      required List<String> opponentParty,
+      required List<String> myParty,
+      required List<List<String>> divisorList,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
+      required String memo,
+      required Map<String, String> eachMemo,
+      required String result}) {
+    // TODO: implement setBattle
     throw UnimplementedError();
   }
 }
