@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/constants/text_style.dart';
+import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/constants/text_style.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class NextPage extends ConsumerWidget {

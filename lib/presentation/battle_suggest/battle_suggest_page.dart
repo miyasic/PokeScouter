@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/feature/battle_suggest.dart';
-import 'package:flutter_template/presentation/Widget/battle_widget.dart';
-import 'package:flutter_template/presentation/top/top_page_state.dart';
+import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/feature/battle_suggest.dart';
+import 'package:poke_scouter/presentation/Widget/battle_widget.dart';
+import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
