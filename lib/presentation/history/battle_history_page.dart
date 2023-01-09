@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/text_style.dart';
-import 'package:flutter_template/feature/battle_history.dart';
-import 'package:flutter_template/presentation/Widget/battle_widget.dart';
-import 'package:flutter_template/providers/auth_controller.dart';
+import 'package:poke_scouter/constants/text_style.dart';
+import 'package:poke_scouter/feature/battle_history.dart';
+import 'package:poke_scouter/presentation/Widget/battle_widget.dart';
+import 'package:poke_scouter/providers/auth_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BattleHistoryPage extends ConsumerWidget {

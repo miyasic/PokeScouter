@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:poke_scouter/util/union_timestamp.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_template/util/union_timestamp.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../constants/firestore.dart';

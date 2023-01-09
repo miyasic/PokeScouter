@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/presentation/login/user_state_provider.dart';
-import 'package:flutter_template/providers/auth_controller.dart';
+import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/presentation/login/user_state_provider.dart';
+import 'package:poke_scouter/providers/auth_controller.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LoginPage extends HookConsumerWidget {
