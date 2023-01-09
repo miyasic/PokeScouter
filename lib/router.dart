@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/provider_name.dart';
-import 'package:flutter_template/presentation/Widget/tab.dart';
-import 'package:flutter_template/presentation/battle_memo/battle_memo.dart';
-import 'package:flutter_template/presentation/battle_start/battle_start_page.dart';
-import 'package:flutter_template/presentation/battle_suggest/battle_suggest_page.dart';
-import 'package:flutter_template/presentation/history/history_page.dart';
-import 'package:flutter_template/presentation/login/login_page.dart';
-import 'package:flutter_template/presentation/party_register/party_register_page.dart';
-import 'package:flutter_template/presentation/top/top_page.dart';
+import 'package:poke_scouter/constants/provider_name.dart';
+import 'package:poke_scouter/presentation/Widget/tab.dart';
+import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
+import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
+import 'package:poke_scouter/presentation/battle_suggest/battle_suggest_page.dart';
+import 'package:poke_scouter/presentation/history/history_page.dart';
+import 'package:poke_scouter/presentation/login/login_page.dart';
+import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
+import 'package:poke_scouter/presentation/top/top_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

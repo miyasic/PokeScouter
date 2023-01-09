@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_template/util/logger.dart';
+import 'package:poke_scouter/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final authRepositoryProvider =

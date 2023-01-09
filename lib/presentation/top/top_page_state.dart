@@ -1,10 +1,10 @@
-import 'package:flutter_template/constants/firestore.dart';
-import 'package:flutter_template/constants/shared_preferences.dart';
-import 'package:flutter_template/domain/pokemon.dart';
-import 'package:flutter_template/providers/auth_controller.dart';
-import 'package:flutter_template/repository/firestore/firebase.dart';
-import 'package:flutter_template/repository/shared_preferences.dart';
-import 'package:flutter_template/scaffold_messenger.dart';
+import 'package:poke_scouter/constants/firestore.dart';
+import 'package:poke_scouter/constants/shared_preferences.dart';
+import 'package:poke_scouter/domain/pokemon.dart';
+import 'package:poke_scouter/providers/auth_controller.dart';
+import 'package:poke_scouter/repository/firestore/firebase.dart';
+import 'package:poke_scouter/repository/shared_preferences.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
