@@ -5,11 +5,14 @@ import 'package:poke_scouter/constants/text_style.dart';
 import '../../domain/pokemon.dart';
 
 class PokemonWidget extends HookWidget {
-  const PokemonWidget(this.pokemon, {super.key});
+  const PokemonWidget(this.pokemon, {super.key, this.initialFolded = false});
+
   final Pokemon pokemon;
+  final bool initialFolded;
+
   @override
   Widget build(BuildContext context) {
-    final folded = useState(false);
+    final folded = useState(initialFolded);
     String formatNumbers(String num) {
       const spaceLater = "  ";
       return spaceLater * (3 - num.length) + num;

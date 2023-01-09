@@ -41,8 +41,10 @@ class FirebaseRepository {
       {required String userId,
       required String partyId,
       required List<String> opponentParty,
+      required List<String> myParty,
       required List<List<String>> divisorList,
-      required List<int> order,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
       required String memo,
       required Map<String, String> eachMemo,
       required String result}) async {
@@ -52,13 +54,15 @@ class FirebaseRepository {
         partyId: partyId,
         battleId: battleDoc.id,
         opponentParty: opponentParty,
+        myParty: myParty,
         divisorList6: divisorList[0],
         divisorList5: divisorList[1],
         divisorList4: divisorList[2],
         divisorList3: divisorList[3],
         divisorList2: divisorList[4],
         divisorList1: divisorList[5],
-        order: order,
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
         memo: memo,
         eachMemo: eachMemo,
         result: result);
@@ -71,6 +75,11 @@ class FirebaseRepository {
         .snapshots();
     return collectionStream
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
+  }
+
+  Future<Party?> fetchParty(String userId, String partyId) async {
+    final qs = await partyRef(userId: userId, partyId: partyId).get();
+    return qs.data();
   }
 
   Future<QuerySnapshot<Battle>> loadBattles(
