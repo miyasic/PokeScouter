@@ -5,16 +5,16 @@ class MyPageTile extends StatelessWidget {
   const MyPageTile(
       {Key? key,
       required this.title,
-      this.selectedLabel = '',
       required this.icons,
       required this.iconColor,
+      this.trailing,
       required this.onTap})
       : super(key: key);
   final String title;
-  final String selectedLabel;
   final IconData icons;
   final MaterialColor iconColor;
   final Function onTap;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,8 @@ class MyPageTile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundColor: iconColor.shade50,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Icon(
                         icons,
                         color: iconColor,
@@ -38,13 +38,18 @@ class MyPageTile extends StatelessWidget {
                     Text(title, style: textStylePlain),
                   ],
                 ),
-                const Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  color: Colors.grey,
-                )
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: trailing == null
+                      ? const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.grey,
+                        )
+                      : trailing!,
+                ),
               ],
             ),
-            Divider(),
+            const Divider(),
           ],
         ),
       ),

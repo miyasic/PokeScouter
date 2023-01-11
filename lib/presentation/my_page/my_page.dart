@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/presentation/Widget/my_page_widget.dart';
 import 'package:poke_scouter/presentation/login/user_state_provider.dart';
+import 'package:poke_scouter/theme.dart';
 
 import '../../providers/auth_controller.dart';
 
@@ -19,7 +20,7 @@ class MyPage extends ConsumerWidget {
         ),
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             userState.when(
@@ -60,9 +61,13 @@ class MyPage extends ConsumerWidget {
             ),
             MyPageTile(
                 title: 'ダークモード',
-                icons: Icons.add,
+                icons: ref.watch(themeModeProvider).getIcon(),
                 iconColor: Colors.grey,
-                onTap: () {}),
+                trailing: const SizedBox(),
+                onTap: () {
+                  final state = ref.read(themeModeProvider.notifier).state;
+                  ref.read(themeModeProvider.notifier).state = state.getNext();
+                }),
             MyPageTile(
                 title: 'パーティ登録',
                 icons: Icons.add,
