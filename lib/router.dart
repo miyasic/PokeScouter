@@ -8,11 +8,11 @@ import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
 import 'package:poke_scouter/presentation/battle_suggest/battle_suggest_page.dart';
 import 'package:poke_scouter/presentation/history/history_page.dart';
 import 'package:poke_scouter/presentation/login/login_page.dart';
+import 'package:poke_scouter/presentation/my_page/my_page.dart';
 import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
 import 'package:poke_scouter/presentation/top/top_page.dart';
 
 import 'constants/route_path.dart';
-import 'presentation/next/next_page.dart';
 
 final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'shell');
