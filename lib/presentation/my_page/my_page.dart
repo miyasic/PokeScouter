@@ -28,7 +28,7 @@ class MyPage extends ConsumerWidget {
                 if (data != null) {
                   return MyPageTile(
                       title: 'ログアウト',
-                      icons: Icons.add,
+                      icons: Icons.logout,
                       iconColor: Colors.grey,
                       onTap: () {
                         ref.read(authControllerProvider.notifier).signOut();
@@ -37,7 +37,7 @@ class MyPage extends ConsumerWidget {
                 // 未ログインの場合
                 return MyPageTile(
                     title: 'ログイン・新規会員登録',
-                    icons: Icons.add,
+                    icons: Icons.login,
                     iconColor: Colors.grey,
                     onTap: () {
                       context.push(kPagePathLogin);
