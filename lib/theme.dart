@@ -10,3 +10,27 @@ final themeProvider = Provider.family<ThemeData, Brightness>((ref, brightness) {
 }, name: kProviderNameTheme);
 
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.system);
+
+extension Extension on ThemeMode {
+  ThemeMode getNext() {
+    switch (this) {
+      case ThemeMode.system:
+        return ThemeMode.light;
+      case ThemeMode.light:
+        return ThemeMode.dark;
+      case ThemeMode.dark:
+        return ThemeMode.system;
+    }
+  }
+
+  IconData getIcon() {
+    switch (this) {
+      case ThemeMode.system:
+        return Icons.brightness_medium;
+      case ThemeMode.light:
+        return Icons.light_mode;
+      case ThemeMode.dark:
+        return Icons.dark_mode;
+    }
+  }
+}
