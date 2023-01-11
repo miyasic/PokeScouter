@@ -1,5 +1,5 @@
 const kPageNameTop = "トップページ";
-const kPageNameNext = "次のページ";
+const kPageNameMy = "マイページ";
 const kPageNameLogin = "ログインページ";
 const kPageNameHistory = "履歴";
 const kPageNameBattleHistory = "対戦履歴";
@@ -10,7 +10,7 @@ const kPageNameBattleSuggest = "過去の対戦";
 const kPageNameBattleMemo = "対戦情報登録";
 
 const kPagePathTop = "/battle";
-const kPagePathNext = "/next";
+const kPagePathMy = "/mypage";
 const kPagePathLogin = "/login";
 const kPagePathHistory = "/history";
 const kPagePathPartyRegister = "/party_register";

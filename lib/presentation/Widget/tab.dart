@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
 import '../../constants/route_path.dart';
 
 class ScaffoldWithNavBar extends StatelessWidget {
@@ -41,7 +42,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith(kPagePathHistory)) {
       return 1;
     }
-    if (location.startsWith(kPagePathNext)) {
+    if (location.startsWith(kPagePathMy)) {
       return 2;
     }
     return 0;
@@ -56,7 +57,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
         context.go(kPagePathHistory);
         break;
       case 2:
-        context.go(kPagePathNext);
+        context.go(kPagePathMy);
         break;
     }
   }

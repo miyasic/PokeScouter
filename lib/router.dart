@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/provider_name.dart';
 import 'package:poke_scouter/presentation/Widget/tab.dart';
 import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
@@ -8,8 +10,6 @@ import 'package:poke_scouter/presentation/history/history_page.dart';
 import 'package:poke_scouter/presentation/login/login_page.dart';
 import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
 import 'package:poke_scouter/presentation/top/top_page.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'constants/route_path.dart';
 import 'presentation/next/next_page.dart';
@@ -47,10 +47,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                   return const HistoryPage();
                 }),
             GoRoute(
-              name: kPageNameNext,
-              path: kPagePathNext,
+              name: kPageNameMy,
+              path: kPagePathMy,
               builder: (BuildContext context, GoRouterState state) {
-                return const NextPage();
+                return const MyPage();
               },
             ),
           ]),
