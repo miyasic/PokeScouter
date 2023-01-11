@@ -72,17 +72,25 @@ class LoginPage extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
-                      onPressed: () {
-                        ref
-                            .read(authControllerProvider.notifier)
-                            .signIn(emailController.text, passController.text);
+                      onPressed: () async {
+                        final navigator = Navigator.of(context);
+                        await ref.read(authControllerProvider.notifier).signIn(
+                            email: emailController.text,
+                            password: passController.text,
+                            onCompleted: () {
+                              navigator.pop();
+                            });
                       },
                       child: const Text('ログイン')),
                   ElevatedButton(
-                      onPressed: () {
-                        ref
-                            .read(authControllerProvider.notifier)
-                            .signUp(emailController.text, passController.text);
+                      onPressed: () async {
+                        final navigator = Navigator.of(context);
+                        await ref.read(authControllerProvider.notifier).signUp(
+                            email: emailController.text,
+                            password: passController.text,
+                            onCompleted: () {
+                              navigator.pop();
+                            });
                       },
                       child: const Text('新規登録')),
                 ],
