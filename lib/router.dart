@@ -44,7 +44,14 @@ final routerProvider = Provider<GoRouter>((ref) {
                 name: kPageNameHistory,
                 path: kPagePathHistory,
                 builder: (BuildContext context, GoRouterState state) {
-                  return const HistoryPage();
+                  final id = state.params['id'];
+                  if (id == null) {
+                    return const HistoryPage();
+                  }
+                  final index = int.parse(id);
+                  return HistoryPage(
+                    initialIndex: index,
+                  );
                 }),
             GoRoute(
               name: kPageNameMy,
