@@ -39,7 +39,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith(kPagePathBattleStart)) {
       return 0;
     }
-    if (location.startsWith(kPagePathHistory)) {
+    if (location.startsWith(kPagePathHistory0)) {
       return 1;
     }
     if (location.startsWith(kPagePathMy)) {
@@ -54,7 +54,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
         context.go(kPagePathBattleStart);
         break;
       case 1:
-        context.go(kPagePathHistory);
+        context.go(kPagePathHistory0);
         break;
       case 2:
         context.go(kPagePathMy);

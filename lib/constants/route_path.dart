@@ -12,7 +12,10 @@ const kPageNameBattleMemo = "対戦情報登録";
 const kPagePathTop = "/battle";
 const kPagePathMy = "/mypage";
 const kPagePathLogin = "/login";
-const kPagePathHistory = "/history";
+const kPagePathHistory = "/history/:id";
+const kPagePathHistory0 = "/history/0";
+const kPagePathHistory1 = "/history/1";
+
 const kPagePathPartyRegister = "/party_register";
 const kPagePathBattleStart = "/battle/start";
 const kPagePathBattleSuggest = "/battle/suggest";
