@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
-import 'package:poke_scouter/presentation/Widget/my_page_widget.dart';
 import 'package:poke_scouter/presentation/login/user_state_provider.dart';
-import 'package:poke_scouter/providers/version_provider.dart';
-import 'package:poke_scouter/theme.dart';
 
 import '../../providers/auth_controller.dart';
+import '../../providers/version_provider.dart';
+import '../../theme.dart';
+import '../Widget/my_page_widget.dart';
 
 class MyPage extends ConsumerWidget {
   const MyPage({super.key});
@@ -46,18 +46,18 @@ class MyPage extends ConsumerWidget {
                     });
               },
               error: (_, __) {
-                return const Scaffold(
-                  body: Center(
-                    child: Text('エラーだよ'),
-                  ),
-                );
+                return MyPageTile(
+                    title: 'ログイン状態取得失敗',
+                    icons: Icons.logout,
+                    iconColor: Colors.red,
+                    onTap: () {});
               },
               loading: () {
-                return const Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return MyPageTile(
+                    title: 'ログイン状態取得中',
+                    icons: Icons.logout,
+                    iconColor: Colors.grey,
+                    onTap: () {});
               },
             ),
             MyPageTile(
