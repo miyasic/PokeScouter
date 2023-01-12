@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_template/constants/firestore.dart';
-import 'package:flutter_template/domain/firebase/battle.dart';
-import 'package:flutter_template/domain/firebase/party.dart';
-import 'package:flutter_template/repository/firestore/refs.dart';
+import 'package:poke_scouter/constants/firestore.dart';
+import 'package:poke_scouter/domain/firebase/battle.dart';
+import 'package:poke_scouter/domain/firebase/party.dart';
+import 'package:poke_scouter/feature/battle_suggest_state.dart';
+import 'package:poke_scouter/repository/firestore/refs.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final firebaseRepositoryProvider =
@@ -40,8 +41,10 @@ class FirebaseRepository {
       {required String userId,
       required String partyId,
       required List<String> opponentParty,
+      required List<String> myParty,
       required List<List<String>> divisorList,
-      required List<int> order,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
       required String memo,
       required Map<String, String> eachMemo,
       required String result}) async {
@@ -51,13 +54,15 @@ class FirebaseRepository {
         partyId: partyId,
         battleId: battleDoc.id,
         opponentParty: opponentParty,
+        myParty: myParty,
         divisorList6: divisorList[0],
         divisorList5: divisorList[1],
         divisorList4: divisorList[2],
         divisorList3: divisorList[3],
         divisorList2: divisorList[4],
         divisorList1: divisorList[5],
-        order: order,
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
         memo: memo,
         eachMemo: eachMemo,
         result: result);
@@ -70,5 +75,41 @@ class FirebaseRepository {
         .snapshots();
     return collectionStream
         .map((qs) => qs.docs.map((qds) => qds.data()).toList());
+  }
+
+  Future<Party?> fetchParty(String userId, String partyId) async {
+    final qs = await partyRef(userId: userId, partyId: partyId).get();
+    return qs.data();
+  }
+
+  Future<QuerySnapshot<Battle>> loadBattles(
+    String userId, {
+    required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+  }) async {
+    var query = battlesRef(userId: userId)
+        .orderBy(kFieldBattleCreatedAt, descending: true)
+        .limit(7);
+    final qds = lastReadQueryDocumentSnapshot;
+    if (qds != null) {
+      query = query.startAfterDocument(qds);
+    }
+    return query.get();
+  }
+
+  Future<QuerySnapshot<Battle>> loadBattlesWithDivisorList({
+    required String userId,
+    required List<String> divisorList,
+    required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+    required BattleSuggestStatus status,
+  }) async {
+    var query = battlesRef(userId: userId)
+        .where(status.getQueryField(), arrayContainsAny: divisorList)
+        .orderBy('createdAt', descending: true)
+        .limit(kLimitLoadBattles);
+    final qds = lastReadQueryDocumentSnapshot;
+    if (qds != null) {
+      query = query.startAfterDocument(qds);
+    }
+    return await query.get();
   }
 }

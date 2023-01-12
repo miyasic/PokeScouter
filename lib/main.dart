@@ -1,14 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/repository/shared_preferences.dart';
-import 'package:flutter_template/router.dart';
-import 'package:flutter_template/scaffold_messenger.dart';
-import 'package:flutter_template/theme.dart';
-import 'package:flutter_template/util/pokemon_suggest.dart';
-import 'package:flutter_template/util/provider_logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:poke_scouter/repository/shared_preferences.dart';
+import 'package:poke_scouter/router.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
+import 'package:poke_scouter/theme.dart';
+import 'package:poke_scouter/util/pokemon_suggest.dart';
+import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
 
 Future main() async {
@@ -34,6 +35,7 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final lightTheme = ref.watch(themeProvider(Brightness.light));
     final darkTheme = ref.watch(themeProvider(Brightness.dark));
+    final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       routeInformationProvider: router.routeInformationProvider,
@@ -41,6 +43,7 @@ class MyApp extends ConsumerWidget {
       routeInformationParser: router.routeInformationParser,
       theme: lightTheme,
       darkTheme: darkTheme,
+      themeMode: themeMode,
     );
   }
 }

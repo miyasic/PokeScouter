@@ -1,10 +1,10 @@
-import 'package:flutter_template/constants/firestore.dart';
-import 'package:flutter_template/constants/shared_preferences.dart';
-import 'package:flutter_template/domain/pokemon.dart';
-import 'package:flutter_template/providers/auth_controller.dart';
-import 'package:flutter_template/repository/firestore/firebase.dart';
-import 'package:flutter_template/repository/shared_preferences.dart';
-import 'package:flutter_template/scaffold_messenger.dart';
+import 'package:poke_scouter/constants/firestore.dart';
+import 'package:poke_scouter/constants/shared_preferences.dart';
+import 'package:poke_scouter/domain/pokemon.dart';
+import 'package:poke_scouter/providers/auth_controller.dart';
+import 'package:poke_scouter/repository/firestore/firebase.dart';
+import 'package:poke_scouter/repository/shared_preferences.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
@@ -51,7 +51,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
     return state.map((pokemon) => pokemon.name).toList();
   }
 
-  List<List<String>> _getPokemonDivisorList() {
+  List<List<String>> getPokemonDivisorList() {
     final primeNumbers =
         state.map((pokemon) => BigInt.parse(pokemon.primeNumber)).toList();
 
@@ -92,7 +92,7 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         userId: user.uid,
         name: title,
         partyNameList: _getPokemonNameList(),
-        divisorList: _getPokemonDivisorList(),
+        divisorList: getPokemonDivisorList(),
         memo: 'パーティめも',
         eachMemo: {});
     sharedPreferences.setString(kSharedPrefsPartyId, partyId);
@@ -102,9 +102,12 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   setBattle(
       {required String memo,
-      required List<int> order,
+      required List<String> myPartyNameList,
+      required List<int> opponentOrder,
+      required List<int> myOrder,
       required BattleResult result,
-      required Function showLoginDialog}) async {
+      required Function showLoginDialog,
+      required Function onComplete}) async {
     final user = _authController.state;
     if (user == null) {
       await showLoginDialog();
@@ -120,10 +123,16 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
         userId: user.uid,
         partyId: partyId,
         opponentParty: _getPokemonNameList(),
-        divisorList: _getPokemonDivisorList(),
-        order: order,
+        myParty: myPartyNameList,
+        divisorList: getPokemonDivisorList(),
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
         memo: memo,
         eachMemo: {},
         result: result.toString());
+    // 登録成功した場合の処理
+    state = [];
+    scaffoldMessengerHelper.showSnackBar('登録しました。');
+    onComplete();
   }
 }

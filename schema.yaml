@@ -6,15 +6,17 @@ User:
     Battle:
       userId: String
       matchId: String
-      partyId: String?
+      partyId: String
       opponentParty: List<String>
+      myParty: List<String>
+      opponentOrder: List<int>
+      myOrder: List<int>
       divisorList6: List<String>
       divisorList5: List<String>
       divisorList4: List<String>
       divisorList3: List<String>
       divisorList2: List<String>
       divisorList1: List<String>
-      order: List<int>
       memo: String
       eachMemo: Map<String,String>
       result: String

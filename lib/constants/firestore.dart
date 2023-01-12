@@ -11,6 +11,15 @@ const kFieldPartyId = 'partyId';
 const kFieldPartyCreatedAt = 'createdAt';
 // battle
 const kFieldBattleId = 'battleId';
+const kFieldBattleCreatedAt = 'createdAt';
+const kFieldDivisorList6 = 'divisorList6';
+const kFieldDivisorList5 = 'divisorList5';
+const kFieldDivisorList4 = 'divisorList4';
+const kFieldDivisorList3 = 'divisorList3';
+const kFieldDivisorList2 = 'divisorList2';
+const kFieldDivisorList1 = 'divisorList1';
+
+const kLimitLoadBattles = 7;
 
 /// enum
 enum BattleResult {
