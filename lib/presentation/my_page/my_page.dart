@@ -72,7 +72,9 @@ class MyPage extends ConsumerWidget {
                 title: 'パーティ登録',
                 icons: Icons.add,
                 iconColor: Colors.grey,
-                onTap: () {}),
+                onTap: () {
+                  context.go(kPagePathFullPartyRegister);
+                }),
           ],
         ));
   }

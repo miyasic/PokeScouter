@@ -16,7 +16,8 @@ const kPagePathHistory = "/history/:id";
 const kPagePathHistory0 = "/history/0";
 const kPagePathHistory1 = "/history/1";
 
-const kPagePathPartyRegister = "/party_register";
+const kPagePathFullPartyRegister = "/history/1/party_register";
+const kPagePathSubPartyRegister = "party_register";
 const kPagePathBattleStart = "/battle/start";
 const kPagePathBattleSuggest = "/battle/suggest";
 const kPagePathBattleMemo = "/battle/memo";

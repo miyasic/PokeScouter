@@ -42,6 +42,9 @@ class ScaffoldWithNavBar extends StatelessWidget {
     if (location.startsWith(kPagePathHistory0)) {
       return 1;
     }
+    if (location.startsWith(kPagePathHistory1)) {
+      return 1;
+    }
     if (location.startsWith(kPagePathMy)) {
       return 2;
     }
