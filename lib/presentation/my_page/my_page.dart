@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/presentation/Widget/my_page_widget.dart';
 import 'package:poke_scouter/presentation/login/user_state_provider.dart';
+import 'package:poke_scouter/providers/version_provider.dart';
 import 'package:poke_scouter/theme.dart';
 
 import '../../providers/auth_controller.dart';
@@ -72,6 +73,20 @@ class MyPage extends ConsumerWidget {
                 title: 'パーティ登録',
                 icons: Icons.add,
                 iconColor: Colors.grey,
+                onTap: () {
+                  context.go(kPagePathFullPartyRegister);
+                }),
+            MyPageTile(
+                title: 'アプリバージョン',
+                icons: Icons.update,
+                iconColor: Colors.grey,
+                trailing: ref.watch(versionProvider).when(data: (data) {
+                  return Text(data.version);
+                }, error: (e, __) {
+                  return const Text("バージョン情報が取得できませんでした。");
+                }, loading: () {
+                  return const Text("バージョン情報を取得しています。");
+                }),
                 onTap: () {
                   context.go(kPagePathFullPartyRegister);
                 }),
