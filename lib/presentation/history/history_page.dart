@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_template/constants/route_path.dart';
-import 'package:flutter_template/presentation/history/battle_history_page.dart';
-import 'package:flutter_template/presentation/history/party_list_page.dart';
+import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/presentation/history/battle_history_page.dart';
+import 'package:poke_scouter/presentation/history/party_list_page.dart';
 
 class HistoryPage extends HookWidget {
-  const HistoryPage({super.key});
+  const HistoryPage({super.key, this.initialIndex = 0});
+
+  final int initialIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,8 @@ class HistoryPage extends HookWidget {
         text: kPageNamePartyList,
       ),
     ];
-    final tabController = useTabController(initialLength: tabs.length);
+    final tabController = useTabController(
+        initialLength: tabs.length, initialIndex: initialIndex);
     return Scaffold(
       appBar: AppBar(
           title: const Text(kPageNameHistory),

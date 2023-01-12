@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constants/provider_name.dart';
-import 'package:flutter_template/presentation/Widget/tab.dart';
-import 'package:flutter_template/presentation/battle_memo/battle_memo.dart';
-import 'package:flutter_template/presentation/battle_start/battle_start_page.dart';
-import 'package:flutter_template/presentation/battle_suggest/battle_suggest_page.dart';
-import 'package:flutter_template/presentation/history/history_page.dart';
-import 'package:flutter_template/presentation/login/login_page.dart';
-import 'package:flutter_template/presentation/party_register/party_register_page.dart';
-import 'package:flutter_template/presentation/top/top_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/constants/provider_name.dart';
+import 'package:poke_scouter/presentation/Widget/tab.dart';
+import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
+import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
+import 'package:poke_scouter/presentation/battle_suggest/battle_suggest_page.dart';
+import 'package:poke_scouter/presentation/history/history_page.dart';
+import 'package:poke_scouter/presentation/login/login_page.dart';
+import 'package:poke_scouter/presentation/my_page/my_page.dart';
+import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
 
 import 'constants/route_path.dart';
-import 'presentation/next/next_page.dart';
 
 final GlobalKey<NavigatorState> _shellNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'shell');
@@ -28,29 +27,38 @@ final routerProvider = Provider<GoRouter>((ref) {
           },
           routes: [
             GoRoute(
-              name: kPageNameTop,
-              path: kPagePathTop,
-              builder: (BuildContext context, GoRouterState state) {
-                return const TopPage();
-              },
-            ),
-            GoRoute(
                 name: kPageNameBattleStart,
                 path: kPagePathBattleStart,
                 builder: (BuildContext context, GoRouterState state) {
                   return const BattleStartPage();
                 }),
             GoRoute(
-                name: kPageNameHistory,
-                path: kPagePathHistory,
-                builder: (BuildContext context, GoRouterState state) {
-                  return const HistoryPage();
-                }),
-            GoRoute(
-              name: kPageNameNext,
-              path: kPagePathNext,
+              name: kPageNameHistory,
+              path: kPagePathHistory,
               builder: (BuildContext context, GoRouterState state) {
-                return const NextPage();
+                final id = state.params['id'];
+                if (id == null) {
+                  return const HistoryPage();
+                }
+                final index = int.parse(id);
+                return HistoryPage(
+                  initialIndex: index,
+                );
+              },
+              routes: <GoRoute>[
+                GoRoute(
+                    name: kPageNamePartyRegister,
+                    path: kPagePathSubPartyRegister,
+                    builder: (BuildContext context, GoRouterState state) {
+                      return const PartyRegisterPage();
+                    }),
+              ],
+            ),
+            GoRoute(
+              name: kPageNameMy,
+              path: kPagePathMy,
+              builder: (BuildContext context, GoRouterState state) {
+                return const MyPage();
               },
             ),
           ]),
@@ -61,17 +69,12 @@ final routerProvider = Provider<GoRouter>((ref) {
             return const LoginPage();
           }),
       GoRoute(
-          name: kPageNamePartyRegister,
-          path: kPagePathPartyRegister,
-          builder: (BuildContext context, GoRouterState state) {
-            return const PartyRegisterPage();
-          }),
-      GoRoute(
-          name: kPageNameBattleSuggest,
-          path: kPagePathBattleSuggest,
-          builder: (BuildContext context, GoRouterState state) {
-            return const BattleSuggestPage();
-          }),
+        name: kPageNameBattleSuggest,
+        path: kPagePathBattleSuggest,
+        builder: (BuildContext context, GoRouterState state) {
+          return const BattleSuggestPage();
+        },
+      ),
       GoRoute(
           name: kPageNameBattleMemo,
           path: kPagePathBattleMemo,
