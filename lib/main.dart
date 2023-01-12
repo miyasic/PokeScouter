@@ -1,14 +1,16 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/router.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:poke_scouter/theme.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:poke_scouter/util/provider_logger.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'firebase_options.dart';
 
 Future main() async {
@@ -16,6 +18,9 @@ Future main() async {
   MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAnalytics.instance.logEvent(
+    name: 'runApp',
   );
   runApp(ProviderScope(overrides: <Override>[
     pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
