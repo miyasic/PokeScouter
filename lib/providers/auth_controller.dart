@@ -25,10 +25,14 @@ class AuthController extends StateNotifier<User?> {
     super.dispose();
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn(
+      {required String email,
+      required String password,
+      required Function onCompleted}) async {
     try {
       checkInputText(email, password);
       await authRepository.signInWithEmailAndPassword(email, password);
+      onCompleted();
     } on String catch (text) {
       ref
           .watch(scaffoldMessengerHelperProvider)
@@ -40,10 +44,14 @@ class AuthController extends StateNotifier<User?> {
     }
   }
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(
+      {required String email,
+      required String password,
+      required Function onCompleted}) async {
     try {
       checkInputText(email, password);
       await authRepository.createUserWithEmailAndPassword(email, password);
+      onCompleted();
     } on String catch (text) {
       ref
           .watch(scaffoldMessengerHelperProvider)

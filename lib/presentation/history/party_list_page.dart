@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:poke_scouter/constants/route_path.dart';
-import 'package:poke_scouter/presentation/Widget/party_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/presentation/Widget/party_widget.dart';
 
 import '../../constants/shared_preferences.dart';
 import '../../constants/text_style.dart';
@@ -31,7 +31,7 @@ class PartyListPage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          context.push(kPagePathPartyRegister);
+          context.push(kPagePathFullPartyRegister);
         },
       ),
       body: ref.watch(partyStreamProvider).when(
