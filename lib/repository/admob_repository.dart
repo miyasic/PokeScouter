@@ -41,19 +41,14 @@ class AdmobRepository {
 
   // 広告表示
   Future showAd(VoidCallback callback) async {
-    if (hasShown) {
-      callback();
-      return;
-    }
     if (ad == null) {
       logger.d("広告が存在しません。");
       return;
-    } else {
-      await ad!.show(
-          onUserEarnedReward: (AdWithoutView adWithoutView, RewardItem reward) {
-        hasShown = true;
-        callback();
-      });
     }
+    await ad!.show(
+        onUserEarnedReward: (AdWithoutView adWithoutView, RewardItem reward) {
+      hasShown = true;
+      callback();
+    });
   }
 }
