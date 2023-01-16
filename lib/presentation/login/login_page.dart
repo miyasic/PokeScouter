@@ -63,6 +63,8 @@ class LoginPage extends HookConsumerWidget {
                   const SizedBox(height: 24.0),
                   TextField(
                     controller: passController, // Controller実装必要
+                    obscureText: true,
+                    obscuringCharacter: 'Θ',
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
