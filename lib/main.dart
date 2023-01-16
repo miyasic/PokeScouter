@@ -39,6 +39,7 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
     final lightTheme = ref.watch(themeProvider(Brightness.light));
     final darkTheme = ref.watch(themeProvider(Brightness.dark));
+    final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       routeInformationProvider: router.routeInformationProvider,
@@ -46,6 +47,7 @@ class MyApp extends ConsumerWidget {
       routeInformationParser: router.routeInformationParser,
       theme: lightTheme,
       darkTheme: darkTheme,
+      themeMode: themeMode,
     );
   }
 }
