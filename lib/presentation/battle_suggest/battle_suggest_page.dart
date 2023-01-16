@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/feature/battle_suggest.dart';
 import 'package:poke_scouter/presentation/Widget/battle_widget.dart';
+import 'package:poke_scouter/presentation/Widget/show_dialog.dart';
 import 'package:poke_scouter/presentation/top/top_page_state.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
+
+import '../../repository/admob_repository.dart';
 
 class BattleSuggestPage extends ConsumerWidget {
   const BattleSuggestPage({super.key});
@@ -14,6 +18,7 @@ class BattleSuggestPage extends ConsumerWidget {
     final pokemonListNotifier =
         ref.read(pokemonListProvider(kPageNameBattleStart));
     final battleSuggestState = ref.watch(battleSuggestProvider);
+    final admobState = ref.watch(admobRepositoryProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleSuggest),
@@ -36,8 +41,27 @@ class BattleSuggestPage extends ConsumerWidget {
           ),
           ElevatedButton(
             child: const Text("対戦登録に進む"),
-            onPressed: () {
-              context.push(kPagePathBattleMemo);
+            onPressed: () async {
+              // 動画をすでに見ていた場合は対戦登録画面に遷移
+              if (admobState.hasShown) {
+                context.push(kPagePathBattleMemo);
+                return;
+              }
+              await showConfirmDialog(
+                  context: context,
+                  title: "動画広告を視聴して対戦登録に進む。",
+                  okText: "視聴する。",
+                  function: () async {
+                    if (admobState.ad == null) {
+                      ref
+                          .read(scaffoldMessengerHelperProvider)
+                          .showSnackBar("広告を取得中です。数秒後に再度お願いします。");
+                      return;
+                    }
+                    await admobState.showAd(() {
+                      context.push(kPagePathBattleMemo);
+                    });
+                  });
             },
           ),
         ],

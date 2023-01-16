@@ -1,12 +1,13 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/constants/text_style.dart';
+import 'package:poke_scouter/repository/admob_repository.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/pokemon.dart';
 import '../../feature/party.dart';
@@ -255,6 +256,7 @@ class BattleMemoPage extends HookConsumerWidget {
                                 });
                           },
                           onComplete: () {
+                            ref.invalidate(admobRepositoryProvider);
                             context.go(kPagePathBattleStart);
                           });
                 },
