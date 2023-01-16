@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:poke_scouter/providers/admob_id_provider.dart';
-import 'package:poke_scouter/util/logger.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/providers/admob_id_provider.dart';
+import 'package:poke_scouter/util/logger.dart';
 
-final admobRepositoryProvider =
-    Provider<AdmobRepository>((ref) => AdmobRepository(ref.read(admobId)));
+final admobRepositoryProvider = Provider<AdmobRepository>(
+    (ref) => AdmobRepository(ref.read(admobId))..load());
 
 class AdmobRepository {
   AdmobRepository(this.id);
