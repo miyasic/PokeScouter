@@ -16,6 +16,9 @@ final textStyleGreySmall =
 final textStyleGreyPlain =
     textStyleWithGoogleFont(fontSize: 14, color: Colors.grey);
 
+final textStyleRedPlain =
+    textStyleWithGoogleFont(fontSize: 14, color: Colors.white10);
+
 TextStyle textStyleWithGoogleFont(
     {double fontSize = 14, FontWeight? fontWeight, Color? color}) {
   return GoogleFonts.mPlusRounded1c(
