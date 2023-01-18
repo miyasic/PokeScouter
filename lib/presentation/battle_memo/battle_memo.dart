@@ -28,6 +28,7 @@ class BattleMemoPage extends HookConsumerWidget {
     final myOrderNameList = useState<List<String>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
@@ -47,7 +48,7 @@ class BattleMemoPage extends HookConsumerWidget {
                 delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: InkWell(
                       onDoubleTap: () {
                         if (!opponentOrder.value.contains(index)) {
@@ -63,9 +64,14 @@ class BattleMemoPage extends HookConsumerWidget {
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(
-                            pokemonListState[index],
-                            initialFolded: true,
+                          child: Badge(
+                            position: BadgePosition.topEnd(),
+                            badgeColor: Theme.of(context).accentColor,
+                            badgeContent: Text((index + 1).toString()),
+                            child: PokemonWidget(
+                              pokemonListState[index],
+                              initialFolded: true,
+                            ),
                           ))),
                 );
               },
@@ -120,7 +126,7 @@ class BattleMemoPage extends HookConsumerWidget {
                             .read(pokemonSuggestStateProvider.notifier)
                             .getPokemon(party.partyNameList[index]);
                         return Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                           child: InkWell(
                               onDoubleTap: () {
                                 if (!myOrder.value.contains(index)) {

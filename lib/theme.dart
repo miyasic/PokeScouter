@@ -4,9 +4,9 @@ import 'package:poke_scouter/constants/provider_name.dart';
 
 final themeProvider = Provider.family<ThemeData, Brightness>((ref, brightness) {
   return ThemeData(
-    brightness: brightness,
-    primarySwatch: Colors.teal,
-  );
+      brightness: brightness,
+      primarySwatch: Colors.teal,
+      accentColor: Colors.lime);
 }, name: kProviderNameTheme);
 
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.system);
