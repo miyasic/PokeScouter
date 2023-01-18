@@ -51,4 +51,8 @@ class AuthRepository {
   Future deleteUser() async {
     await _auth.currentUser?.delete();
   }
+
+  Future passwordReset(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 }
