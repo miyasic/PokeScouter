@@ -4,6 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/presentation/login/user_state_provider.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
+import 'package:poke_scouter/repository/auth_repository.dart';
+import 'package:poke_scouter/scaffold_messenger.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({super.key});
@@ -95,6 +97,20 @@ class LoginPage extends HookConsumerWidget {
                             });
                       },
                       child: const Text('新規登録')),
+                  const SizedBox(height: 24.0),
+                  TextButton(
+                    onPressed: () async {
+                      if (emailController.text.isEmpty) {
+                        ref.read(scaffoldMessengerHelperProvider).showSnackBar(
+                            "メールアドレスを入力してください。",
+                            isWarningMessage: true);
+                      }
+                      await ref
+                          .read(authRepositoryProvider)
+                          .passwordReset(emailController.text);
+                    },
+                    child: const Text("パスワードを忘れた方"),
+                  ),
                 ],
               )),
         );
