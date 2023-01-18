@@ -6,10 +6,12 @@ import 'package:poke_scouter/presentation/Widget/tab.dart';
 import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
 import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
 import 'package:poke_scouter/presentation/battle_suggest/battle_suggest_page.dart';
+import 'package:poke_scouter/presentation/force_update/force_update.dart';
 import 'package:poke_scouter/presentation/history/history_page.dart';
 import 'package:poke_scouter/presentation/login/login_page.dart';
 import 'package:poke_scouter/presentation/my_page/my_page.dart';
 import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
+import 'package:poke_scouter/providers/remote_config_provider.dart';
 
 import 'constants/route_path.dart';
 
@@ -19,6 +21,16 @@ final GlobalKey<NavigatorState> _shellNavigatorKey =
 final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: kPagePathBattleStart,
+    redirect: (context, state) {
+      final minimumVersion =
+          ref.read(remoteConfigProvider).getInt("minimum_version");
+      const appVersion = 1;
+      print("remoteConfigの値:${minimumVersion}");
+      if (appVersion < minimumVersion) {
+        return kPagePathUpdate;
+      }
+      return null;
+    },
     routes: [
       ShellRoute(
           navigatorKey: _shellNavigatorKey,
@@ -80,6 +92,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: kPagePathBattleMemo,
           builder: (BuildContext context, GoRouterState state) {
             return const BattleMemoPage();
+          }),
+      GoRoute(
+          name: kPageNameUpdate,
+          path: kPagePathUpdate,
+          builder: (BuildContext context, GoRouterState state) {
+            return const ForceUpdatePage();
           }),
     ],
   );

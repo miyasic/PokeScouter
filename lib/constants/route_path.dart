@@ -8,6 +8,7 @@ const kPageNamePartyRegister = "パーティ登録";
 const kPageNameBattleStart = "対戦開始";
 const kPageNameBattleSuggest = "過去の対戦";
 const kPageNameBattleMemo = "対戦情報登録";
+const kPageNameUpdate = "アップデートのお願い";
 
 const kPagePathTop = "/battle";
 const kPagePathMy = "/mypage";
@@ -21,3 +22,4 @@ const kPagePathSubPartyRegister = "party_register";
 const kPagePathBattleStart = "/battle/start";
 const kPagePathBattleSuggest = "/battle/suggest";
 const kPagePathBattleMemo = "/battle/memo";
+const kPagePathUpdate = "/update";
