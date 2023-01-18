@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/provider_name.dart';
+import 'package:poke_scouter/constants/remote_config.dart';
 import 'package:poke_scouter/presentation/Widget/tab.dart';
 import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
 import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
@@ -24,7 +25,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: kPagePathBattleStart,
     redirect: (context, state) {
       final minimumVersion =
-          ref.read(remoteConfigProvider).getInt("minimum_version");
+          ref.read(remoteConfigProvider).getInt(kRemoteConfig);
       final appVersion = int.parse(ref.read(versionProvider).buildNumber);
       if (appVersion < minimumVersion) {
         return kPagePathUpdate;
