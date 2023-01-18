@@ -5,10 +5,15 @@ import '../../constants/text_style.dart';
 import '../../domain/firebase/battle.dart';
 
 class BattleWidget extends ConsumerWidget {
-  const BattleWidget({super.key, required this.battle, this.pokemonNameList});
+  const BattleWidget(
+      {super.key,
+      required this.battle,
+      this.pokemonNameList,
+      this.isSuggestPage = false});
 
   final Battle battle;
   final List<String>? pokemonNameList;
+  final bool isSuggestPage;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,8 +60,9 @@ class BattleWidget extends ConsumerWidget {
                       child: Text(
                         name,
                         style: textStylePlain.copyWith(
-                            color:
-                                isContains(name) ? Colors.black : Colors.red),
+                            color: (isContains(name) || !isSuggestPage)
+                                ? Colors.black
+                                : Colors.red),
                       ),
                     ))
                 .toList(),
@@ -75,7 +81,8 @@ class BattleWidget extends ConsumerWidget {
                       child: Text(
                         battle.opponentParty[index],
                         style: textStylePlain.copyWith(
-                            color: isContains(battle.opponentParty[index])
+                            color: (isContains(battle.opponentParty[index]) ||
+                                    !isSuggestPage)
                                 ? Colors.black
                                 : Colors.red),
                       ),
