@@ -12,6 +12,7 @@ import 'package:poke_scouter/presentation/login/login_page.dart';
 import 'package:poke_scouter/presentation/my_page/my_page.dart';
 import 'package:poke_scouter/presentation/party_register/party_register_page.dart';
 import 'package:poke_scouter/providers/remote_config_provider.dart';
+import 'package:poke_scouter/providers/version_provider.dart';
 
 import 'constants/route_path.dart';
 
@@ -24,8 +25,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     redirect: (context, state) {
       final minimumVersion =
           ref.read(remoteConfigProvider).getInt("minimum_version");
-      const appVersion = 1;
-      print("remoteConfigの値:${minimumVersion}");
+      final appVersion = int.parse(ref.read(versionProvider).buildNumber);
       if (appVersion < minimumVersion) {
         return kPagePathUpdate;
       }
