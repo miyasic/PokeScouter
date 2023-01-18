@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:poke_scouter/util/logger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/util/logger.dart';
 
 final authRepositoryProvider =
     Provider<AuthRepository>((ref) => AuthRepository());
 
 class AuthRepository {
   AuthRepository();
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
@@ -45,5 +46,13 @@ class AuthRepository {
 
   Future logout() async {
     await _auth.signOut();
+  }
+
+  Future deleteUser() async {
+    await _auth.currentUser?.delete();
+  }
+
+  Future passwordReset(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 }
