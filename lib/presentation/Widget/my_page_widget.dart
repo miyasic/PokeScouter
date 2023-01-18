@@ -8,9 +8,11 @@ class MyPageTile extends StatelessWidget {
       required this.icons,
       required this.iconColor,
       this.trailing,
+      this.style,
       required this.onTap})
       : super(key: key);
   final String title;
+  final TextStyle? style;
   final IconData icons;
   final MaterialColor iconColor;
   final Function onTap;
@@ -35,7 +37,7 @@ class MyPageTile extends StatelessWidget {
                         color: iconColor,
                       ),
                     ),
-                    Text(title, style: textStylePlain),
+                    Text(title, style: style ?? textStylePlain),
                   ],
                 ),
                 Padding(
