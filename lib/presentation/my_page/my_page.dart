@@ -83,13 +83,7 @@ class MyPage extends ConsumerWidget {
                 title: 'アプリバージョン',
                 icons: Icons.update,
                 iconColor: Colors.grey,
-                trailing: ref.watch(versionProvider).when(data: (data) {
-                  return Text(data.version);
-                }, error: (e, __) {
-                  return const Text("バージョン情報が取得できませんでした。");
-                }, loading: () {
-                  return const Text("バージョン情報を取得しています。");
-                }),
+                trailing: Text(ref.read(versionProvider).version),
                 onTap: () {}),
             userState.when(
               data: (data) {

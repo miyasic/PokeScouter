@@ -2,7 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:poke_scouter/providers/remote_config_provider.dart';
+import 'package:poke_scouter/providers/version_provider.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/router.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
@@ -24,7 +26,8 @@ Future main() async {
     sharedPreferencesProvider
         .overrideWithValue(await SharedPreferences.getInstance()),
     remoteConfigProvider.overrideWithValue(
-        await FirebaseRemoteConfigService().initRemoteConfig())
+        await FirebaseRemoteConfigService().initRemoteConfig()),
+    versionProvider.overrideWithValue(await PackageInfo.fromPlatform())
   ], observers: [
     ProviderLogger()
   ], child: const MyApp()));
