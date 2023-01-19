@@ -3,10 +3,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/provider_name.dart';
 
 final themeProvider = Provider.family<ThemeData, Brightness>((ref, brightness) {
-  return ThemeData(
+  final theme = ThemeData(
     brightness: brightness,
     primarySwatch: Colors.teal,
   );
+  return theme.copyWith(
+      colorScheme: theme.colorScheme.copyWith(secondary: Colors.lime));
 }, name: kProviderNameTheme);
 
 final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.system);
