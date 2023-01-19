@@ -115,6 +115,7 @@ class BattleMemoPage extends HookConsumerWidget {
                           padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                           child: InkWell(
                               onDoubleTap: () {
+                                // 選出登録
                                 if (!myOrder.value.contains(index)) {
                                   myOrder.value = [...myOrder.value, index];
                                   myOrderNameList.value = [
@@ -122,10 +123,15 @@ class BattleMemoPage extends HookConsumerWidget {
                                     party.partyNameList[index]
                                   ];
                                 } else {
-                                  ref
-                                      .read(scaffoldMessengerHelperProvider)
-                                      .showSnackBar('既に登録されているポケモンです。',
-                                          isWarningMessage: true);
+                                  // 選出解除
+                                  myOrder.value = [
+                                    for (final i in myOrder.value)
+                                      if (i != index) i,
+                                  ];
+                                  myOrderNameList.value = [
+                                    for (final j in myOrderNameList.value)
+                                      if (j != myOrderNameList.value[index]) j
+                                  ];
                                 }
                               },
                               child: Badge(
@@ -133,9 +139,22 @@ class BattleMemoPage extends HookConsumerWidget {
                                   badgeColor:
                                       Theme.of(context).primaryColorDark,
                                   badgeContent: Text((index + 1).toString()),
-                                  child: PokemonWidget(
-                                    pokemon!,
-                                    initialFolded: true,
+                                  child: Badge(
+                                    position: BadgePosition.topEnd(),
+                                    badgeColor: Theme.of(context).accentColor,
+                                    showBadge: getOrderForView(
+                                            myOrder.value,
+                                            party
+                                                .partyNameList.length)[index] !=
+                                        0,
+                                    badgeContent: Text(getOrderForView(
+                                            myOrder.value,
+                                            party.partyNameList.length)[index]
+                                        .toString()),
+                                    child: PokemonWidget(
+                                      pokemon!,
+                                      initialFolded: true,
+                                    ),
                                   ))),
                         );
                       },
@@ -153,27 +172,6 @@ class BattleMemoPage extends HookConsumerWidget {
                   loading: () => SliverChildListDelegate(
                       [const Center(child: CircularProgressIndicator())])),
             ),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: InkWell(
-                      onDoubleTap: () {
-                        myOrder.value.removeAt(index);
-                        myOrder.value = [...myOrder.value];
-                        myOrderNameList.value.removeAt(index);
-                        myOrderNameList.value = [...myOrderNameList.value];
-                      },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
-                          badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent: Text((index + 1).toString()),
-                          child: Text(myOrderNameList.value[index]))),
-                );
-              },
-              childCount: myOrder.value.length,
-            )),
             SliverList(
                 delegate: SliverChildListDelegate([
               Text(
