@@ -59,12 +59,14 @@ class BattleMemoPage extends HookConsumerWidget {
                   child: InkWell(
                       onDoubleTap: () {
                         if (!opponentOrder.value.contains(index)) {
+                          // 選出登録
                           opponentOrder.value = [...opponentOrder.value, index];
                         } else {
-                          ref
-                              .read(scaffoldMessengerHelperProvider)
-                              .showSnackBar('既に登録されているポケモンです。',
-                                  isWarningMessage: true);
+                          // 選出解除
+                          opponentOrder.value = [
+                            for (final i in opponentOrder.value)
+                              if (i != index) i,
+                          ];
                         }
                       },
                       child: Badge(
