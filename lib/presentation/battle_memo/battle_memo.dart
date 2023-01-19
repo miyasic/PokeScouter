@@ -7,7 +7,6 @@ import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/constants/text_style.dart';
 import 'package:poke_scouter/repository/admob_repository.dart';
-import 'package:poke_scouter/scaffold_messenger.dart';
 
 import '../../domain/pokemon.dart';
 import '../../feature/party.dart';
@@ -75,7 +74,7 @@ class BattleMemoPage extends HookConsumerWidget {
                           badgeContent: Text((index + 1).toString()),
                           child: Badge(
                             position: BadgePosition.topEnd(),
-                            badgeColor: Theme.of(context).accentColor,
+                            badgeColor: Theme.of(context).colorScheme.secondary,
                             showBadge: getOrderForView(opponentOrder.value,
                                     pokemonListState.length)[index] !=
                                 0,
@@ -141,7 +140,8 @@ class BattleMemoPage extends HookConsumerWidget {
                                   badgeContent: Text((index + 1).toString()),
                                   child: Badge(
                                     position: BadgePosition.topEnd(),
-                                    badgeColor: Theme.of(context).accentColor,
+                                    badgeColor:
+                                        Theme.of(context).colorScheme.secondary,
                                     showBadge: getOrderForView(
                                             myOrder.value,
                                             party
