@@ -28,6 +28,13 @@ class BattleMemoPage extends HookConsumerWidget {
     final myOrderNameList = useState<List<String>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
+    List<int> getOrderForView(List<int> order, int partySize) {
+      List<int> list = List.filled(partySize, 0);
+      for (var i = 0; i < order.length; i++) {
+        list[order[i]] = i + 1;
+      }
+      return list;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +74,13 @@ class BattleMemoPage extends HookConsumerWidget {
                           child: Badge(
                             position: BadgePosition.topEnd(),
                             badgeColor: Theme.of(context).accentColor,
-                            badgeContent: Text((index + 1).toString()),
+                            showBadge: getOrderForView(opponentOrder.value,
+                                    pokemonListState.length)[index] !=
+                                0,
+                            badgeContent: Text(getOrderForView(
+                                    opponentOrder.value,
+                                    pokemonListState.length)[index]
+                                .toString()),
                             child: PokemonWidget(
                               pokemonListState[index],
                               initialFolded: true,
@@ -76,35 +89,6 @@ class BattleMemoPage extends HookConsumerWidget {
                 );
               },
               childCount: pokemonListState.length,
-            )),
-            SliverList(
-                delegate: SliverChildListDelegate([
-              Text(
-                '対戦相手の選出',
-                style: textStyleBold,
-              )
-            ])),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: InkWell(
-                      onDoubleTap: () {
-                        opponentOrder.value.removeAt(index);
-                        opponentOrder.value = [...opponentOrder.value];
-                      },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
-                          badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(
-                            pokemonListState[opponentOrder.value[index]],
-                            initialFolded: true,
-                          ))),
-                );
-              },
-              childCount: opponentOrder.value.length,
             )),
             SliverList(
                 delegate: SliverChildListDelegate([
@@ -167,13 +151,6 @@ class BattleMemoPage extends HookConsumerWidget {
                   loading: () => SliverChildListDelegate(
                       [const Center(child: CircularProgressIndicator())])),
             ),
-            SliverList(
-                delegate: SliverChildListDelegate([
-              Text(
-                '自分の選出',
-                style: textStyleBold,
-              ),
-            ])),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
