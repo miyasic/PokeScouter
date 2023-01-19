@@ -43,7 +43,7 @@ final routerProvider = Provider<GoRouter>((ref) {
                 name: kPageNameBattleStart,
                 path: kPagePathBattleStart,
                 builder: (BuildContext context, GoRouterState state) {
-                  return const BattleStartPage();
+                  return BattleStartPage();
                 }),
             GoRoute(
               name: kPageNameHistory,
