@@ -7,7 +7,6 @@ import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/constants/text_style.dart';
 import 'package:poke_scouter/repository/admob_repository.dart';
-import 'package:poke_scouter/scaffold_messenger.dart';
 
 import '../../domain/pokemon.dart';
 import '../../feature/party.dart';
@@ -28,6 +27,14 @@ class BattleMemoPage extends HookConsumerWidget {
     final myOrderNameList = useState<List<String>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
+    List<int> getOrderForView(List<int> order, int partySize) {
+      List<int> list = List.filled(partySize, 0);
+      for (var i = 0; i < order.length; i++) {
+        list[order[i]] = i + 1;
+      }
+      return list;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleMemo),
@@ -47,58 +54,42 @@ class BattleMemoPage extends HookConsumerWidget {
                 delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                   child: InkWell(
                       onDoubleTap: () {
                         if (!opponentOrder.value.contains(index)) {
+                          // 選出登録
                           opponentOrder.value = [...opponentOrder.value, index];
                         } else {
-                          ref
-                              .read(scaffoldMessengerHelperProvider)
-                              .showSnackBar('既に登録されているポケモンです。',
-                                  isWarningMessage: true);
+                          // 選出解除
+                          opponentOrder.value = [
+                            for (final i in opponentOrder.value)
+                              if (i != index) i,
+                          ];
                         }
                       },
                       child: Badge(
                           position: BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(
-                            pokemonListState[index],
-                            initialFolded: true,
+                          child: Badge(
+                            position: BadgePosition.topEnd(),
+                            badgeColor: Theme.of(context).colorScheme.secondary,
+                            showBadge: getOrderForView(opponentOrder.value,
+                                    pokemonListState.length)[index] !=
+                                0,
+                            badgeContent: Text(getOrderForView(
+                                    opponentOrder.value,
+                                    pokemonListState.length)[index]
+                                .toString()),
+                            child: PokemonWidget(
+                              pokemonListState[index],
+                              initialFolded: true,
+                            ),
                           ))),
                 );
               },
               childCount: pokemonListState.length,
-            )),
-            SliverList(
-                delegate: SliverChildListDelegate([
-              Text(
-                '対戦相手の選出',
-                style: textStyleBold,
-              )
-            ])),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: InkWell(
-                      onDoubleTap: () {
-                        opponentOrder.value.removeAt(index);
-                        opponentOrder.value = [...opponentOrder.value];
-                      },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
-                          badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent: Text((index + 1).toString()),
-                          child: PokemonWidget(
-                            pokemonListState[opponentOrder.value[index]],
-                            initialFolded: true,
-                          ))),
-                );
-              },
-              childCount: opponentOrder.value.length,
             )),
             SliverList(
                 delegate: SliverChildListDelegate([
@@ -120,9 +111,10 @@ class BattleMemoPage extends HookConsumerWidget {
                             .read(pokemonSuggestStateProvider.notifier)
                             .getPokemon(party.partyNameList[index]);
                         return Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                           child: InkWell(
                               onDoubleTap: () {
+                                // 選出登録
                                 if (!myOrder.value.contains(index)) {
                                   myOrder.value = [...myOrder.value, index];
                                   myOrderNameList.value = [
@@ -130,10 +122,15 @@ class BattleMemoPage extends HookConsumerWidget {
                                     party.partyNameList[index]
                                   ];
                                 } else {
-                                  ref
-                                      .read(scaffoldMessengerHelperProvider)
-                                      .showSnackBar('既に登録されているポケモンです。',
-                                          isWarningMessage: true);
+                                  // 選出解除
+                                  myOrder.value = [
+                                    for (final i in myOrder.value)
+                                      if (i != index) i,
+                                  ];
+                                  myOrderNameList.value = [
+                                    for (final j in myOrderNameList.value)
+                                      if (j != myOrderNameList.value[index]) j
+                                  ];
                                 }
                               },
                               child: Badge(
@@ -141,9 +138,23 @@ class BattleMemoPage extends HookConsumerWidget {
                                   badgeColor:
                                       Theme.of(context).primaryColorDark,
                                   badgeContent: Text((index + 1).toString()),
-                                  child: PokemonWidget(
-                                    pokemon!,
-                                    initialFolded: true,
+                                  child: Badge(
+                                    position: BadgePosition.topEnd(),
+                                    badgeColor:
+                                        Theme.of(context).colorScheme.secondary,
+                                    showBadge: getOrderForView(
+                                            myOrder.value,
+                                            party
+                                                .partyNameList.length)[index] !=
+                                        0,
+                                    badgeContent: Text(getOrderForView(
+                                            myOrder.value,
+                                            party.partyNameList.length)[index]
+                                        .toString()),
+                                    child: PokemonWidget(
+                                      pokemon!,
+                                      initialFolded: true,
+                                    ),
                                   ))),
                         );
                       },
@@ -161,34 +172,6 @@ class BattleMemoPage extends HookConsumerWidget {
                   loading: () => SliverChildListDelegate(
                       [const Center(child: CircularProgressIndicator())])),
             ),
-            SliverList(
-                delegate: SliverChildListDelegate([
-              Text(
-                '自分の選出',
-                style: textStyleBold,
-              ),
-            ])),
-            SliverList(
-                delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 8, 0, 0),
-                  child: InkWell(
-                      onDoubleTap: () {
-                        myOrder.value.removeAt(index);
-                        myOrder.value = [...myOrder.value];
-                        myOrderNameList.value.removeAt(index);
-                        myOrderNameList.value = [...myOrderNameList.value];
-                      },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
-                          badgeColor: Theme.of(context).primaryColorDark,
-                          badgeContent: Text((index + 1).toString()),
-                          child: Text(myOrderNameList.value[index]))),
-                );
-              },
-              childCount: myOrder.value.length,
-            )),
             SliverList(
                 delegate: SliverChildListDelegate([
               Text(
