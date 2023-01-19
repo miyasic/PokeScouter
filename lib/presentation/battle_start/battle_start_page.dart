@@ -1,17 +1,23 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_textfield.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_widget.dart';
 import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 import '../../domain/pokemon.dart';
 
+final _key1 = GlobalKey();
+
 class BattleStartPage extends HookConsumerWidget {
-  const BattleStartPage({super.key});
+  BattleStartPage({super.key});
+
+  BuildContext? myContext;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,6 +25,10 @@ class BattleStartPage extends HookConsumerWidget {
         ref.read(pokemonListProvider(kPageNameBattleStart).notifier);
     List<Pokemon> pokemonListState =
         ref.watch(pokemonListProvider(kPageNameBattleStart));
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => ShowCaseWidget.of(myContext!).startShowCase([_key1]));
+    });
     return Scaffold(
       appBar: AppBar(
         title: const Text(kPageNameBattleStart),
@@ -67,14 +77,28 @@ class BattleStartPage extends HookConsumerWidget {
               },
             ),
           ),
-          ElevatedButton(
-            onPressed: pokemonListState.isEmpty
-                ? null
-                : () {
-                    context.push(kPagePathBattleSuggest);
-                    primaryFocus?.unfocus();
-                  },
-            child: const Text("過去の対戦"),
+          ShowCaseWidget(
+            builder: Builder(
+              builder: (context) {
+                myContext = context;
+                return Showcase(
+                  key: _key1,
+                  description: 'description',
+                  child: ElevatedButton(
+                    onPressed: pokemonListState.isEmpty
+                        ? () {
+                            // ポイント: ハイライトしたいWidgetのKeyを引数に渡す
+                            ShowCaseWidget.of(context)?.startShowCase([_key1]);
+                          }
+                        : () {
+                            context.push(kPagePathBattleSuggest);
+                            primaryFocus?.unfocus();
+                          },
+                    child: const Text("過去の対戦"),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
