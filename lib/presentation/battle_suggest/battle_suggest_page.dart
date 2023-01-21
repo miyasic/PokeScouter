@@ -27,6 +27,15 @@ class BattleSuggestPage extends ConsumerWidget {
         Scaffold(
           appBar: AppBar(
             title: const Text(kPageNameBattleSuggest),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  ref.read(showBattleSuggestTutorialProvider.notifier).state =
+                      true;
+                },
+                icon: const Icon(Icons.help),
+              ),
+            ],
           ),
           body: Column(
             children: [
