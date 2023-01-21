@@ -33,6 +33,7 @@ class BattleStartPage extends HookConsumerWidget {
                 onPressed: () {
                   ref.read(showBattleStartTutorialProvider.notifier).state =
                       true;
+                  ref.read(showFirstTutorialProvider.notifier).state = true;
                 },
                 icon: const Icon(Icons.help),
               ),
@@ -86,6 +87,7 @@ class BattleStartPage extends HookConsumerWidget {
             ],
           ),
         ),
+        // 対戦開始画面のチュートリアル
         TutorialWidget(
           onTap: () {
             ref.read(showBattleStartTutorialProvider.notifier).state = false;
@@ -102,6 +104,7 @@ class BattleStartPage extends HookConsumerWidget {
             ],
           ),
         ),
+        // 初回起動時のチュートリアル
         TutorialWidget(
           onTap: () {
             ref.read(showFirstTutorialProvider.notifier).state = false;
@@ -111,7 +114,7 @@ class BattleStartPage extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text("アプリのインストールありがとうございます。"),
-              Text("初回記事同時にはヘルプを表示しています。次回以降は右上の?マークから確認できます。"),
+              Text("初回起動時にはヘルプを表示しています。次回以降は右上の?マークから確認できます。"),
               SizedBox(
                 height: 20,
               ),
