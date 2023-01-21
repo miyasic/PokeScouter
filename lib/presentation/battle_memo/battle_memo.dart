@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/constants/text_style.dart';
 import 'package:poke_scouter/constants/tutorial_text.dart';
 import 'package:poke_scouter/providers/tutorial_provider.dart';
@@ -12,6 +13,7 @@ import 'package:poke_scouter/repository/admob_repository.dart';
 
 import '../../domain/pokemon.dart';
 import '../../feature/party.dart';
+import '../../repository/shared_preferences.dart';
 import '../../util/pokemon_suggest.dart';
 import '../Widget/pokemon_widget.dart';
 import '../Widget/show_dialog.dart';
@@ -47,6 +49,9 @@ class BattleMemoPage extends HookConsumerWidget {
                 onPressed: () {
                   ref.read(showBattleMemoTutorialProvider.notifier).state =
                       true;
+                  ref
+                      .read(sharedPreferencesProvider)
+                      .setBool(kSharedPrefsShowTutorialBattleMemo, true);
                 },
                 icon: const Icon(Icons.help))
           ]),
@@ -273,6 +278,9 @@ class BattleMemoPage extends HookConsumerWidget {
         TutorialWidget(
             onTap: () {
               ref.read(showBattleMemoTutorialProvider.notifier).state = false;
+              ref
+                  .read(sharedPreferencesProvider)
+                  .setBool(kSharedPrefsShowTutorialBattleMemo, false);
             },
             show: showTutorial,
             child: Text(
