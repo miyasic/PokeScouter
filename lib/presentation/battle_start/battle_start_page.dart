@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/constants/text_style.dart';
 import 'package:poke_scouter/constants/tutorial_text.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_textfield.dart';
@@ -8,6 +9,7 @@ import 'package:poke_scouter/presentation/Widget/pokemon_widget.dart';
 import 'package:poke_scouter/presentation/Widget/tutorial_widget.dart';
 import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:poke_scouter/providers/tutorial_provider.dart';
+import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -36,6 +38,12 @@ class BattleStartPage extends HookConsumerWidget {
                   ref.read(showBattleStartTutorialProvider.notifier).state =
                       true;
                   ref.read(showFirstTutorialProvider.notifier).state = true;
+                  ref
+                      .read(sharedPreferencesProvider)
+                      .setBool(kSharedPrefsShowTutorialFirst, true);
+                  ref
+                      .read(sharedPreferencesProvider)
+                      .setBool(kSharedPrefsShowTutorialBattleStart, true);
                 },
                 icon: const Icon(Icons.help),
               ),
@@ -93,6 +101,9 @@ class BattleStartPage extends HookConsumerWidget {
         TutorialWidget(
           onTap: () {
             ref.read(showBattleStartTutorialProvider.notifier).state = false;
+            ref
+                .read(sharedPreferencesProvider)
+                .setBool(kSharedPrefsShowTutorialBattleStart, false);
           },
           show: !showFirstTutorial && showTutorial,
           child: Text(
@@ -104,6 +115,9 @@ class BattleStartPage extends HookConsumerWidget {
         TutorialWidget(
           onTap: () {
             ref.read(showFirstTutorialProvider.notifier).state = false;
+            ref
+                .read(sharedPreferencesProvider)
+                .setBool(kSharedPrefsShowTutorialFirst, false);
           },
           show: showFirstTutorial,
           child: Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/feature/battle_suggest.dart';
 import 'package:poke_scouter/presentation/Widget/battle_widget.dart';
 import 'package:poke_scouter/presentation/Widget/show_dialog.dart';
@@ -12,6 +13,7 @@ import '../../constants/text_style.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import '../../constants/tutorial_text.dart';
 import '../../repository/admob_repository.dart';
+import '../../repository/shared_preferences.dart';
 
 class BattleSuggestPage extends ConsumerWidget {
   const BattleSuggestPage({super.key});
@@ -33,6 +35,9 @@ class BattleSuggestPage extends ConsumerWidget {
                 onPressed: () {
                   ref.read(showBattleSuggestTutorialProvider.notifier).state =
                       true;
+                  ref
+                      .read(sharedPreferencesProvider)
+                      .setBool(kSharedPrefsShowTutorialBattleSuggest, true);
                 },
                 icon: const Icon(Icons.help),
               ),
@@ -96,6 +101,9 @@ class BattleSuggestPage extends ConsumerWidget {
             onTap: () {
               ref.read(showBattleSuggestTutorialProvider.notifier).state =
                   false;
+              ref
+                  .read(sharedPreferencesProvider)
+                  .setBool(kSharedPrefsShowTutorialBattleSuggest, false);
             },
             show: showTutorial,
             child: Text(
