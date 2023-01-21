@@ -14,3 +14,9 @@ final showBattleStartTutorialProvider = StateProvider((ref) =>
         .read(sharedPreferencesProvider)
         .getBool(kSharedPrefsShowBattleStartTutorial) ??
     true);
+
+final showBattleSuggestTutorialProvider = StateProvider((ref) =>
+    ref
+        .read(sharedPreferencesProvider)
+        .getBool(kSharedPrefsShowBattleSuggestTutorial) ??
+    true);
