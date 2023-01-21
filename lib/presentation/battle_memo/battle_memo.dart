@@ -30,7 +30,7 @@ class BattleMemoPage extends HookConsumerWidget {
     final myOrderNameList = useState<List<String>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
-    final showTutorial = ref.watch(showBattleRegisterTutorialProvider);
+    final showTutorial = ref.watch(showBattleMemoTutorialProvider);
     List<int> getOrderForView(List<int> order, int partySize) {
       List<int> list = List.filled(partySize, 0);
       for (var i = 0; i < order.length; i++) {
@@ -45,7 +45,7 @@ class BattleMemoPage extends HookConsumerWidget {
           appBar: AppBar(title: const Text(kPageNameBattleMemo), actions: [
             IconButton(
                 onPressed: () {
-                  ref.read(showBattleRegisterTutorialProvider.notifier).state =
+                  ref.read(showBattleMemoTutorialProvider.notifier).state =
                       true;
                 },
                 icon: const Icon(Icons.help))
@@ -272,8 +272,7 @@ class BattleMemoPage extends HookConsumerWidget {
         ),
         TutorialWidget(
             onTap: () {
-              ref.read(showBattleRegisterTutorialProvider.notifier).state =
-                  false;
+              ref.read(showBattleMemoTutorialProvider.notifier).state = false;
             },
             show: showTutorial,
             child: Text(
