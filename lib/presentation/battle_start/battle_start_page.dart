@@ -1,6 +1,8 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:poke_scouter/constants/route_path.dart';
+import 'package:poke_scouter/constants/text_style.dart';
+import 'package:poke_scouter/constants/tutorial_text.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_textfield.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_widget.dart';
 import 'package:poke_scouter/presentation/Widget/tutorial_widget.dart';
@@ -93,15 +95,9 @@ class BattleStartPage extends HookConsumerWidget {
             ref.read(showBattleStartTutorialProvider.notifier).state = false;
           },
           show: !showFirstTutorial && showTutorial,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("ポケスカウターには「対戦」・「履歴」・「マイページ」の3つのタブがあります。"),
-              Text("このページは対戦タブの対戦開始画面です。"),
-              Text("対戦開始画面では上部のテキストボックスにポケモンの名前を入力することで各種ステータスが確認できます。"),
-              Text(
-                  "ポケモン対戦をする際は選出画面で相手のポケモンの名前を全て入力することで、過去に似たようなパーティとの対戦の記録を確認することができます。"),
-            ],
+          child: Text(
+            kBattleStartTutorialMessage,
+            style: textStylePlain,
           ),
         ),
         // 初回起動時のチュートリアル
@@ -110,15 +106,9 @@ class BattleStartPage extends HookConsumerWidget {
             ref.read(showFirstTutorialProvider.notifier).state = false;
           },
           show: showFirstTutorial,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("アプリのインストールありがとうございます。"),
-              Text("初回起動時にはヘルプを表示しています。次回以降は右上の?マークから確認できます。"),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+          child: Text(
+            kFirstTutorialMessage,
+            style: textStylePlain,
           ),
         ),
       ],
