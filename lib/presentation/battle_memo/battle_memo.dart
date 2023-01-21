@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/constants/text_style.dart';
+import 'package:poke_scouter/constants/tutorial_text.dart';
 import 'package:poke_scouter/providers/tutorial_provider.dart';
 import 'package:poke_scouter/repository/admob_repository.dart';
 
@@ -275,14 +276,9 @@ class BattleMemoPage extends HookConsumerWidget {
                   false;
             },
             show: showTutorial,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("ここは対戦を登録する画面です。"),
-                Text("ポケモンの名前をダブルタップすることで選出順位を決めることができます。"),
-                Text(
-                    "対戦を登録することで、履歴タブから過去の対戦を振り返れたり、次回似たようなパーティとの対戦の際に今回の結果を参考にしたりできます。"),
-              ],
+            child: Text(
+              kBattleMemoTutorialMessage,
+              style: textStylePlain,
             ))
       ],
     );

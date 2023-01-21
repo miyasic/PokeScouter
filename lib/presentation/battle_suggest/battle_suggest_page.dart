@@ -10,6 +10,7 @@ import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:poke_scouter/providers/tutorial_provider.dart';
 import '../../constants/text_style.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
+import '../../constants/tutorial_text.dart';
 import '../../repository/admob_repository.dart';
 
 class BattleSuggestPage extends ConsumerWidget {
@@ -97,14 +98,9 @@ class BattleSuggestPage extends ConsumerWidget {
                   false;
             },
             show: showTutorial,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("ここは過去の似たようなパーティの対戦を表示するページです。"),
-                Text(
-                    "次のページで対戦結果を登録することで次に同じようなパーティと対戦をする際に表示されるようになるので、まずはたくさん対戦して対戦を登録してみましょう"),
-                Text("対戦登録は下の対戦登録に進むから広告を見ることで登録ページに進めます。")
-              ],
+            child: Text(
+              kBattleSuggestTutorialMessage,
+              style: textStylePlain,
             ))
       ],
     );

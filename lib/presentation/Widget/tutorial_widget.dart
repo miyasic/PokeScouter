@@ -22,7 +22,7 @@ class TutorialWidget extends StatelessWidget {
             onTap: onTap,
             child: Card(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(12.0),
                 child: child,
               ),
             ),
