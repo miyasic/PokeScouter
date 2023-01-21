@@ -41,9 +41,14 @@ class BattleMemoPage extends HookConsumerWidget {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            title: const Text(kPageNameBattleMemo),
-          ),
+          appBar: AppBar(title: const Text(kPageNameBattleMemo), actions: [
+            IconButton(
+                onPressed: () {
+                  ref.read(showBattleRegisterTutorialProvider.notifier).state =
+                      true;
+                },
+                icon: const Icon(Icons.help))
+          ]),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomScrollView(
