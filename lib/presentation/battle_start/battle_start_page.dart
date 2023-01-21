@@ -102,38 +102,6 @@ class BattleStartPage extends HookConsumerWidget {
             ],
           ),
         ),
-        // Visibility(
-        //   visible: !showFirstTutorial && showTutorial,
-        //   child: Container(
-        //     width: double.infinity,
-        //     height: double.infinity,
-        //     color: Colors.black.withOpacity(0.5),
-        //     child: Center(
-        //       child: InkWell(
-        //         onTap: () {
-        //           ref.read(showBattleStartTutorialProvider.notifier).state =
-        //               false;
-        //         },
-        //         child: Card(
-        //           child: Padding(
-        //             padding: const EdgeInsets.all(8.0),
-        //             child: Column(
-        //               mainAxisSize: MainAxisSize.min,
-        //               children: [
-        //                 Text("ポケスカウターには「対戦」・「履歴」・「マイページ」の3つのタブがあります。"),
-        //                 Text("このページは対戦タブの対戦開始画面です。"),
-        //                 Text(
-        //                     "対戦開始画面では上部のテキストボックスにポケモンの名前を入力することで各種ステータスが確認できます。"),
-        //                 Text(
-        //                     "ポケモン対戦をする際は選出画面で相手のポケモンの名前を全て入力することで、過去に似たようなパーティとの対戦の記録を確認することができます。"),
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         TutorialWidget(
           onTap: () {
             ref.read(showFirstTutorialProvider.notifier).state = false;
