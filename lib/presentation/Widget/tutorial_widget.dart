@@ -13,13 +13,13 @@ class TutorialWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Visibility(
       visible: show,
-      child: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Colors.black.withOpacity(0.5),
-        child: Center(
-          child: InkWell(
-            onTap: onTap,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.black.withOpacity(0.5),
+          child: Center(
             child: Card(
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
