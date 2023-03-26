@@ -104,7 +104,7 @@ class FirebaseRepository {
   }) async {
     var query = battlesRef(userId: userId)
         .where(status.getQueryField(), arrayContainsAny: divisorList)
-        .orderBy('createdAt', descending: true)
+        .orderBy(kFieldBattleCreatedAt, descending: true)
         .limit(kLimitLoadBattles);
     final qds = lastReadQueryDocumentSnapshot;
     if (qds != null) {
