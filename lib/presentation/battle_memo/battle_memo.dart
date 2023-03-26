@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -87,12 +87,12 @@ class BattleMemoPage extends HookConsumerWidget {
                               ];
                             }
                           },
-                          child: Badge(
-                              position: BadgePosition.topStart(),
+                          child: badges.Badge(
+                              position: badges.BadgePosition.topStart(),
                               badgeColor: Theme.of(context).primaryColorDark,
                               badgeContent: Text((index + 1).toString()),
-                              child: Badge(
-                                position: BadgePosition.topEnd(),
+                              child: badges.Badge(
+                                position: badges.BadgePosition.topEnd(),
                                 badgeColor:
                                     Theme.of(context).colorScheme.secondary,
                                 showBadge: getOrderForView(opponentOrder.value,
@@ -154,14 +154,14 @@ class BattleMemoPage extends HookConsumerWidget {
                                       ];
                                     }
                                   },
-                                  child: Badge(
-                                      position: BadgePosition.topStart(),
+                                  child: badges.Badge(
+                                      position: badges.BadgePosition.topStart(),
                                       badgeColor:
                                           Theme.of(context).primaryColorDark,
                                       badgeContent:
                                           Text((index + 1).toString()),
-                                      child: Badge(
-                                        position: BadgePosition.topEnd(),
+                                      child: badges.Badge(
+                                        position: badges.BadgePosition.topEnd(),
                                         badgeColor: Theme.of(context)
                                             .colorScheme
                                             .secondary,
