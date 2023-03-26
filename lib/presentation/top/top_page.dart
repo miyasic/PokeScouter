@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/presentation/Widget/pokemon_textfield.dart';
@@ -58,8 +58,8 @@ class TopPage extends HookConsumerWidget {
                       onDoubleTap: () {
                         pokemonListNotifier.removePokemon(index);
                       },
-                      child: Badge(
-                          position: BadgePosition.topStart(),
+                      child: badges.Badge(
+                          position: badges.BadgePosition.topStart(),
                           badgeColor: Theme.of(context).primaryColorDark,
                           badgeContent: Text((index + 1).toString()),
                           child: PokemonWidget(pokemonListState[index]))),

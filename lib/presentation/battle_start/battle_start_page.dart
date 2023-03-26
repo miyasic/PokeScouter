@@ -1,5 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+
+import 'package:badges/badges.dart' as badges;
 import 'package:poke_scouter/constants/route_path.dart';
 import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/constants/text_style.dart';
@@ -73,8 +74,8 @@ class BattleStartPage extends HookConsumerWidget {
                           onDoubleTap: () {
                             pokemonListNotifier.removePokemon(index);
                           },
-                          child: Badge(
-                              position: BadgePosition.topStart(),
+                          child: badges.Badge(
+                              position: badges.BadgePosition.topStart(),
                               badgeColor: Theme.of(context).primaryColorDark,
                               badgeContent: Text((index + 1).toString()),
                               child: PokemonWidget(pokemonListState[index]))),
