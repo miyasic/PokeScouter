@@ -30,7 +30,7 @@ dependencies:
   google_mobile_ads: ^2.3.0
   trotter: ^2.0.0
   shared_preferences: ^2.0.16
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.13.0
   package_info_plus: ^3.0.2
   flutter_native_splash: ^2.2.16
   firebase_remote_config: ^3.0.9
