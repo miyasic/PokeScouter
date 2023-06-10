@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/router.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:poke_scouter/theme.dart';
-import 'package:poke_scouter/util/logger.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';

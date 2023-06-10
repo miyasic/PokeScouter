@@ -1,5 +1,3 @@
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:poke_scouter/constants/firebase_environment.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/domain/pokemon.dart';
@@ -9,7 +7,6 @@ import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:poke_scouter/util/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
 
