@@ -36,7 +36,8 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
 
   Future<void> callHelloWorldFunction() async {
     try {
-      FirebaseFunctions functions = FirebaseFunctions.instance;
+      FirebaseFunctions functions =
+          FirebaseFunctions.instanceFor(region: defaultRegion);
       final HttpsCallable callable = functions.httpsCallable('helloWorld');
       final results = await callable();
 
