@@ -15,8 +15,8 @@ jobs:
       - uses: kuhnroyal/flutter-fvm-config-action@v1
       - uses: subosito/flutter-action@v2
         with:
-          channel: stable
-          flutter-version: ${{ steps.asdf.outputs.flutter }}
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: ${{ env.FLUTTER_CHANNEL }}
           cache: true
       - run: flutter --version
       - run: flutter pub get
