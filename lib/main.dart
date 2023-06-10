@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +29,6 @@ Future main() async {
   if (env == Environment.emulator) {
     FirebaseFirestore.instance
         .useFirestoreEmulator(localhost, portForFirestoreEmulator);
-    FirebaseFunctions.instance
-        .useFunctionsEmulator(localhost, portForFirebaseFunctionsEmulator);
     FirebaseAuth.instance
         .useAuthEmulator(localhost, portForFirebaseAuthEmulator);
   }
