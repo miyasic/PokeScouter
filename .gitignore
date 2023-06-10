@@ -45,3 +45,5 @@ app.*.map.json
 
 # test coverage related
 /coverage/*
+
+/firebase/data/*

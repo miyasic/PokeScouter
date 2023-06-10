@@ -1,7 +1,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-class Battle {
+export class Battle {
   userId: string;
   battleId: string;
   partyId: string;
@@ -78,7 +78,7 @@ class Battle {
 
   static fromJson(json: { [key: string]: any }): Battle {
     // Assuming that `createdAt` is a string in ISO 8601 format.
-    json["createdAt"] = new Date(json["createdAt"]);
+    json["createdAt"] = new Date(json["createdAt"]._seconds * 1000);
     return new Battle({
       userId: json["userId"] || "",
       battleId: json["battleId"] || "",
@@ -107,5 +107,27 @@ class Battle {
     const data = ds.data();
     data["battleId"] = ds.id;
     return Battle.fromJson(data);
+  }
+
+  toJson() {
+    return {
+      userId: this.userId,
+      battleId: this.battleId,
+      partyId: this.partyId,
+      opponentParty: this.opponentParty,
+      myParty: this.myParty,
+      divisorList6: this.divisorList6,
+      divisorList5: this.divisorList5,
+      divisorList4: this.divisorList4,
+      divisorList3: this.divisorList3,
+      divisorList2: this.divisorList2,
+      divisorList1: this.divisorList1,
+      opponentOrder: this.opponentOrder,
+      myOrder: this.myOrder,
+      memo: this.memo,
+      eachMemo: this.eachMemo,
+      result: this.result,
+      createdAt: this.createdAt.toISOString(),
+    };
   }
 }
