@@ -15,8 +15,9 @@ jobs:
       - uses: subosito/flutter-action@v2.5.0
         with:
           channel: 'stable'
+      - run: flutter --version
       - run: flutter pub get
-      - name: Run Flutter format
-        run: flutter format --set-exit-if-changed .
+      - name: Run dart format
+        run: dart format --set-exit-if-changed .
       - name: flutter analyze
         run: flutter analyze

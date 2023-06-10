@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/presentation/Widget/show_dialog.dart';
-import 'package:poke_scouter/scaffold_messenger.dart';
 
 import '../../constants/text_style.dart';
 import '../../domain/firebase/battle.dart';

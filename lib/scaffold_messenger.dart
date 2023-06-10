@@ -66,7 +66,7 @@ class ScaffoldMessengerHelper {
           message,
           style: TextStyle(
             color: isWarningMessage
-                ? ThemeData().errorColor
+                ? ThemeData().colorScheme.error
                 : ThemeData().highlightColor,
             fontSize: 14,
           ),
