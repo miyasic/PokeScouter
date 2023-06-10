@@ -16,7 +16,9 @@ class FirebaseFunctionsRepository {
 
   Future<void> callHelloWorldFunction() async {
     try {
-      final HttpsCallable callable = _functions.httpsCallable('helloWorld');
+      final HttpsCallable callable =
+          _functions.httpsCallable('fetchSimilarBattle');
+      // final HttpsCallable callable = _functions.httpsCallable('helloWorld');
 
       final Map<String, dynamic> data = {
         'param1': 'value1',
