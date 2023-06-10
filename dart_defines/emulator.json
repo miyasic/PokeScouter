@@ -1,0 +1,5 @@
+{
+  "flavor": "emulator",
+  "appName": "PokeScouter emu",
+  "appIdSuffix": ".emu"
+}
