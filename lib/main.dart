@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:poke_scouter/constants/firebase_environment.dart';
+import 'package:poke_scouter/environment_config.dart';
 import 'package:poke_scouter/providers/remote_config_provider.dart';
 import 'package:poke_scouter/providers/version_provider.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
@@ -17,10 +22,19 @@ import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final env = EnvironmentConfig().environment;
   MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  if (env == Environment.emulator) {
+    FirebaseFirestore.instance
+        .useFirestoreEmulator(localhost, portForFirestoreEmulator);
+    FirebaseFunctions.instance
+        .useFunctionsEmulator(localhost, portForFirebaseFunctionsEmulator);
+    FirebaseAuth.instance
+        .useAuthEmulator(localhost, portForFirebaseAuthEmulator);
+  }
   runApp(ProviderScope(overrides: <Override>[
     pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
     sharedPreferencesProvider

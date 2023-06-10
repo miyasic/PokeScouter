@@ -87,6 +87,12 @@ class BattleStartPage extends HookConsumerWidget {
                 ),
               ),
               ElevatedButton(
+                onPressed: () {
+                  pokemonListNotifier.temp();
+                },
+                child: const Text("Functions"),
+              ),
+              ElevatedButton(
                 onPressed: pokemonListState.isEmpty
                     ? null
                     : () {
