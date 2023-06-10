@@ -31,6 +31,7 @@ dependencies:
   trotter: ^2.0.0
   shared_preferences: ^2.0.16
   flutter_launcher_icons: ^0.11.0
+  cloud_functions: ^4.0.7
   package_info_plus: ^3.0.2
   flutter_native_splash: ^2.2.16
   firebase_remote_config: ^3.0.9
@@ -41,6 +42,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.2
   freezed: ^2.3.2
+  dart_style: ^2.3.1
 
 flutter_native_splash:
   color: '#D9D9D9'
