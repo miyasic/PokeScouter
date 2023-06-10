@@ -8,10 +8,9 @@ import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/util/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
-
-import '../../environment_config.dart';
 
 final pokemonListProvider =
     StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>(
@@ -42,13 +41,12 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
       final results = await callable();
 
       if (results.data != null) {
-        print(EnvironmentConfig().environment);
-        print('Function result: ${results.data}');
+        logger.d(results.data);
       } else {
         throw Exception('Function failed to load data');
       }
     } catch (e) {
-      print(e);
+      logger.d(e);
     }
   }
 
