@@ -20,11 +20,6 @@ class AuthController extends StateNotifier<User?> {
   @override
   User? get state => authRepository.getCurrentUser();
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Future<void> signIn(
       {required String email,
       required String password,
