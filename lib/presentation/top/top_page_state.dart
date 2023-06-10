@@ -1,14 +1,12 @@
-import 'package:cloud_functions/cloud_functions.dart';
-import 'package:poke_scouter/constants/firebase_environment.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/domain/pokemon.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
+import 'package:poke_scouter/repository/firebase_functions_repository.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:poke_scouter/util/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
 
@@ -18,36 +16,25 @@ final pokemonListProvider =
             ref.read(firebaseRepositoryProvider),
             ref.read(authControllerProvider.notifier),
             ref.read(scaffoldMessengerHelperProvider),
-            ref.read(sharedPreferencesProvider)));
+            ref.read(sharedPreferencesProvider),
+            ref.read(firebaseFunctionsRepositoryProvider)));
 
 class PokemonListState extends StateNotifier<List<Pokemon>> {
-  PokemonListState(this.firebaseRepository, this._authController,
-      this.scaffoldMessengerHelper, this.sharedPreferences)
+  PokemonListState(
+      this.firebaseRepository,
+      this._authController,
+      this.scaffoldMessengerHelper,
+      this.sharedPreferences,
+      this.firebaseFunctionsRepository)
       : super([]);
   final FirebaseRepository firebaseRepository;
+  final FirebaseFunctionsRepository firebaseFunctionsRepository;
   final AuthController _authController;
   final ScaffoldMessengerHelper scaffoldMessengerHelper;
   final SharedPreferences sharedPreferences;
 
   void temp() {
-    callHelloWorldFunction();
-  }
-
-  Future<void> callHelloWorldFunction() async {
-    try {
-      FirebaseFunctions functions =
-          FirebaseFunctions.instanceFor(region: defaultRegion);
-      final HttpsCallable callable = functions.httpsCallable('helloWorld');
-      final results = await callable();
-
-      if (results.data != null) {
-        logger.d(results.data);
-      } else {
-        throw Exception('Function failed to load data');
-      }
-    } catch (e) {
-      logger.d(e);
-    }
+    firebaseFunctionsRepository.callHelloWorldFunction();
   }
 
   void addPokemon(Pokemon? pokemon) {
