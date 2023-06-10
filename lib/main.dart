@@ -14,6 +14,7 @@ import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/router.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:poke_scouter/theme.dart';
+import 'package:poke_scouter/util/logger.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,8 +31,6 @@ Future main() async {
   if (env == Environment.emulator) {
     FirebaseFirestore.instance
         .useFirestoreEmulator(localhost, portForFirestoreEmulator);
-    FirebaseFunctions.instance
-        .useFunctionsEmulator(localhost, portForFirebaseFunctionsEmulator);
     FirebaseAuth.instance
         .useAuthEmulator(localhost, portForFirebaseAuthEmulator);
   }
