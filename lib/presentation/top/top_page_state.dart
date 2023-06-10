@@ -1,3 +1,5 @@
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:poke_scouter/constants/firebase_environment.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/domain/pokemon.dart';
@@ -8,6 +10,8 @@ import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trotter/trotter.dart';
+
+import '../../environment_config.dart';
 
 final pokemonListProvider =
     StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>(
@@ -25,6 +29,27 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
   final AuthController _authController;
   final ScaffoldMessengerHelper scaffoldMessengerHelper;
   final SharedPreferences sharedPreferences;
+
+  void temp() {
+    callHelloWorldFunction();
+  }
+
+  Future<void> callHelloWorldFunction() async {
+    try {
+      FirebaseFunctions functions = FirebaseFunctions.instance;
+      final HttpsCallable callable = functions.httpsCallable('helloWorld');
+      final results = await callable();
+
+      if (results.data != null) {
+        print(EnvironmentConfig().environment);
+        print('Function result: ${results.data}');
+      } else {
+        throw Exception('Function failed to load data');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   void addPokemon(Pokemon? pokemon) {
     if (pokemon == null) return;
