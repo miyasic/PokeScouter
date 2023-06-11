@@ -40,3 +40,5 @@ class Battle with _$Battle {
     return Battle.fromJson(<String, dynamic>{...data, kFieldBattleId: ds.id});
   }
 }
+
+typedef BattleWithSimilarity = ({Battle battle, int similarity});
