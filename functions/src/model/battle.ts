@@ -1,3 +1,5 @@
+import * as admin from "firebase-admin";
+
 /* eslint-disable require-jsdoc */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -78,7 +80,6 @@ export class Battle {
 
   static fromJson(json: { [key: string]: any }): Battle {
     // Assuming that `createdAt` is a string in ISO 8601 format.
-    json["createdAt"] = new Date(json["createdAt"]._seconds * 1000);
     return new Battle({
       userId: json["userId"] || "",
       battleId: json["battleId"] || "",
@@ -96,7 +97,7 @@ export class Battle {
       memo: json["memo"] || "",
       eachMemo: json["eachMemo"] || {},
       result: json["result"] || "",
-      createdAt: json["createdAt"] ? new Date(json["createdAt"]) : new Date(),
+      createdAt: new Date(json["createdAt"].toDate()),
     });
   }
 
@@ -127,7 +128,7 @@ export class Battle {
       memo: this.memo,
       eachMemo: this.eachMemo,
       result: this.result,
-      createdAt: this.createdAt.toISOString(),
+      createdAt: admin.firestore.Timestamp.fromDate(this.createdAt),
     };
   }
 }
