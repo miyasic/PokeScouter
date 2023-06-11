@@ -66,9 +66,9 @@ class BattleWidget extends ConsumerWidget {
                         child: Text(
                           name,
                           style: textStylePlain.copyWith(
-                              color: (isContains(name) || !isSuggestPage)
-                                  ? Colors.black
-                                  : Colors.red),
+                              color: (isContains(name))
+                                  ? Colors.red
+                                  : Colors.black),
                         ),
                       ))
                   .toList(),
