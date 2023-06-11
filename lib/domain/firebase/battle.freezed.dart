@@ -67,7 +67,7 @@ abstract class $BattleCopyWith<$Res> {
       Map<String, String> eachMemo,
       String result,
       @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp createdAt});
+      UnionTimestamp createdAt});
 
   $UnionTimestampCopyWith<$Res> get createdAt;
 }
@@ -208,7 +208,7 @@ abstract class _$$_BattleCopyWith<$Res> implements $BattleCopyWith<$Res> {
       Map<String, String> eachMemo,
       String result,
       @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp createdAt});
+      UnionTimestamp createdAt});
 
   @override
   $UnionTimestampCopyWith<$Res> get createdAt;
@@ -336,7 +336,7 @@ class _$_Battle with DiagnosticableTreeMixin implements _Battle {
       required final Map<String, String> eachMemo,
       required this.result,
       @alwaysUseServerTimestampUnionTimestampConverter
-          this.createdAt = const UnionTimestamp.serverTimestamp()})
+      this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _opponentParty = opponentParty,
         _myParty = myParty,
         _divisorList6 = divisorList6,
@@ -573,7 +573,7 @@ abstract class _Battle implements Battle {
       required final Map<String, String> eachMemo,
       required final String result,
       @alwaysUseServerTimestampUnionTimestampConverter
-          final UnionTimestamp createdAt}) = _$_Battle;
+      final UnionTimestamp createdAt}) = _$_Battle;
 
   factory _Battle.fromJson(Map<String, dynamic> json) = _$_Battle.fromJson;
 

@@ -59,7 +59,7 @@ abstract class $PartyCopyWith<$Res> {
       String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp createdAt});
+      UnionTimestamp createdAt});
 
   $UnionTimestampCopyWith<$Res> get createdAt;
 }
@@ -176,7 +176,7 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
       String memo,
       Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
-          UnionTimestamp createdAt});
+      UnionTimestamp createdAt});
 
   @override
   $UnionTimestampCopyWith<$Res> get createdAt;
@@ -279,7 +279,7 @@ class _$_Party implements _Party {
       required this.memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
-          this.createdAt = const UnionTimestamp.serverTimestamp()})
+      this.createdAt = const UnionTimestamp.serverTimestamp()})
       : _partyNameList = partyNameList,
         _divisorList6 = divisorList6,
         _divisorList5 = divisorList5,
@@ -449,7 +449,7 @@ abstract class _Party implements Party {
       required final String memo,
       required final Map<String, String> eachMemo,
       @alwaysUseServerTimestampUnionTimestampConverter
-          final UnionTimestamp createdAt}) = _$_Party;
+      final UnionTimestamp createdAt}) = _$_Party;
 
   factory _Party.fromJson(Map<String, dynamic> json) = _$_Party.fromJson;
 
