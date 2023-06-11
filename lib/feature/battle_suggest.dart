@@ -45,16 +45,16 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
       return;
     }
     final battles = await firebaseRepository.fetchBattles(user.uid);
-    final battleWithSimilarity = generateBattleWithSimilarity(battles);
+    final battleWithSimilarity = _generateBattleWithSimilarity(battles);
     final filteredBattleWithSimilarity =
-        filterBattleWithSimilarity(battleWithSimilarity);
+        _filterBattleWithSimilarity(battleWithSimilarity);
     final sortedBattleWithSimilarity =
-        sortBattleWithSimilarity(filteredBattleWithSimilarity);
-    final sortedBattles = getBattlesFromRecord(sortedBattleWithSimilarity);
+        _sortBattleWithSimilarity(filteredBattleWithSimilarity);
+    final sortedBattles = _getBattlesFromRecord(sortedBattleWithSimilarity);
     state = state.copyWith(battles: sortedBattles);
   }
 
-  List<BattleWithSimilarity> generateBattleWithSimilarity(
+  List<BattleWithSimilarity> _generateBattleWithSimilarity(
       List<Battle> battles) {
     return battles.map((battle) {
       final List<List<String>> battleDivisorList = [
@@ -80,14 +80,14 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     }).toList();
   }
 
-  List<BattleWithSimilarity> filterBattleWithSimilarity(
+  List<BattleWithSimilarity> _filterBattleWithSimilarity(
       List<BattleWithSimilarity> battleWithSimilarity) {
     return battleWithSimilarity
         .where((battle) => battle.similarity > 3)
         .toList();
   }
 
-  List<BattleWithSimilarity> sortBattleWithSimilarity(
+  List<BattleWithSimilarity> _sortBattleWithSimilarity(
       List<BattleWithSimilarity> battleWithSimilarity) {
     battleWithSimilarity.sort((a, b) {
       if (a.similarity == b.similarity) {
@@ -102,7 +102,7 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     return battleWithSimilarity;
   }
 
-  List<Battle> getBattlesFromRecord(
+  List<Battle> _getBattlesFromRecord(
       List<BattleWithSimilarity> battleWithSimilarity) {
     return battleWithSimilarity.map((battle) => battle.battle).toList();
   }
