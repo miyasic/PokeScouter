@@ -50,6 +50,9 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     }
     final battles = await firebaseRepository.fetchBattles(user.uid);
     final battleWithSimilarity = generateBattleWithSimilarity(battles);
+    final filteredBattleWithSimilarity =
+        filterBattleWithSimilarity(battleWithSimilarity);
+    print(filteredBattleWithSimilarity.length);
     state = state.copyWith(battles: battles);
   }
 
@@ -66,8 +69,6 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
       ];
       var similarity = 0;
 
-      logger.d("divisorList[0].length ${divisorList[0].length}}");
-      logger.d("battleDivisorList[0].length ${battleDivisorList[0].length}}");
       for (var i = 0; i < 6; i++) {
         final List<String> targetDivisor = divisorList[i];
         final List<String> battleDivisor = battleDivisorList[i];
@@ -79,6 +80,13 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
 
       return (battle: battle, similarity: similarity);
     }).toList();
+  }
+
+  List<({Battle battle, int similarity})> filterBattleWithSimilarity(
+      List<({Battle battle, int similarity})> battleWithSimilarity) {
+    return battleWithSimilarity
+        .where((battle) => battle.similarity > 3)
+        .toList();
   }
 
   void _initializeScrollController() {
