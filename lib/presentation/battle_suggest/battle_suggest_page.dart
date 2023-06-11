@@ -46,28 +46,31 @@ class BattleSuggestPage extends ConsumerWidget {
           body: Column(
             children: [
               Expanded(
-                child: battleSuggestState.battles.isEmpty
-                    ? Center(
-                        child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "似たような対戦相手との対戦履歴がありません。\n対戦履歴を登録することで次に似たパーティと対戦する際に表示されます。",
-                          style: textStyleGreyPlain,
-                        ),
-                      ))
-                    : ListView.builder(
-                        controller: ref
-                            .read(battleSuggestProvider.notifier)
-                            .scrollController,
-                        itemCount: battleSuggestState.battles.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return BattleWidget(
-                            battle: battleSuggestState.battles[index].battle,
-                            pokemonNameList: pokemonListNotifier
-                                .map((pokemon) => pokemon.name)
-                                .toList(),
-                          );
-                        }),
+                child: battleSuggestState.loading
+                    ? const Center(child: CircularProgressIndicator())
+                    : battleSuggestState.battles.isEmpty
+                        ? Center(
+                            child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "似たような対戦相手との対戦履歴がありません。\n対戦履歴を登録することで次に似たパーティと対戦する際に表示されます。",
+                              style: textStyleGreyPlain,
+                            ),
+                          ))
+                        : ListView.builder(
+                            controller: ref
+                                .read(battleSuggestProvider.notifier)
+                                .scrollController,
+                            itemCount: battleSuggestState.battles.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return BattleWidget(
+                                battle:
+                                    battleSuggestState.battles[index].battle,
+                                pokemonNameList: pokemonListNotifier
+                                    .map((pokemon) => pokemon.name)
+                                    .toList(),
+                              );
+                            }),
               ),
               ElevatedButton(
                 child: const Text("対戦登録に進む"),
