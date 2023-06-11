@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/domain/firebase/battle.dart';
 import 'package:poke_scouter/domain/firebase/party.dart';
-import 'package:poke_scouter/feature/battle_suggest_state.dart';
 import 'package:poke_scouter/repository/firestore/refs.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -99,22 +98,5 @@ class FirebaseRepository {
       query = query.startAfterDocument(qds);
     }
     return query.get();
-  }
-
-  Future<QuerySnapshot<Battle>> loadBattlesWithDivisorList({
-    required String userId,
-    required List<String> divisorList,
-    required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
-    required BattleSuggestStatus status,
-  }) async {
-    var query = battlesRef(userId: userId)
-        .where(status.getQueryField(), arrayContainsAny: divisorList)
-        .orderBy(kFieldBattleCreatedAt, descending: true)
-        .limit(kLimitLoadBattles);
-    final qds = lastReadQueryDocumentSnapshot;
-    if (qds != null) {
-      query = query.startAfterDocument(qds);
-    }
-    return await query.get();
   }
 }
