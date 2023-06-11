@@ -31,11 +31,15 @@ exports.fetchSimilarBattle = functions
       );
     }
 
+    // リクエストパラメータを受け取る
+    const primeNumbers: string[] = data.primeNumbers;
+    console.log("primeNumbers", primeNumbers);
+
     // ユーザidをもとにその人のBattle履歴を全て取得する
     const battles = await fetchBattle(uid);
     console.log("battles", battles);
     const battleJson = battles.map((battle) => battle.toJson());
-    console.log("battleJson", battleJson);
+    console.log;
     return battleJson;
   });
 
