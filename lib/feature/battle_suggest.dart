@@ -8,7 +8,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../constants/route_path.dart';
 import '../domain/firebase/battle.dart';
-import '../util/logger.dart';
 
 final battleSuggestProvider =
     StateNotifierProvider.autoDispose<BattleSuggest, BattleSuggestState>((ref) {
@@ -52,8 +51,10 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     final battleWithSimilarity = generateBattleWithSimilarity(battles);
     final filteredBattleWithSimilarity =
         filterBattleWithSimilarity(battleWithSimilarity);
-    print(filteredBattleWithSimilarity.length);
-    state = state.copyWith(battles: battles);
+    final sortedBattleWithSimilarity =
+        sortBattleWithSimilarity(filteredBattleWithSimilarity);
+    final sortedBattles = getBattlesFromRecord(sortedBattleWithSimilarity);
+    state = state.copyWith(battles: sortedBattles);
   }
 
   List<({Battle battle, int similarity})> generateBattleWithSimilarity(
@@ -87,6 +88,26 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     return battleWithSimilarity
         .where((battle) => battle.similarity > 3)
         .toList();
+  }
+
+  List<({Battle battle, int similarity})> sortBattleWithSimilarity(
+      List<({Battle battle, int similarity})> battleWithSimilarity) {
+    battleWithSimilarity.sort((a, b) {
+      if (a.similarity == b.similarity) {
+        final aDateTime = a.battle.createdAt.dateTime;
+        final bDateTime = b.battle.createdAt.dateTime;
+        if (aDateTime != null && bDateTime != null) {
+          return bDateTime.compareTo(aDateTime);
+        }
+      }
+      return b.similarity.compareTo(a.similarity);
+    });
+    return battleWithSimilarity;
+  }
+
+  List<Battle> getBattlesFromRecord(
+      List<({Battle battle, int similarity})> battleWithSimilarity) {
+    return battleWithSimilarity.map((battle) => battle.battle).toList();
   }
 
   void _initializeScrollController() {
