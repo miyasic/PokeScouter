@@ -82,7 +82,8 @@ class FirebaseRepository {
   }
 
   Future<List<Battle>> fetchBattles(String userId) async {
-    final qs = await battlesRef(userId: userId).get();
+    final qs =
+        await battlesRef(userId: userId).limit(kLimitFetchAllBattles).get();
     return qs.docs.map((qds) => qds.data()).toList();
   }
 
@@ -92,7 +93,7 @@ class FirebaseRepository {
   }) async {
     var query = battlesRef(userId: userId)
         .orderBy(kFieldBattleCreatedAt, descending: true)
-        .limit(7);
+        .limit(kLimitLoadBattles);
     final qds = lastReadQueryDocumentSnapshot;
     if (qds != null) {
       query = query.startAfterDocument(qds);
