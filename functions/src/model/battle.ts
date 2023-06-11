@@ -21,6 +21,7 @@ export class Battle {
   eachMemo: { [key: string]: string };
   result: string;
   createdAt: Date;
+  [key: string]: any;
 
   constructor({
     userId,
