@@ -1,9 +1,5 @@
 import * as functions from "firebase-functions";
-import * as admin from "firebase-admin";
 import { getIsEmulator } from "./utils";
-import { Battle } from "./model/battle";
-
-admin.initializeApp(functions.config().firebase);
 
 exports.helloWorld = functions
   .region("asia-northeast1")
