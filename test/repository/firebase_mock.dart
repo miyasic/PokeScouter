@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:poke_scouter/domain/firebase/battle.dart';
 import 'package:poke_scouter/domain/firebase/party.dart';
-import 'package:poke_scouter/feature/battle_suggest_state.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -35,16 +34,6 @@ class FirebaseRepositoryMock implements FirebaseRepository {
   Future<QuerySnapshot<Battle>> loadBattles(String userId,
       {required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot}) {
     // TODO: implement loadBattles
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<QuerySnapshot<Battle>> loadBattlesWithDivisorList(
-      {required String userId,
-      required List<String> divisorList,
-      required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
-      required BattleSuggestStatus status}) {
-    // TODO: implement loadBattlesWithDivisorList
     throw UnimplementedError();
   }
 
