@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:poke_scouter/feature/battle_suggest_state.dart';
 import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
-import 'package:poke_scouter/repository/firebase_functions_repository.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,8 +16,6 @@ final battleSuggestProvider =
   return BattleSuggest(
       authController: ref.read(authControllerProvider.notifier),
       firebaseRepository: ref.read(firebaseRepositoryProvider),
-      firebaseFunctionsRepository:
-          ref.read(firebaseFunctionsRepositoryProvider),
       divisorList: divisorList)
     .._init();
 });
@@ -29,12 +26,10 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   BattleSuggest(
       {required this.authController,
       required this.firebaseRepository,
-      required this.firebaseFunctionsRepository,
       required this.divisorList})
       : super(const BattleSuggestState());
   final AuthController authController;
   final FirebaseRepository firebaseRepository;
-  final FirebaseFunctionsRepository firebaseFunctionsRepository;
   final List<List<String>> divisorList;
   late final ScrollController scrollController;
   static const _scrollValueThreshold = 0.8;
