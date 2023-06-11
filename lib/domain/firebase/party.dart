@@ -25,7 +25,7 @@ class Party with _$Party {
     required Map<String, String> eachMemo,
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-        UnionTimestamp createdAt,
+    UnionTimestamp createdAt,
   }) = _Party;
 
   factory Party.fromJson(Map<String, Object?> json) => _$PartyFromJson(json);
