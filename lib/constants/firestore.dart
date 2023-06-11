@@ -20,6 +20,7 @@ const kFieldDivisorList2 = 'divisorList2';
 const kFieldDivisorList1 = 'divisorList1';
 
 const kLimitLoadBattles = 7;
+const kLimitFetchAllBattles = 300;
 
 /// enum
 enum BattleResult {
