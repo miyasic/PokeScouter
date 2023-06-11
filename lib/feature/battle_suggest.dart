@@ -6,9 +6,9 @@ import 'package:poke_scouter/repository/firebase_functions_repository.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../constants/firestore.dart';
 import '../constants/route_path.dart';
 import '../domain/firebase/battle.dart';
+import '../util/logger.dart';
 
 final battleSuggestProvider =
     StateNotifierProvider.autoDispose<BattleSuggest, BattleSuggestState>((ref) {
@@ -49,7 +49,36 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
       return;
     }
     final battles = await firebaseRepository.fetchBattles(user.uid);
+    final battleWithSimilarity = generateBattleWithSimilarity(battles);
     state = state.copyWith(battles: battles);
+  }
+
+  List<({Battle battle, int similarity})> generateBattleWithSimilarity(
+      List<Battle> battles) {
+    return battles.map((battle) {
+      final List<List<String>> battleDivisorList = [
+        battle.divisorList6,
+        battle.divisorList5,
+        battle.divisorList4,
+        battle.divisorList3,
+        battle.divisorList2,
+        battle.divisorList1
+      ];
+      var similarity = 0;
+
+      logger.d("divisorList[0].length ${divisorList[0].length}}");
+      logger.d("battleDivisorList[0].length ${battleDivisorList[0].length}}");
+      for (var i = 0; i < 6; i++) {
+        final List<String> targetDivisor = divisorList[i];
+        final List<String> battleDivisor = battleDivisorList[i];
+        if (targetDivisor.any((divisor) => battleDivisor.contains(divisor))) {
+          similarity = 6 - i;
+          break;
+        }
+      }
+
+      return (battle: battle, similarity: similarity);
+    }).toList();
   }
 
   void _initializeScrollController() {

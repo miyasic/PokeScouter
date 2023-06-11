@@ -47,7 +47,7 @@ class FirebaseFunctionsRepository {
         // 結果をパース
         final battles = results.data.map<Battle>((item) {
           // todo: ほんとはこの処理せずに、Functions側から適切に返したい。
-          print("similarity: ${item["similarity"]}");
+          logger.d("similarity: ${item["similarity"]}");
           item["createdAt"] = Timestamp(
               item["createdAt"]["_seconds"], item["createdAt"]["_nanoseconds"]);
           return Battle.fromJson(safeMapCast(item as Map<Object?, Object?>));
