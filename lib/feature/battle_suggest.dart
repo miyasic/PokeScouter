@@ -20,8 +20,6 @@ final battleSuggestProvider =
     .._init();
 });
 
-typedef BattleWithSimilarity = ({Battle battle, int similarity});
-
 class BattleSuggest extends StateNotifier<BattleSuggestState> {
   BattleSuggest(
       {required this.authController,
@@ -50,8 +48,7 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
         _filterBattleWithSimilarity(battleWithSimilarity);
     final sortedBattleWithSimilarity =
         _sortBattleWithSimilarity(filteredBattleWithSimilarity);
-    final sortedBattles = _getBattlesFromRecord(sortedBattleWithSimilarity);
-    state = state.copyWith(battles: sortedBattles);
+    state = state.copyWith(battles: sortedBattleWithSimilarity);
   }
 
   List<BattleWithSimilarity> _generateBattleWithSimilarity(
@@ -100,11 +97,6 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
       return b.similarity.compareTo(a.similarity);
     });
     return battleWithSimilarity;
-  }
-
-  List<Battle> _getBattlesFromRecord(
-      List<BattleWithSimilarity> battleWithSimilarity) {
-    return battleWithSimilarity.map((battle) => battle.battle).toList();
   }
 
   void _initializeScrollController() {

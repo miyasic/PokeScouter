@@ -62,7 +62,7 @@ class BattleSuggestPage extends ConsumerWidget {
                         itemCount: battleSuggestState.battles.length,
                         itemBuilder: (BuildContext context, int index) {
                           return BattleWidget(
-                            battle: battleSuggestState.battles[index],
+                            battle: battleSuggestState.battles[index].battle,
                             pokemonNameList: pokemonListNotifier
                                 .map((pokemon) => pokemon.name)
                                 .toList(),

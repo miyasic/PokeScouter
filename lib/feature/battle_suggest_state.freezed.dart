@@ -17,9 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BattleSuggestState {
   bool get loading => throw _privateConstructorUsedError;
-  List<Battle> get battles => throw _privateConstructorUsedError;
-  BattleSuggestStatus get sameStatus => throw _privateConstructorUsedError;
-  QueryDocumentSnapshot<Battle>? get lastReadQueryDocumentSnapshot =>
+  List<({Battle battle, int similarity})> get battles =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,11 +31,7 @@ abstract class $BattleSuggestStateCopyWith<$Res> {
           BattleSuggestState value, $Res Function(BattleSuggestState) then) =
       _$BattleSuggestStateCopyWithImpl<$Res, BattleSuggestState>;
   @useResult
-  $Res call(
-      {bool loading,
-      List<Battle> battles,
-      BattleSuggestStatus sameStatus,
-      QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
+  $Res call({bool loading, List<({Battle battle, int similarity})> battles});
 }
 
 /// @nodoc
@@ -55,8 +49,6 @@ class _$BattleSuggestStateCopyWithImpl<$Res, $Val extends BattleSuggestState>
   $Res call({
     Object? loading = null,
     Object? battles = null,
-    Object? sameStatus = null,
-    Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_value.copyWith(
       loading: null == loading
@@ -66,15 +58,7 @@ class _$BattleSuggestStateCopyWithImpl<$Res, $Val extends BattleSuggestState>
       battles: null == battles
           ? _value.battles
           : battles // ignore: cast_nullable_to_non_nullable
-              as List<Battle>,
-      sameStatus: null == sameStatus
-          ? _value.sameStatus
-          : sameStatus // ignore: cast_nullable_to_non_nullable
-              as BattleSuggestStatus,
-      lastReadQueryDocumentSnapshot: freezed == lastReadQueryDocumentSnapshot
-          ? _value.lastReadQueryDocumentSnapshot
-          : lastReadQueryDocumentSnapshot // ignore: cast_nullable_to_non_nullable
-              as QueryDocumentSnapshot<Battle>?,
+              as List<({Battle battle, int similarity})>,
     ) as $Val);
   }
 }
@@ -87,11 +71,7 @@ abstract class _$$_BattleSuggestStateCopyWith<$Res>
       __$$_BattleSuggestStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool loading,
-      List<Battle> battles,
-      BattleSuggestStatus sameStatus,
-      QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot});
+  $Res call({bool loading, List<({Battle battle, int similarity})> battles});
 }
 
 /// @nodoc
@@ -107,8 +87,6 @@ class __$$_BattleSuggestStateCopyWithImpl<$Res>
   $Res call({
     Object? loading = null,
     Object? battles = null,
-    Object? sameStatus = null,
-    Object? lastReadQueryDocumentSnapshot = freezed,
   }) {
     return _then(_$_BattleSuggestState(
       loading: null == loading
@@ -118,15 +96,7 @@ class __$$_BattleSuggestStateCopyWithImpl<$Res>
       battles: null == battles
           ? _value._battles
           : battles // ignore: cast_nullable_to_non_nullable
-              as List<Battle>,
-      sameStatus: null == sameStatus
-          ? _value.sameStatus
-          : sameStatus // ignore: cast_nullable_to_non_nullable
-              as BattleSuggestStatus,
-      lastReadQueryDocumentSnapshot: freezed == lastReadQueryDocumentSnapshot
-          ? _value.lastReadQueryDocumentSnapshot
-          : lastReadQueryDocumentSnapshot // ignore: cast_nullable_to_non_nullable
-              as QueryDocumentSnapshot<Battle>?,
+              as List<({Battle battle, int similarity})>,
     ));
   }
 }
@@ -136,32 +106,25 @@ class __$$_BattleSuggestStateCopyWithImpl<$Res>
 class _$_BattleSuggestState implements _BattleSuggestState {
   const _$_BattleSuggestState(
       {this.loading = true,
-      final List<Battle> battles = const <Battle>[],
-      this.sameStatus = BattleSuggestStatus.sixSame,
-      this.lastReadQueryDocumentSnapshot})
+      final List<({Battle battle, int similarity})> battles =
+          const <BattleWithSimilarity>[]})
       : _battles = battles;
 
   @override
   @JsonKey()
   final bool loading;
-  final List<Battle> _battles;
+  final List<({Battle battle, int similarity})> _battles;
   @override
   @JsonKey()
-  List<Battle> get battles {
+  List<({Battle battle, int similarity})> get battles {
     if (_battles is EqualUnmodifiableListView) return _battles;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_battles);
   }
 
   @override
-  @JsonKey()
-  final BattleSuggestStatus sameStatus;
-  @override
-  final QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot;
-
-  @override
   String toString() {
-    return 'BattleSuggestState(loading: $loading, battles: $battles, sameStatus: $sameStatus, lastReadQueryDocumentSnapshot: $lastReadQueryDocumentSnapshot)';
+    return 'BattleSuggestState(loading: $loading, battles: $battles)';
   }
 
   @override
@@ -170,22 +133,12 @@ class _$_BattleSuggestState implements _BattleSuggestState {
         (other.runtimeType == runtimeType &&
             other is _$_BattleSuggestState &&
             (identical(other.loading, loading) || other.loading == loading) &&
-            const DeepCollectionEquality().equals(other._battles, _battles) &&
-            (identical(other.sameStatus, sameStatus) ||
-                other.sameStatus == sameStatus) &&
-            (identical(other.lastReadQueryDocumentSnapshot,
-                    lastReadQueryDocumentSnapshot) ||
-                other.lastReadQueryDocumentSnapshot ==
-                    lastReadQueryDocumentSnapshot));
+            const DeepCollectionEquality().equals(other._battles, _battles));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      loading,
-      const DeepCollectionEquality().hash(_battles),
-      sameStatus,
-      lastReadQueryDocumentSnapshot);
+      runtimeType, loading, const DeepCollectionEquality().hash(_battles));
 
   @JsonKey(ignore: true)
   @override
@@ -198,19 +151,13 @@ class _$_BattleSuggestState implements _BattleSuggestState {
 abstract class _BattleSuggestState implements BattleSuggestState {
   const factory _BattleSuggestState(
           {final bool loading,
-          final List<Battle> battles,
-          final BattleSuggestStatus sameStatus,
-          final QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot}) =
+          final List<({Battle battle, int similarity})> battles}) =
       _$_BattleSuggestState;
 
   @override
   bool get loading;
   @override
-  List<Battle> get battles;
-  @override
-  BattleSuggestStatus get sameStatus;
-  @override
-  QueryDocumentSnapshot<Battle>? get lastReadQueryDocumentSnapshot;
+  List<({Battle battle, int similarity})> get battles;
   @override
   @JsonKey(ignore: true)
   _$$_BattleSuggestStateCopyWith<_$_BattleSuggestState> get copyWith =>

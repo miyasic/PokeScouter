@@ -10,9 +10,7 @@ part 'battle_suggest_state.freezed.dart';
 class BattleSuggestState with _$BattleSuggestState {
   const factory BattleSuggestState({
     @Default(true) bool loading,
-    @Default(<Battle>[]) List<Battle> battles,
-    @Default(BattleSuggestStatus.sixSame) BattleSuggestStatus sameStatus,
-    QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,
+    @Default(<BattleWithSimilarity>[]) List<BattleWithSimilarity> battles,
   }) = _BattleSuggestState;
 }
 
