@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/feature/battle_history_state.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
@@ -37,6 +38,11 @@ class BattleHistory extends StateNotifier<BattleHistoryState> {
   fetchBattles() async {
     final user = authController.state;
     if (user == null) {
+      return;
+    }
+    if (state.battles.length > kLimitFetchAllBattles) {
+      scaffoldMessengerHelper
+          .showSnackBar('$kLimitFetchAllBattles件以上のバトルを取得しました。これ以上は取得できません。');
       return;
     }
     final qs = await firebaseRepository.loadBattles(user.uid,
