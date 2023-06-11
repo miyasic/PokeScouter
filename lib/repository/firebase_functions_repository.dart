@@ -21,14 +21,23 @@ class FirebaseFunctionsRepository {
     return data.map((key, value) => MapEntry(key as String, value));
   }
 
-  Future<List<Battle>> callHelloWorldFunction() async {
+  Future<List<Battle>> callFetchSimilarBattle(
+      List<List<String>> divisorListList) async {
     try {
       final HttpsCallable callable =
           _functions.httpsCallable('fetchSimilarBattle');
       // final HttpsCallable callable = _functions.httpsCallable('helloWorld');
 
+      final divisorList = {
+        "divisorList6": divisorListList[0],
+        "divisorList5": divisorListList[1],
+        "divisorList4": divisorListList[2],
+        "divisorList3": divisorListList[3],
+        "divisorList2": divisorListList[4],
+        "divisorList1": divisorListList[5],
+      };
       final Map<String, dynamic> data = {
-        'primeNumbers': ["29", "31", "37", "73", "79", "83"],
+        'divisorList': divisorList,
         // Add more parameters as needed
       };
 

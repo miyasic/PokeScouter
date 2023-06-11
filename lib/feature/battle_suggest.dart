@@ -44,7 +44,8 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   }
 
   fetchBattles() async {
-    final battles = await firebaseFunctionsRepository.callHelloWorldFunction();
+    final battles =
+        await firebaseFunctionsRepository.callFetchSimilarBattle(divisorList);
     state = state.copyWith(battles: battles);
   }
   // fetchBattles() async {
