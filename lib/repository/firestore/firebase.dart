@@ -82,6 +82,11 @@ class FirebaseRepository {
     return qs.data();
   }
 
+  Future<List<Battle>> fetchBattles(String userId) async {
+    final qs = await battlesRef(userId: userId).get();
+    return qs.docs.map((qds) => qds.data()).toList();
+  }
+
   Future<QuerySnapshot<Battle>> loadBattles(
     String userId, {
     required QueryDocumentSnapshot<Battle>? lastReadQueryDocumentSnapshot,

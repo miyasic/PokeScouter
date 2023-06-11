@@ -2,7 +2,6 @@ import 'package:poke_scouter/constants/firestore.dart';
 import 'package:poke_scouter/constants/shared_preferences.dart';
 import 'package:poke_scouter/domain/pokemon.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
-import 'package:poke_scouter/repository/firebase_functions_repository.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
@@ -13,29 +12,20 @@ import 'package:trotter/trotter.dart';
 final pokemonListProvider =
     StateNotifierProvider.family<PokemonListState, List<Pokemon>, String>(
         (ref, id) => PokemonListState(
-            ref.read(firebaseRepositoryProvider),
-            ref.read(authControllerProvider.notifier),
-            ref.read(scaffoldMessengerHelperProvider),
-            ref.read(sharedPreferencesProvider),
-            ref.read(firebaseFunctionsRepositoryProvider)));
+              ref.read(firebaseRepositoryProvider),
+              ref.read(authControllerProvider.notifier),
+              ref.read(scaffoldMessengerHelperProvider),
+              ref.read(sharedPreferencesProvider),
+            ));
 
 class PokemonListState extends StateNotifier<List<Pokemon>> {
-  PokemonListState(
-      this.firebaseRepository,
-      this._authController,
-      this.scaffoldMessengerHelper,
-      this.sharedPreferences,
-      this.firebaseFunctionsRepository)
+  PokemonListState(this.firebaseRepository, this._authController,
+      this.scaffoldMessengerHelper, this.sharedPreferences)
       : super([]);
   final FirebaseRepository firebaseRepository;
-  final FirebaseFunctionsRepository firebaseFunctionsRepository;
   final AuthController _authController;
   final ScaffoldMessengerHelper scaffoldMessengerHelper;
   final SharedPreferences sharedPreferences;
-
-  void temp() {
-    firebaseFunctionsRepository.callHelloWorldFunction();
-  }
 
   void addPokemon(Pokemon? pokemon) {
     if (pokemon == null) return;

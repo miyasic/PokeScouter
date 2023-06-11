@@ -69,4 +69,10 @@ class FirebaseRepositoryMock implements FirebaseRepository {
     // TODO: implement setBattle
     throw UnimplementedError();
   }
+
+  @override
+  Future<List<Battle>> fetchBattles(String userId) {
+    // TODO: implement fetchBattles
+    throw UnimplementedError();
+  }
 }
