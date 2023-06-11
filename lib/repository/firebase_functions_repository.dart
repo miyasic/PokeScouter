@@ -28,8 +28,7 @@ class FirebaseFunctionsRepository {
       // final HttpsCallable callable = _functions.httpsCallable('helloWorld');
 
       final Map<String, dynamic> data = {
-        'param1': 'value1',
-        'param2': 'value2',
+        'primeNumbers': ["29", "31", "37", "73", "79", "83"],
         // Add more parameters as needed
       };
 
