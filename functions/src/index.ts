@@ -32,9 +32,9 @@ exports.fetchSimilarBattle = functions
     }
 
     // リクエストパラメータを受け取る
-    const divisorList: any = data.divisorList;
+    const divisorList: object = data.divisorList;
     console.log("divisorList", divisorList);
-
+    console.log("divisorList.type", typeof divisorList);
     // ユーザidをもとにその人のBattle履歴を全て取得する
     const battles = await fetchBattle(uid);
     console.log("battles", battles);
