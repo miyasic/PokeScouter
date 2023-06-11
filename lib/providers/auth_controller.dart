@@ -32,6 +32,15 @@ class AuthController extends StateNotifier<User?> {
       ref
           .watch(scaffoldMessengerHelperProvider)
           .showSnackBar(text, isWarningMessage: true);
+    } on FirebaseAuthException catch (e) {
+      final message = switch (e.code) {
+        'user-not-found' => 'ユーザが見つかりませんでした。',
+        'wrong-password' => 'パスワードが間違っています。',
+        _ => 'ログインに失敗しました。',
+      };
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(message, isWarningMessage: true);
     } catch (e) {
       ref
           .watch(scaffoldMessengerHelperProvider)
@@ -51,12 +60,20 @@ class AuthController extends StateNotifier<User?> {
       ref
           .watch(scaffoldMessengerHelperProvider)
           .showSnackBar(text, isWarningMessage: true);
+    } on FirebaseAuthException catch (e) {
+      final message = switch (e.code) {
+        'email-already-in-use' => 'そのメールアドレスは既に使われています。',
+        'weak-password' => 'パスワードが弱すぎます。',
+        _ => 'アカウントの作成に失敗しました。',
+      };
+      ref
+          .watch(scaffoldMessengerHelperProvider)
+          .showSnackBar(message, isWarningMessage: true);
     } catch (e) {
       ref
           .watch(scaffoldMessengerHelperProvider)
           .showSnackBar(e.toString(), isWarningMessage: true);
     }
-    // Firestoreにユーザデータを追加したり
   }
 
   checkInputText(String email, String password) {
