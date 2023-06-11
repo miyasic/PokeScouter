@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../domain/firebase/battle.dart';
 import '../providers/firebase_functions_provider.dart';
 import '../util/logger.dart';
 
@@ -12,9 +14,14 @@ final firebaseFunctionsRepositoryProvider =
 
 class FirebaseFunctionsRepository {
   FirebaseFunctionsRepository(this._functions);
+
   final FirebaseFunctions _functions;
 
-  Future<void> callHelloWorldFunction() async {
+  Map<String, dynamic> safeMapCast(Map<Object?, Object?> data) {
+    return data.map((key, value) => MapEntry(key as String, value));
+  }
+
+  Future<List<Battle>> callHelloWorldFunction() async {
     try {
       final HttpsCallable callable =
           _functions.httpsCallable('fetchSimilarBattle');
@@ -29,12 +36,20 @@ class FirebaseFunctionsRepository {
       final results = await callable(data);
 
       if (results.data != null) {
-        logger.d(results.data);
+        // 結果をパース
+        final battles = results.data.map<Battle>((item) {
+          // todo: ほんとはこの処理せずに、Functions側から適切に返したい。
+          item["createdAt"] = Timestamp(
+              item["createdAt"]["_seconds"], item["createdAt"]["_nanoseconds"]);
+          return Battle.fromJson(safeMapCast(item as Map<Object?, Object?>));
+        }).toList();
+        return battles;
       } else {
         throw Exception('Function failed to load data');
       }
     } catch (e) {
       logger.d(e);
+      rethrow;
     }
   }
 }

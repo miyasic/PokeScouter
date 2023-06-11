@@ -34,8 +34,9 @@ exports.fetchSimilarBattle = functions
     // ユーザidをもとにその人のBattle履歴を全て取得する
     const battles = await fetchBattle(uid);
     console.log("battles", battles);
-    const json = JSON.stringify(battles.map((battle) => battle.toJson()));
-    return json;
+    const battleJson = battles.map((battle) => battle.toJson());
+    console.log("battleJson", battleJson);
+    return battleJson;
   });
 
 const fetchBattle = async (uid: string): Promise<Battle[]> => {

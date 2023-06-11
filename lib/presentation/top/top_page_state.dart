@@ -33,8 +33,10 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
   final ScaffoldMessengerHelper scaffoldMessengerHelper;
   final SharedPreferences sharedPreferences;
 
-  void temp() {
-    firebaseFunctionsRepository.callHelloWorldFunction();
+  void temp() async {
+    final battles = await firebaseFunctionsRepository.callHelloWorldFunction();
+    print(battles[0]);
+    print(battles[1]);
   }
 
   void addPokemon(Pokemon? pokemon) {
