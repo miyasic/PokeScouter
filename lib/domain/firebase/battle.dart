@@ -30,7 +30,7 @@ class Battle with _$Battle {
     required String result,
     @alwaysUseServerTimestampUnionTimestampConverter
     @Default(UnionTimestamp.serverTimestamp())
-        UnionTimestamp createdAt,
+    UnionTimestamp createdAt,
   }) = _Battle;
 
   factory Battle.fromJson(Map<String, Object?> json) => _$BattleFromJson(json);
