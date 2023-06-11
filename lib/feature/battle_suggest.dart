@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:poke_scouter/feature/battle_suggest_state.dart';
 import 'package:poke_scouter/presentation/top/top_page_state.dart';
 import 'package:poke_scouter/providers/auth_controller.dart';
+import 'package:poke_scouter/repository/firebase_functions_repository.dart';
 import 'package:poke_scouter/repository/firestore/firebase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -17,6 +18,8 @@ final battleSuggestProvider =
   return BattleSuggest(
       authController: ref.read(authControllerProvider.notifier),
       firebaseRepository: ref.read(firebaseRepositoryProvider),
+      firebaseFunctionsRepository:
+          ref.read(firebaseFunctionsRepositoryProvider),
       divisorList: divisorList)
     .._init();
 });
@@ -25,10 +28,12 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   BattleSuggest(
       {required this.authController,
       required this.firebaseRepository,
+      required this.firebaseFunctionsRepository,
       required this.divisorList})
       : super(const BattleSuggestState());
   final AuthController authController;
   final FirebaseRepository firebaseRepository;
+  final FirebaseFunctionsRepository firebaseFunctionsRepository;
   final List<List<String>> divisorList;
   late final ScrollController scrollController;
   static const _scrollValueThreshold = 0.8;
@@ -39,35 +44,39 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   }
 
   fetchBattles() async {
-    if (state.sameStatus == BattleSuggestStatus.threeSame) {
-      return;
-    }
-    final user = authController.state;
-    if (user == null) {
-      return;
-    }
-    var divisor = divisorList[state.sameStatus.getIndex()];
-    if (divisor.length > 10) {
-      divisor = divisor.take(10).toList();
-    }
-    final qs = await firebaseRepository.loadBattlesWithDivisorList(
-        userId: user.uid,
-        divisorList: divisor,
-        lastReadQueryDocumentSnapshot: state.lastReadQueryDocumentSnapshot,
-        status: state.sameStatus);
-    final List<Battle> newBattles = qs.docs.map((qds) => qds.data()).toList();
-    if (newBattles.isNotEmpty && newBattles.length == kLimitLoadBattles) {
-      state = state.copyWith(
-          battles: [...state.battles, ...newBattles],
-          lastReadQueryDocumentSnapshot: qs.docs.last);
-    } else {
-      state = state.copyWith(
-          sameStatus: state.sameStatus.getNext(),
-          lastReadQueryDocumentSnapshot: null);
-
-      await fetchBattles();
-    }
+    final battles = await firebaseFunctionsRepository.callHelloWorldFunction();
+    state = state.copyWith(battles: battles);
   }
+  // fetchBattles() async {
+  //   if (state.sameStatus == BattleSuggestStatus.threeSame) {
+  //     return;
+  //   }
+  //   final user = authController.state;
+  //   if (user == null) {
+  //     return;
+  //   }
+  //   var divisor = divisorList[state.sameStatus.getIndex()];
+  //   if (divisor.length > 10) {
+  //     divisor = divisor.take(10).toList();
+  //   }
+  //   final qs = await firebaseRepository.loadBattlesWithDivisorList(
+  //       userId: user.uid,
+  //       divisorList: divisor,
+  //       lastReadQueryDocumentSnapshot: state.lastReadQueryDocumentSnapshot,
+  //       status: state.sameStatus);
+  //   final List<Battle> newBattles = qs.docs.map((qds) => qds.data()).toList();
+  //   if (newBattles.isNotEmpty && newBattles.length == kLimitLoadBattles) {
+  //     state = state.copyWith(
+  //         battles: [...state.battles, ...newBattles],
+  //         lastReadQueryDocumentSnapshot: qs.docs.last);
+  //   } else {
+  //     state = state.copyWith(
+  //         sameStatus: state.sameStatus.getNext(),
+  //         lastReadQueryDocumentSnapshot: null);
+  //
+  //     await fetchBattles();
+  //   }
+  // }
 
   void _initializeScrollController() {
     scrollController = ScrollController()
