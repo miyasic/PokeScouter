@@ -32,8 +32,8 @@ exports.fetchSimilarBattle = functions
     }
 
     // リクエストパラメータを受け取る
-    const primeNumbers: string[] = data.primeNumbers;
-    console.log("primeNumbers", primeNumbers);
+    const divisorList: any = data.divisorList;
+    console.log("divisorList", divisorList);
 
     // ユーザidをもとにその人のBattle履歴を全て取得する
     const battles = await fetchBattle(uid);
