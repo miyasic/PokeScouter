@@ -33,8 +33,10 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   static const _scrollValueThreshold = 0.8;
 
   Future _init() async {
+    state = state.copyWith(loading: true);
     _initializeScrollController();
     await fetchBattles();
+    state = state.copyWith(loading: false);
   }
 
   fetchBattles() async {
