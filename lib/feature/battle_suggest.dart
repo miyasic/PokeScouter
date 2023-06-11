@@ -23,6 +23,8 @@ final battleSuggestProvider =
     .._init();
 });
 
+typedef BattleWithSimilarity = ({Battle battle, int similarity});
+
 class BattleSuggest extends StateNotifier<BattleSuggestState> {
   BattleSuggest(
       {required this.authController,
@@ -57,7 +59,7 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     state = state.copyWith(battles: sortedBattles);
   }
 
-  List<({Battle battle, int similarity})> generateBattleWithSimilarity(
+  List<BattleWithSimilarity> generateBattleWithSimilarity(
       List<Battle> battles) {
     return battles.map((battle) {
       final List<List<String>> battleDivisorList = [
@@ -83,15 +85,15 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
     }).toList();
   }
 
-  List<({Battle battle, int similarity})> filterBattleWithSimilarity(
-      List<({Battle battle, int similarity})> battleWithSimilarity) {
+  List<BattleWithSimilarity> filterBattleWithSimilarity(
+      List<BattleWithSimilarity> battleWithSimilarity) {
     return battleWithSimilarity
         .where((battle) => battle.similarity > 3)
         .toList();
   }
 
-  List<({Battle battle, int similarity})> sortBattleWithSimilarity(
-      List<({Battle battle, int similarity})> battleWithSimilarity) {
+  List<BattleWithSimilarity> sortBattleWithSimilarity(
+      List<BattleWithSimilarity> battleWithSimilarity) {
     battleWithSimilarity.sort((a, b) {
       if (a.similarity == b.similarity) {
         final aDateTime = a.battle.createdAt.dateTime;
@@ -106,7 +108,7 @@ class BattleSuggest extends StateNotifier<BattleSuggestState> {
   }
 
   List<Battle> getBattlesFromRecord(
-      List<({Battle battle, int similarity})> battleWithSimilarity) {
+      List<BattleWithSimilarity> battleWithSimilarity) {
     return battleWithSimilarity.map((battle) => battle.battle).toList();
   }
 
