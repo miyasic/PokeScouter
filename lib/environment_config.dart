@@ -13,7 +13,6 @@ class EnvironmentConfig {
 
   Environment? get environment => _environment;
   bool get isProd {
-    print(_environment);
     return _environment == Environment.product;
   }
 
