@@ -14,6 +14,14 @@ final admobId = Provider<String>((ref) {
     } else {
       throw "不明のOSです。";
     }
+  } else {
+    if (Platform.isAndroid) {
+      adUnitId = "ca-app-pub-6246635878467153/4710152920";
+    } else if (Platform.isIOS) {
+      adUnitId = "ca-app-pub-6246635878467153/4586917894";
+    } else {
+      throw "不明のOSです。";
+    }
   }
   return adUnitId;
 });
