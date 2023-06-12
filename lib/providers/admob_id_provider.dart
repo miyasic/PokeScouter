@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poke_scouter/environment_config.dart';
 
 final admobId = Provider<String>((ref) {
   late final String adUnitId;
-  bool isProd = false;
+  bool isProd = EnvironmentConfig().isProd;
   // Todo: 本番環境の実装をする。
   if (!isProd) {
     if (Platform.isAndroid) {
