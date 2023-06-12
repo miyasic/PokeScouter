@@ -12,6 +12,9 @@ class EnvironmentConfig {
   }
 
   Environment? get environment => _environment;
+  bool get isProd {
+    return _environment == Environment.product;
+  }
 
   void setEnvironment() {
     switch (const String.fromEnvironment('flavor')) {
