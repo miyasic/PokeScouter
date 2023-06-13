@@ -16,6 +16,7 @@ import 'package:poke_scouter/theme.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import 'firebase_options.dart';
 
@@ -32,6 +33,8 @@ Future main() async {
     FirebaseAuth.instance
         .useAuthEmulator(localhost, portForFirebaseAuthEmulator);
   }
+  await FirebaseAnalytics.instance.logEvent(name: 'runApp');
+
   runApp(ProviderScope(overrides: <Override>[
     pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
     sharedPreferencesProvider
