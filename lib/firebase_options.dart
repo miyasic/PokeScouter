@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,6 +46,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCe637dQvV27TlQPiJrMkQPaffxlSyoRVk',
+    appId: '1:146699168008:web:588791dfc214d43bfa64bd',
+    messagingSenderId: '146699168008',
+    projectId: 'pokescoutor',
+    authDomain: 'pokescoutor.firebaseapp.com',
+    storageBucket: 'pokescoutor.appspot.com',
+    measurementId: 'G-80B5DRN96L',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDYx25xQC1gP7SV39aZSrmoBVWy7eCRLk4',
     appId: '1:146699168008:android:a9b0e80ca537d30efa64bd',
@@ -63,8 +70,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '146699168008',
     projectId: 'pokescoutor',
     storageBucket: 'pokescoutor.appspot.com',
-    iosClientId:
-        '146699168008-0biiuhr177tiudm3vg8gqif84ku7joor.apps.googleusercontent.com',
+    iosClientId: '146699168008-0biiuhr177tiudm3vg8gqif84ku7joor.apps.googleusercontent.com',
     iosBundleId: 'com.gmail.kou.sepak',
   );
 }

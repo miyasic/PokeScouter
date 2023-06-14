@@ -23,7 +23,7 @@ import 'firebase_options.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final env = EnvironmentConfig().environment;
-  MobileAds.instance.initialize();
+  // MobileAds.instance.initialize();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
