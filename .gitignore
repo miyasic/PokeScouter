@@ -47,3 +47,4 @@ app.*.map.json
 /coverage/*
 
 /firebase/data/*
+keyについて.txt
