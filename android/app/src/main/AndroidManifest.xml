@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.sepak.kou.poke_scouter">
+    package="com.gmail.sepak.kou.poke_scouter">
    <application
         android:label="Scouter"
         android:name="${applicationName}"
