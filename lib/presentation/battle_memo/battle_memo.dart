@@ -32,6 +32,7 @@ class BattleMemoPage extends HookConsumerWidget {
     final myOrderNameList = useState<List<String>>([]);
     final memoController = useTextEditingController();
     final result = useState<BattleResult>(BattleResult.win);
+    final isLoading = useState<bool>(false);
     final showTutorial = ref.watch(showBattleMemoTutorialProvider);
     List<int> getOrderForView(List<int> order, int partySize) {
       List<int> list = List.filled(partySize, 0);
@@ -244,6 +245,7 @@ class BattleMemoPage extends HookConsumerWidget {
                   ),
                   ElevatedButton(
                     onPressed: () async {
+                      isLoading.value = true;
                       await ref
                           .read(pokemonListProvider(kPageNameBattleStart)
                               .notifier)
@@ -254,6 +256,7 @@ class BattleMemoPage extends HookConsumerWidget {
                               myOrder: myOrder.value,
                               result: result.value,
                               showLoginDialog: () async {
+                                isLoading.value = false;
                                 await showConfirmDialog(
                                     context: context,
                                     title: 'ログインしてください。',
@@ -264,6 +267,7 @@ class BattleMemoPage extends HookConsumerWidget {
                                     });
                               },
                               onComplete: () {
+                                isLoading.value = false;
                                 ref.invalidate(admobRepositoryProvider);
                                 context.go(kPagePathBattleStart);
                               });
@@ -286,7 +290,13 @@ class BattleMemoPage extends HookConsumerWidget {
             child: Text(
               kBattleMemoTutorialMessage,
               style: textStylePlain,
-            ))
+            )),
+        Visibility(
+            visible: isLoading.value,
+            child: Container(
+                height: double.infinity,
+                width: double.infinity,
+                child: Center(child: CircularProgressIndicator()))),
       ],
     );
   }
