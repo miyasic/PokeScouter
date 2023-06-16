@@ -293,7 +293,7 @@ class BattleMemoPage extends HookConsumerWidget {
             )),
         Visibility(
             visible: isLoading.value,
-            child: Container(
+            child: const SizedBox(
                 height: double.infinity,
                 width: double.infinity,
                 child: Center(child: CircularProgressIndicator()))),
