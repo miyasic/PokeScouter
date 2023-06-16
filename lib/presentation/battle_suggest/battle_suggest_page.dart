@@ -47,7 +47,8 @@ class BattleSuggestPage extends ConsumerWidget {
               Expanded(
                 child: ref.watch(battleSuggestFutureProvider).when(
                     data: (battleWithSimilarities) {
-                      if (battleWithSimilarities == null) {
+                      if (battleWithSimilarities == null ||
+                          battleWithSimilarities.isEmpty) {
                         return Center(
                             child: Padding(
                           padding: const EdgeInsets.all(8.0),
