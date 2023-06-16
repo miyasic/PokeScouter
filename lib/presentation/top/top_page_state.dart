@@ -120,19 +120,18 @@ class PokemonListState extends StateNotifier<List<Pokemon>> {
           isWarningMessage: true);
       return;
     }
-    for (var i = 0; i < 50; i++) {
-      await firebaseRepository.setBattle(
-          userId: user.uid,
-          partyId: partyId,
-          opponentParty: _getPokemonNameList(),
-          myParty: myPartyNameList,
-          divisorList: getPokemonDivisorList(),
-          opponentOrder: opponentOrder,
-          myOrder: myOrder,
-          memo: memo,
-          eachMemo: {},
-          result: result.toString());
-    }
+    await firebaseRepository.setBattle(
+        userId: user.uid,
+        partyId: partyId,
+        opponentParty: _getPokemonNameList(),
+        myParty: myPartyNameList,
+        divisorList: getPokemonDivisorList(),
+        opponentOrder: opponentOrder,
+        myOrder: myOrder,
+        memo: memo,
+        eachMemo: {},
+        result: result.toString());
+
     // 登録成功した場合の処理
     state = [];
     scaffoldMessengerHelper.showSnackBar('登録しました。');
