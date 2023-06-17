@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /user/{userId} {
+      // ユーザーは自分のドキュメントのみ読み書き可能
+      allow read, write: if request.auth.uid == userId;
+
+      // ユーザーは自分のBattleドキュメントのみ読み書き可能
+      match /battle/{battleId} {
+        allow read, write: if request.auth.uid == userId;
+      }
+
+      // ユーザーは自分のPartyドキュメントのみ読み書き可能
+      match /party/{partyId} {
+        allow read, write: if request.auth.uid == userId;
+      }
+    }
+  }
+}

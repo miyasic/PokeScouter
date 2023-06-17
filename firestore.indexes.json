@@ -1,0 +1,47 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "battle",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "divisorList4",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "battle",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "divisorList5",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "battle",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "divisorList6",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
