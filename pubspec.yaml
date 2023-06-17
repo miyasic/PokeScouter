@@ -32,11 +32,20 @@ dependencies:
   flutter_native_splash: ^2.2.16
 
   firebase_remote_config: ^4.2.2
-  cloud_functions: ^4.3.2
   firebase_core: ^2.13.1
   cloud_firestore: ^4.8.0
   firebase_auth: ^4.6.2
   firebase_analytics: ^10.0.0
+#  device_preview: ^1.1.0
+  device_preview:
+    git:
+      url: https://github.com/miyaji555/flutter_device_preview
+      path: device_preview
+  device_preview_screenshot:
+    git:
+      url: https://github.com/miyaji555/flutter_device_preview
+      path: plugins/device_preview_screenshot
+
 
 dev_dependencies:
   flutter_test:

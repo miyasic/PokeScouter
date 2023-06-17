@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:device_preview_screenshot/device_preview_screenshot.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import 'package:poke_scouter/repository/shared_preferences.dart';
 import 'package:poke_scouter/router.dart';
 import 'package:poke_scouter/scaffold_messenger.dart';
 import 'package:poke_scouter/theme.dart';
+import 'package:poke_scouter/util/device_preview_screenshot_helper.dart';
 import 'package:poke_scouter/util/pokemon_suggest.dart';
 import 'package:poke_scouter/util/provider_logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,16 +38,28 @@ Future main() async {
   }
   await FirebaseAnalytics.instance.logEvent(name: 'runApp');
 
-  runApp(ProviderScope(overrides: <Override>[
-    pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
-    sharedPreferencesProvider
-        .overrideWithValue(await SharedPreferences.getInstance()),
-    remoteConfigProvider.overrideWithValue(
-        await FirebaseRemoteConfigService().initRemoteConfig()),
-    versionProvider.overrideWithValue(await PackageInfo.fromPlatform())
-  ], observers: [
-    ProviderLogger()
-  ], child: const MyApp()));
+  runApp(ProviderScope(
+      overrides: <Override>[
+        pokemonRawDataProvider.overrideWithValue(await getPokemonRawData),
+        sharedPreferencesProvider
+            .overrideWithValue(await SharedPreferences.getInstance()),
+        remoteConfigProvider.overrideWithValue(
+            await FirebaseRemoteConfigService().initRemoteConfig()),
+        versionProvider.overrideWithValue(await PackageInfo.fromPlatform())
+      ],
+      observers: [
+        ProviderLogger()
+      ],
+      child: DevicePreview(
+          enabled: true,
+          tools: const [
+            ...DevicePreview.defaultTools,
+            DevicePreviewScreenshot(
+              onScreenshot: onScreenshot,
+              multipleScreenshots: true,
+            )
+          ],
+          builder: (context) => const MyApp())));
 }
 
 class MyApp extends ConsumerWidget {
@@ -57,6 +72,10 @@ class MyApp extends ConsumerWidget {
     final darkTheme = ref.watch(themeProvider(Brightness.dark));
     final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
+      useInheritedMediaQuery: true,
+      builder: DevicePreview.appBuilder,
+      locale: DevicePreview.locale(context),
+      debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       routeInformationProvider: router.routeInformationProvider,
       routerDelegate: router.routerDelegate,
