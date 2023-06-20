@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDYx25xQC1gP7SV39aZSrmoBVWy7eCRLk4',
-    appId: '1:146699168008:android:a9b0e80ca537d30efa64bd',
+    appId: '1:146699168008:android:bbf685e04feaba62fa64bd',
     messagingSenderId: '146699168008',
     projectId: 'pokescoutor',
     storageBucket: 'pokescoutor.appspot.com',
@@ -59,12 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAyAWtQ5rWSFEU7rFZ1PBzsU1JKcbBXpf4',
-    appId: '1:146699168008:ios:b35d96d3e5f4be4dfa64bd',
+    appId: '1:146699168008:ios:8af079b05093fadffa64bd',
     messagingSenderId: '146699168008',
     projectId: 'pokescoutor',
     storageBucket: 'pokescoutor.appspot.com',
-    iosClientId:
-        '146699168008-0biiuhr177tiudm3vg8gqif84ku7joor.apps.googleusercontent.com',
-    iosBundleId: 'com.gmail.kou.sepak',
+    iosClientId: '146699168008-ofi85v1b5ql9fq607oeecmjmk4cjrecn.apps.googleusercontent.com',
+    iosBundleId: 'com.gmail.kou.sepak.pokescouter',
   );
 }

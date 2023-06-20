@@ -7,9 +7,45 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:146699168008:android:a9b0e80ca537d30efa64bd",
+        "mobilesdk_app_id": "1:146699168008:android:bbf685e04feaba62fa64bd",
         "android_client_info": {
           "package_name": "com.gmail.sepak.kou.poke_scouter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146699168008-mcggooha3s1phq18hrmu1ccvb5t26khr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYx25xQC1gP7SV39aZSrmoBVWy7eCRLk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146699168008-mcggooha3s1phq18hrmu1ccvb5t26khr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "146699168008-068sh66bmmseqa6v4ts5s4v1ohvkk0ks.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterTemplate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146699168008:android:a9b0e80ca537d30efa64bd",
+        "android_client_info": {
+          "package_name": "com.google.sepak.kou.poke_scouter"
         }
       },
       "oauth_client": [

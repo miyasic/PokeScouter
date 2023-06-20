@@ -57,6 +57,7 @@ class MyApp extends ConsumerWidget {
     final darkTheme = ref.watch(themeProvider(Brightness.dark));
     final themeMode = ref.watch(themeModeProvider);
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       scaffoldMessengerKey: ref.watch(scaffoldMessengerKeyProvider),
       routeInformationProvider: router.routeInformationProvider,
       routerDelegate: router.routerDelegate,
