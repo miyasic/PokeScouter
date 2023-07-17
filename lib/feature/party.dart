@@ -25,8 +25,3 @@ final partyFutureProvider = FutureProvider.autoDispose<Party?>((ref) {
   return ref.read(firebaseRepositoryProvider).fetchParty(userId, partyId);
 });
 
-  await Future<void>.delayed(const Duration(seconds: 2));
-
-  // つまり、`doubleEnabledProvider`が更新される度にAsyncLoadingクラスを経由する
-  return Future.value(42);
-});
