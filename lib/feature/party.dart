@@ -24,4 +24,3 @@ final partyFutureProvider = FutureProvider.autoDispose<Party?>((ref) {
   }
   return ref.read(firebaseRepositoryProvider).fetchParty(userId, partyId);
 });
-
