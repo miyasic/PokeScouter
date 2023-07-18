@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:poke_scouter/constants/provider_name.dart';
 import 'package:poke_scouter/constants/remote_config.dart';
 import 'package:poke_scouter/presentation/Widget/tab.dart';
-import 'package:poke_scouter/presentation/battle_memo/battle_memo.dart';
+import 'package:poke_scouter/presentation/battle_memo/battle_memo_page.dart';
 import 'package:poke_scouter/presentation/battle_start/battle_start_page.dart';
 import 'package:poke_scouter/presentation/battle_suggest/battle_suggest_page.dart';
 import 'package:poke_scouter/presentation/force_update/force_update.dart';
