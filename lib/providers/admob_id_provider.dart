@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final admobId = Provider<String>((ref) {
   final String adUnitId = _getAdmobUnitId();
-  print(adUnitId);
   return adUnitId;
 });
 
