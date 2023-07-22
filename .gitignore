@@ -45,6 +45,7 @@ app.*.map.json
 
 # test coverage related
 /coverage/*
+/dart_defines/*
 
 /firebase/data/*
 keyについて.txt
