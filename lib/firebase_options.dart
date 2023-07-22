@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '146699168008',
     projectId: 'pokescoutor',
     storageBucket: 'pokescoutor.appspot.com',
-    iosClientId: '146699168008-ofi85v1b5ql9fq607oeecmjmk4cjrecn.apps.googleusercontent.com',
+    iosClientId:
+        '146699168008-ofi85v1b5ql9fq607oeecmjmk4cjrecn.apps.googleusercontent.com',
     iosBundleId: 'com.gmail.kou.sepak.pokescouter',
   );
 }
