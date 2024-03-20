@@ -49,3 +49,6 @@ app.*.map.json
 
 /firebase/data/*
 keyについて.txt
+
+# FVM Version Cache
+.fvm/
