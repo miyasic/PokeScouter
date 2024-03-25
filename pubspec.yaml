@@ -1,17 +1,16 @@
 name: poke_scouter
 description: A new Flutter project.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
 
   cupertino_icons: ^1.0.2
   go_router: ^5.1.3
@@ -19,7 +18,7 @@ dependencies:
   google_fonts: ^6.1.0
   roggle: ^0.3.1
   freezed_annotation: ^2.2.0
-  json_serializable: ^6.5.4
+  json_serializable: ^6.7.1
   json_annotation: ^4.7.0
   flutter_hooks: ^0.18.5+1
   badges: ^2.0.3
@@ -36,25 +35,24 @@ dependencies:
   firebase_core: ^2.13.1
   cloud_firestore: ^4.8.0
   firebase_auth: ^4.6.2
-  firebase_analytics: ^10.0.0
+  firebase_analytics: ^10.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.3
   build_runner: ^2.3.2
   freezed: ^2.3.2
   dart_style: ^2.3.1
 
 flutter_native_splash:
-  color: '#D9D9D9'
-  image: 'assets/images/splash.png'
-  color_dark: '#262626'
-  image_dark: 'assets/images/splash.png'
+  color: "#D9D9D9"
+  image: "assets/images/splash.png"
+  color_dark: "#262626"
+  image_dark: "assets/images/splash.png"
   fullscreen: true
 
 flutter:
-
   uses-material-design: true
   assets:
     - json/
