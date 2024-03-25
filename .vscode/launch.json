@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "pokescouter dev",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=flavor=dev"
+            ]
+        },
+        {
+            "name": "pokescouter prod",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=flavor=prod"
+            ]
+        },
+        {
+            "name": "pokescouter emulator",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=flavor=emulator"
+            ]
+        },
+    ]
+}
