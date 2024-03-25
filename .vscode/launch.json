@@ -2,21 +2,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "flutter_template",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "flutter_template (profile mode)",
+            "name": "pokescouter dev",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--dart-define=flavor=dev"
+            ]
         },
         {
-            "name": "flutter_template (release mode)",
+            "name": "pokescouter prod",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "args": [
+                "--dart-define=flavor=prod"
+            ]
+        },
+        {
+            "name": "pokescouter emulator",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--dart-define=flavor=emulator"
+            ]
+        },
     ]
 }
