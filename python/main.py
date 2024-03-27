@@ -7,7 +7,7 @@ def main():
 
 ## データを整形する関数
 def format_data():
-    with open("input.csv", encoding='shift_jis') as f:
+    with open("input.csv", encoding='UTF-8') as f:
         text = f.read()
         text = delete_asterisk(text)
         text = delete_number(text)
