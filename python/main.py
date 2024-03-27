@@ -12,7 +12,7 @@ def format_data():
         text = delete_asterisk(text)
         text = delete_number(text)
         text = text.replace('\n(', '(')
-    with open('output.csv', 'w', encoding='shift_jis') as f:
+    with open('formated.csv', 'w', encoding='shift_jis') as f:
         f.write(text)
 
 ## アスタリスクを削除する関数
@@ -27,7 +27,7 @@ def delete_asterisk(text):
 
 def csv_to_json():
     # CSV ファイルを開く
-    with open("output.csv", encoding='shift_jis') as f:
+    with open("formated.csv", encoding='shift_jis') as f:
         # CSV ファイルを読み込んで、各行を辞書型に変換する
         reader = csv.DictReader(f)
         rows = list(reader)
@@ -41,7 +41,7 @@ def csv_to_json():
     pokemon_json = json.dumps(pokemon_dict)
 
     # # JSON 形式のデータを出力する
-    with open("output.json", "w", encoding='shift_jis') as f:
+    with open("pokemon.json", "w", encoding='shift_jis') as f:
         f.write(pokemon_json)
 
 
